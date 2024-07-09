@@ -20,7 +20,7 @@ class RootViewController: UIViewController {
         
         let HomeVC = HomeViewController()
         let LeaderboardVC = LeaderBoardViewController()
-        let ProfileVC = ProfileViewController()
+        let ProfileVC = ProfileHostingController()
         
         tabBarController.viewControllers = [HomeVC, LeaderboardVC, ProfileVC]
         

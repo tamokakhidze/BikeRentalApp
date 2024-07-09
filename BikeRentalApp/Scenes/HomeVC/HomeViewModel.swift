@@ -38,10 +38,8 @@ class HomeViewModel {
             self.bikes = documents.map { querySnapshotDocument in
                 let data = querySnapshotDocument.data()
                 
-                let id = data["id"] as! Int
                 let price = data["price"] as! Double
                 let year = data["year"] as! Int
-                let isAvailable = data["isAvailable"] as! Bool
                 let hasLights = data["hasLights"] as! Bool
                 let numberOfGears = data["numberOfGears"] as! Int
                 let geometry = data["geometry"] as! String
@@ -52,10 +50,8 @@ class HomeViewModel {
                 let location = CLLocationCoordinate2D(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
                 
                 return Bike(
-                    id: id,
                     price: price,
                     year: year,
-                    isAvailable: isAvailable,
                     hasLights: hasLights,
                     numberOfGears: numberOfGears,
                     geometry: geometry,

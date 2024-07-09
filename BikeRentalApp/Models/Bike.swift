@@ -9,10 +9,8 @@ import Foundation
 import CoreLocation
 
 struct Bike {
-    var id: Int
     var price: Double
     var year: Int
-    var isAvailable: Bool
     var hasLights: Bool
     var numberOfGears: Int
     var geometry: String
