@@ -52,10 +52,6 @@ final class HomeViewController: UIViewController {
     
     private var viewModel = HomeViewModel()
 
-//
-//    var currentIndex = 0
-//    var timer: Timer?
-//
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -163,6 +159,7 @@ final class HomeViewController: UIViewController {
     private func setDelegates() {
         sliderCollectionView.dataSource = self
         popularBikesCollectionView.dataSource = self
+        popularBikesCollectionView.delegate = self
         viewModel.delegate = self
     }
     
@@ -198,6 +195,13 @@ extension HomeViewController: UICollectionViewDataSource {
             return viewModel.salesImagesArray.count
         }
         return 0
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DetailsViewController(bike: viewModel.bikes[indexPath.row])
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

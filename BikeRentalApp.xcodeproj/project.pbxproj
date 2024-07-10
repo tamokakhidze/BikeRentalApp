@@ -49,6 +49,10 @@
 		A99BC4AF2C35AF23009E9FC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4AE2C35AF23009E9FC1 /* User.swift */; };
 		A99BC4B22C35B935009E9FC1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4B12C35B935009E9FC1 /* HomeViewController.swift */; };
 		A99BC4B52C35B987009E9FC1 /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4B42C35B987009E9FC1 /* LeaderBoardViewController.swift */; };
+		A9CEAE392C3EA214003AE4A2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CEAE382C3EA214003AE4A2 /* DetailsViewController.swift */; };
+		A9CEAE3B2C3EA39E003AE4A2 /* FeaturesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CEAE3A2C3EA39E003AE4A2 /* FeaturesCell.swift */; };
+		A9CEAE3E2C3EA440003AE4A2 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CEAE3D2C3EA440003AE4A2 /* CalendarViewController.swift */; };
+		A9CEAE402C3EA519003AE4A2 /* SliderPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CEAE3F2C3EA519003AE4A2 /* SliderPopUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +98,10 @@
 		A99BC4AE2C35AF23009E9FC1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A99BC4B12C35B935009E9FC1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A99BC4B42C35B987009E9FC1 /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
+		A9CEAE382C3EA214003AE4A2 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		A9CEAE3A2C3EA39E003AE4A2 /* FeaturesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesCell.swift; sourceTree = "<group>"; };
+		A9CEAE3D2C3EA440003AE4A2 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		A9CEAE3F2C3EA519003AE4A2 /* SliderPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPopUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +168,7 @@
 				A99BC4952C35A99D009E9FC1 /* LandingVC */,
 				A99BC4922C35A940009E9FC1 /* RootVC */,
 				A99BC4B02C35B914009E9FC1 /* HomeVC */,
+				A9CEAE372C3EA15D003AE4A2 /* DetailsVC */,
 				A99BC4B32C35B963009E9FC1 /* LeaderBoardVC */,
 				A99BC4B62C35B9CB009E9FC1 /* ProfileVC */,
 				A99BC46D2C35A13D009E9FC1 /* LaunchScreen.storyboard */,
@@ -301,6 +310,25 @@
 			path = ProfileVC;
 			sourceTree = "<group>";
 		};
+		A9CEAE372C3EA15D003AE4A2 /* DetailsVC */ = {
+			isa = PBXGroup;
+			children = (
+				A9CEAE382C3EA214003AE4A2 /* DetailsViewController.swift */,
+				A9CEAE3A2C3EA39E003AE4A2 /* FeaturesCell.swift */,
+				A9CEAE3F2C3EA519003AE4A2 /* SliderPopUpViewController.swift */,
+				A9CEAE3C2C3EA42F003AE4A2 /* CalendarVC */,
+			);
+			path = DetailsVC;
+			sourceTree = "<group>";
+		};
+		A9CEAE3C2C3EA42F003AE4A2 /* CalendarVC */ = {
+			isa = PBXGroup;
+			children = (
+				A9CEAE3D2C3EA440003AE4A2 /* CalendarViewController.swift */,
+			);
+			path = CalendarVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -379,7 +407,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9CEAE3E2C3EA440003AE4A2 /* CalendarViewController.swift in Sources */,
 				A99BC4912C35A934009E9FC1 /* ForgotPasswordViewModel.swift in Sources */,
+				A9CEAE402C3EA519003AE4A2 /* SliderPopUpViewController.swift in Sources */,
+				A9CEAE3B2C3EA39E003AE4A2 /* FeaturesCell.swift in Sources */,
 				A90E1FE12C3AF66300E7E1C8 /* CustomUiLabel.swift in Sources */,
 				A90E1FF32C3BFC6400E7E1C8 /* SmallCustomButton.swift in Sources */,
 				A99BC49D2C35AA30009E9FC1 /* AlertManager.swift in Sources */,
@@ -392,6 +423,7 @@
 				A90E1FEB2C3BFBC900E7E1C8 /* Slider.swift in Sources */,
 				A90E1FF72C3BFCCC00E7E1C8 /* BikeCollectionViewCell.swift in Sources */,
 				A90E1FF92C3BFDC400E7E1C8 /* SliderCollectionViewCell.swift in Sources */,
+				A9CEAE392C3EA214003AE4A2 /* DetailsViewController.swift in Sources */,
 				A90E20012C3D829C00E7E1C8 /* ProfileView.swift in Sources */,
 				A99BC4AB2C35AEE3009E9FC1 /* RegisterRequest.swift in Sources */,
 				A99BC4B22C35B935009E9FC1 /* HomeViewController.swift in Sources */,
