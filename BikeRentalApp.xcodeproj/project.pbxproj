@@ -23,6 +23,8 @@
 		A90E20012C3D829C00E7E1C8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E20002C3D829C00E7E1C8 /* ProfileView.swift */; };
 		A90E20032C3D83DC00E7E1C8 /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E20022C3D83DC00E7E1C8 /* GridViewCell.swift */; };
 		A90E20052C3D840000E7E1C8 /* RentHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E20042C3D840000E7E1C8 /* RentHistoryCell.swift */; };
+		A942A3AF2C3EAB3500D0833E /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3AE2C3EAB3500D0833E /* BikeService.swift */; };
+		A942A3B32C3EBFC000D0833E /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B22C3EBFC000D0833E /* Booking.swift */; };
 		A99BC4632C35A13A009E9FC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4622C35A13A009E9FC1 /* AppDelegate.swift */; };
 		A99BC4652C35A13A009E9FC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4642C35A13A009E9FC1 /* SceneDelegate.swift */; };
 		A99BC46C2C35A13D009E9FC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99BC46B2C35A13D009E9FC1 /* Assets.xcassets */; };
@@ -72,6 +74,8 @@
 		A90E20002C3D829C00E7E1C8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A90E20022C3D83DC00E7E1C8 /* GridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
 		A90E20042C3D840000E7E1C8 /* RentHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentHistoryCell.swift; sourceTree = "<group>"; };
+		A942A3AE2C3EAB3500D0833E /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
+		A942A3B22C3EBFC000D0833E /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		A99BC45F2C35A13A009E9FC1 /* BikeRentalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeRentalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99BC4622C35A13A009E9FC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A99BC4642C35A13A009E9FC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 			children = (
 				A99BC49C2C35AA30009E9FC1 /* AlertManager.swift */,
 				A99BC49E2C35AA4F009E9FC1 /* AuthService.swift */,
+				A942A3AE2C3EAB3500D0833E /* BikeService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 				A99BC4AC2C35AF16009E9FC1 /* LoginRequest.swift */,
 				A99BC4AE2C35AF23009E9FC1 /* User.swift */,
 				A90E1FE82C3BFBA000E7E1C8 /* Bike.swift */,
+				A942A3B22C3EBFC000D0833E /* Booking.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -409,6 +415,7 @@
 			files = (
 				A9CEAE3E2C3EA440003AE4A2 /* CalendarViewController.swift in Sources */,
 				A99BC4912C35A934009E9FC1 /* ForgotPasswordViewModel.swift in Sources */,
+				A942A3AF2C3EAB3500D0833E /* BikeService.swift in Sources */,
 				A9CEAE402C3EA519003AE4A2 /* SliderPopUpViewController.swift in Sources */,
 				A9CEAE3B2C3EA39E003AE4A2 /* FeaturesCell.swift in Sources */,
 				A90E1FE12C3AF66300E7E1C8 /* CustomUiLabel.swift in Sources */,
@@ -423,6 +430,7 @@
 				A90E1FEB2C3BFBC900E7E1C8 /* Slider.swift in Sources */,
 				A90E1FF72C3BFCCC00E7E1C8 /* BikeCollectionViewCell.swift in Sources */,
 				A90E1FF92C3BFDC400E7E1C8 /* SliderCollectionViewCell.swift in Sources */,
+				A942A3B32C3EBFC000D0833E /* Booking.swift in Sources */,
 				A9CEAE392C3EA214003AE4A2 /* DetailsViewController.swift in Sources */,
 				A90E20012C3D829C00E7E1C8 /* ProfileView.swift in Sources */,
 				A99BC4AB2C35AEE3009E9FC1 /* RegisterRequest.swift in Sources */,
