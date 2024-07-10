@@ -17,13 +17,13 @@ final class BikeService {
     public func rentBike(with booking: Booking, completion: @escaping (Bool, Error?) -> Void) {
         checkAvailability(for: booking) { available, error in
             if let error = error {
-                print("error checkng availability: \(error.localizedDescription)")
+                print("Error checking availability: \(error.localizedDescription)")
                 completion(false, error)
                 return
             }
             
             guard available else {
-                print("bike is not available")
+                print("Bike is not available")
                 completion(false, nil)
                 return
             }
@@ -32,7 +32,7 @@ final class BikeService {
             if let currentUser = Auth.auth().currentUser {
                 updatedBooking.userID = currentUser.uid
             } else {
-                print("user is not logged in")
+                print("User is not logged in")
                 completion(false, nil)
                 return
             }
@@ -40,10 +40,10 @@ final class BikeService {
             let bookings = self.db.collection("bookings")
             bookings.addDocument(data: updatedBooking.dictionary) { error in
                 if let error = error {
-                    print("cant add booking!: \(error.localizedDescription)")
+                    print("Can't add booking!: \(error.localizedDescription)")
                     completion(false, error)
                 } else {
-                    print("booking added to database")
+                    print("Booking added to database")
                     completion(true, nil)
                 }
             }
@@ -68,7 +68,7 @@ final class BikeService {
             }
             
             if let documents = querySnapshot?.documents, !documents.isEmpty {
-                print("Bike is not available in this period")
+                print("Bike is not available in this period, please choose other times")
                 completion(false, nil)
             } else {
                 print("Bike is available")
