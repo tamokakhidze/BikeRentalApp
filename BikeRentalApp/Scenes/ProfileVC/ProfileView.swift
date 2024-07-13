@@ -14,7 +14,7 @@ import FirebaseCore
 struct ProfileView: View {
     @State var photoPicker: PhotosPickerItem? = nil
     @State var selectedImageData: Data? = nil
-    @State var username: String = "Tamo k"
+    @StateObject var viewModel = ProfileViewModel()
     
     let imageUrls = [
         "https://i.pinimg.com/736x/22/39/9c/22399cf9dc52f9adfb7f2f33ce74775d.jpg",
@@ -22,18 +22,6 @@ struct ProfileView: View {
         "https://i.pinimg.com/736x/22/39/9c/22399cf9dc52f9adfb7f2f33ce74775d.jpg"
     ]
     let prices = [5.4, 6.2, 7.8]
-    
-    func getUser() {
-        AuthService.shared.getUser { user, error in
-            if let user = user {
-                DispatchQueue.main.async {
-                    self.username = user.username
-                }
-            } else if let error = error {
-                print("Error fetching user data: \(error.localizedDescription)")
-            }
-        }
-    }
     
     var body: some View {
         NavigationStack {
@@ -74,19 +62,22 @@ struct ProfileView: View {
                         .frame(width: 20)
                     
                     VStack(alignment: .leading) {
-                        Text(username)
+                        Text("\(viewModel.username ?? "")")
                         
                         Spacer()
                         
-                        Button("Edit profile") {
-                            // editing form view გამოვაჩინო
-                        }.foregroundStyle(.gray)
+                        NavigationLink(destination: AddBikeFormView()) {
+                                                   Text("Add your bike")
+                                                       .foregroundStyle(.gray)
+                                               }
+
                     }
                     .frame(height: 50)
                     
                     Spacer()
                     
                 }.padding(.leading)
+                
                 
                 ZStack {
                     Rectangle()
@@ -95,31 +86,43 @@ struct ProfileView: View {
                         .cornerRadius(16)
                     HStack {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Current rental status")
+                            Text("Current rentals summary and points")
                                 .foregroundStyle(.white)
                                 .fontWeight(.bold)
                                 .font(.system(size: 14))
                             
                             HStack {
-                                Text("End time:")
+                                Text("You have rented \(viewModel.currentRentals.count) bikes")
                                     .foregroundStyle(.white)
                                     .fontWeight(.thin)
                                     .font(.system(size: 14))
-                                
-                                Text("12:34, Today")
-                                    .foregroundStyle(.gray)
-                                    .fontWeight(.medium)
-                                    .font(.system(size: 14))
                             }
                             
-                            Button("End now") {
+                            Text("You have \(viewModel.points) points")
+                                .foregroundStyle(.gray)
+                                .fontWeight(.bold)
+                                .font(.system(size: 14))
+                            
+                            HStack {
+                                Button("See leaderboard") {
+                                    
+                                }
+                                .frame(height: 34)
+                                .foregroundStyle(.white)
+                                .fontWeight(.bold)
+                                .background(.black)
+                                .cornerRadius(50)
                                 
+                                Button("Sign Out") {
+                                    
+                                }
+                                .frame(height: 34)
+                                .foregroundStyle(.white)
+                                .fontWeight(.bold)
+                                .background(.black)
+                                .cornerRadius(50)
                             }
-                            .frame(width: 94, height: 34)
-                            .foregroundStyle(.white)
-                            .fontWeight(.bold)
-                            .background(.black)
-                            .cornerRadius(50)
+                           
                         }
                         .padding(.leading, 40)
                         
@@ -157,7 +160,7 @@ struct ProfileView: View {
                     
                     ScrollView(.vertical) {
                         VStack(alignment: .leading) {
-                            Text("Rent history")
+                            Text("Your current rentals")
                                 .foregroundStyle(.white)
                                 .fontWeight(.thin)
                                 .font(.system(size: 14))
@@ -165,14 +168,16 @@ struct ProfileView: View {
                                 .padding(.leading, 30)
                             
                             LazyVGrid(columns: [GridItem(.flexible(minimum: 270, maximum: .infinity))], spacing: 18) {
-                                ForEach(0..<imageUrls.count, id: \.self) { index in
-                                    RentHistoryCell(bike: "Mountain Bike", totalPrice: prices[index])
-                                }
+                                ForEach(0..<viewModel.currentRentals.count, id: \.self) { index in
+                                    RentHistoryCell(bike: "Bike", totalPrice: Double(viewModel.currentRentals[index].totalPrice) ?? 0.0, startTime: viewModel.currentRentals[index].startTime, endTime: viewModel.currentRentals[index].endTime)
+                                    }
                             }
                         }
                     }
                 }
                 Spacer()
+            }.onAppear {
+                viewModel.fetchUserInfo()
             }
             .padding()
             .padding(.top)

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A90231202C426DA900C4AC3C /* AddBikeFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A902311F2C426DA900C4AC3C /* AddBikeFormView.swift */; };
+		A90231232C426E6A00C4AC3C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90231222C426E6A00C4AC3C /* ProfileViewModel.swift */; };
+		A90231252C426ECE00C4AC3C /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90231242C426ECE00C4AC3C /* FirestoreService.swift */; };
+		A90231272C426F9300C4AC3C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A90231262C426F9300C4AC3C /* FirebaseStorage */; };
+		A90231292C426FA000C4AC3C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A90231282C426FA000C4AC3C /* FirebaseFirestoreSwift */; };
+		A902312B2C42701100C4AC3C /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A902312A2C42701100C4AC3C /* UserInfo.swift */; };
+		A902312D2C427F2F00C4AC3C /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A902312C2C427F2F00C4AC3C /* CalendarViewModel.swift */; };
 		A90E1FE12C3AF66300E7E1C8 /* CustomUiLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E1FE02C3AF66300E7E1C8 /* CustomUiLabel.swift */; };
 		A90E1FE32C3AFCEC00E7E1C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A90E1FE22C3AFCEC00E7E1C8 /* GoogleService-Info.plist */; };
 		A90E1FE72C3BFB1C00E7E1C8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E1FE62C3BFB1C00E7E1C8 /* HomeViewModel.swift */; };
@@ -25,6 +32,10 @@
 		A90E20052C3D840000E7E1C8 /* RentHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E20042C3D840000E7E1C8 /* RentHistoryCell.swift */; };
 		A942A3AF2C3EAB3500D0833E /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3AE2C3EAB3500D0833E /* BikeService.swift */; };
 		A942A3B32C3EBFC000D0833E /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B22C3EBFC000D0833E /* Booking.swift */; };
+		A942A3B52C3EC10300D0833E /* midPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B42C3EC10300D0833E /* midPoint.swift */; };
+		A971FD9B2C404E3400B91A48 /* FullMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971FD9A2C404E3400B91A48 /* FullMapViewController.swift */; };
+		A971FD9F2C404EE600B91A48 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971FD9E2C404EE600B91A48 /* SuccessViewController.swift */; };
+		A971FDA12C404F3200B91A48 /* BikeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971FDA02C404F3200B91A48 /* BikeAnnotationView.swift */; };
 		A99BC4632C35A13A009E9FC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4622C35A13A009E9FC1 /* AppDelegate.swift */; };
 		A99BC4652C35A13A009E9FC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4642C35A13A009E9FC1 /* SceneDelegate.swift */; };
 		A99BC46C2C35A13D009E9FC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99BC46B2C35A13D009E9FC1 /* Assets.xcassets */; };
@@ -58,6 +69,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A902311F2C426DA900C4AC3C /* AddBikeFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBikeFormView.swift; sourceTree = "<group>"; };
+		A90231222C426E6A00C4AC3C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		A90231242C426ECE00C4AC3C /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		A902312A2C42701100C4AC3C /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		A902312C2C427F2F00C4AC3C /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		A90E1FE02C3AF66300E7E1C8 /* CustomUiLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUiLabel.swift; sourceTree = "<group>"; };
 		A90E1FE22C3AFCEC00E7E1C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A90E1FE62C3BFB1C00E7E1C8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -76,6 +92,11 @@
 		A90E20042C3D840000E7E1C8 /* RentHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentHistoryCell.swift; sourceTree = "<group>"; };
 		A942A3AE2C3EAB3500D0833E /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
 		A942A3B22C3EBFC000D0833E /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
+		A942A3B42C3EC10300D0833E /* midPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = midPoint.swift; sourceTree = "<group>"; };
+		A971FD9A2C404E3400B91A48 /* FullMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullMapViewController.swift; sourceTree = "<group>"; };
+		A971FD9C2C404E9800B91A48 /* BikeRentalApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeRentalApp.entitlements; sourceTree = "<group>"; };
+		A971FD9E2C404EE600B91A48 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
+		A971FDA02C404F3200B91A48 /* BikeAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeAnnotationView.swift; sourceTree = "<group>"; };
 		A99BC45F2C35A13A009E9FC1 /* BikeRentalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeRentalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99BC4622C35A13A009E9FC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A99BC4642C35A13A009E9FC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,12 +136,38 @@
 			files = (
 				A99BC4A72C35AE88009E9FC1 /* FirebaseAuth in Frameworks */,
 				A99BC4A92C35AEA6009E9FC1 /* FirebaseFirestore in Frameworks */,
+				A90231272C426F9300C4AC3C /* FirebaseStorage in Frameworks */,
+				A90231292C426FA000C4AC3C /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A90231212C426E0900C4AC3C /* AddBikeView */ = {
+			isa = PBXGroup;
+			children = (
+				A902311F2C426DA900C4AC3C /* AddBikeFormView.swift */,
+			);
+			path = AddBikeView;
+			sourceTree = "<group>";
+		};
+		A971FD992C404E2400B91A48 /* FullMapVC */ = {
+			isa = PBXGroup;
+			children = (
+				A971FD9A2C404E3400B91A48 /* FullMapViewController.swift */,
+			);
+			path = FullMapVC;
+			sourceTree = "<group>";
+		};
+		A971FD9D2C404ED500B91A48 /* SuccessVC */ = {
+			isa = PBXGroup;
+			children = (
+				A971FD9E2C404EE600B91A48 /* SuccessViewController.swift */,
+			);
+			path = SuccessVC;
+			sourceTree = "<group>";
+		};
 		A99BC4562C35A13A009E9FC1 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +188,7 @@
 		A99BC4612C35A13A009E9FC1 /* BikeRentalApp */ = {
 			isa = PBXGroup;
 			children = (
+				A971FD9C2C404E9800B91A48 /* BikeRentalApp.entitlements */,
 				A90E1FE22C3AFCEC00E7E1C8 /* GoogleService-Info.plist */,
 				A99BC4762C35A277009E9FC1 /* App */,
 				A99BC4772C35A283009E9FC1 /* Scenes */,
@@ -172,6 +220,7 @@
 				A99BC4952C35A99D009E9FC1 /* LandingVC */,
 				A99BC4922C35A940009E9FC1 /* RootVC */,
 				A99BC4B02C35B914009E9FC1 /* HomeVC */,
+				A971FD992C404E2400B91A48 /* FullMapVC */,
 				A9CEAE372C3EA15D003AE4A2 /* DetailsVC */,
 				A99BC4B32C35B963009E9FC1 /* LeaderBoardVC */,
 				A99BC4B62C35B9CB009E9FC1 /* ProfileVC */,
@@ -204,6 +253,7 @@
 				A99BC49C2C35AA30009E9FC1 /* AlertManager.swift */,
 				A99BC49E2C35AA4F009E9FC1 /* AuthService.swift */,
 				A942A3AE2C3EAB3500D0833E /* BikeService.swift */,
+				A90231242C426ECE00C4AC3C /* FirestoreService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -216,6 +266,7 @@
 				A99BC4AE2C35AF23009E9FC1 /* User.swift */,
 				A90E1FE82C3BFBA000E7E1C8 /* Bike.swift */,
 				A942A3B22C3EBFC000D0833E /* Booking.swift */,
+				A902312A2C42701100C4AC3C /* UserInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,6 +285,7 @@
 				A90E1FF42C3BFC9A00E7E1C8 /* CustomCollectionView.swift */,
 				A90E1FF62C3BFCCC00E7E1C8 /* BikeCollectionViewCell.swift */,
 				A90E1FF82C3BFDC400E7E1C8 /* SliderCollectionViewCell.swift */,
+				A971FDA02C404F3200B91A48 /* BikeAnnotationView.swift */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
@@ -308,10 +360,12 @@
 		A99BC4B62C35B9CB009E9FC1 /* ProfileVC */ = {
 			isa = PBXGroup;
 			children = (
+				A90231212C426E0900C4AC3C /* AddBikeView */,
 				A90E1FFE2C3D823800E7E1C8 /* ProfileHostingViewController.swift */,
 				A90E20002C3D829C00E7E1C8 /* ProfileView.swift */,
 				A90E20022C3D83DC00E7E1C8 /* GridViewCell.swift */,
 				A90E20042C3D840000E7E1C8 /* RentHistoryCell.swift */,
+				A90231222C426E6A00C4AC3C /* ProfileViewModel.swift */,
 			);
 			path = ProfileVC;
 			sourceTree = "<group>";
@@ -322,7 +376,9 @@
 				A9CEAE382C3EA214003AE4A2 /* DetailsViewController.swift */,
 				A9CEAE3A2C3EA39E003AE4A2 /* FeaturesCell.swift */,
 				A9CEAE3F2C3EA519003AE4A2 /* SliderPopUpViewController.swift */,
+				A942A3B42C3EC10300D0833E /* midPoint.swift */,
 				A9CEAE3C2C3EA42F003AE4A2 /* CalendarVC */,
+				A971FD9D2C404ED500B91A48 /* SuccessVC */,
 			);
 			path = DetailsVC;
 			sourceTree = "<group>";
@@ -331,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				A9CEAE3D2C3EA440003AE4A2 /* CalendarViewController.swift */,
+				A902312C2C427F2F00C4AC3C /* CalendarViewModel.swift */,
 			);
 			path = CalendarVC;
 			sourceTree = "<group>";
@@ -354,6 +411,8 @@
 			packageProductDependencies = (
 				A99BC4A62C35AE88009E9FC1 /* FirebaseAuth */,
 				A99BC4A82C35AEA6009E9FC1 /* FirebaseFirestore */,
+				A90231262C426F9300C4AC3C /* FirebaseStorage */,
+				A90231282C426FA000C4AC3C /* FirebaseFirestoreSwift */,
 			);
 			productName = BikeRentalApp;
 			productReference = A99BC45F2C35A13A009E9FC1 /* BikeRentalApp.app */;
@@ -414,6 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9CEAE3E2C3EA440003AE4A2 /* CalendarViewController.swift in Sources */,
+				A90231252C426ECE00C4AC3C /* FirestoreService.swift in Sources */,
 				A99BC4912C35A934009E9FC1 /* ForgotPasswordViewModel.swift in Sources */,
 				A942A3AF2C3EAB3500D0833E /* BikeService.swift in Sources */,
 				A9CEAE402C3EA519003AE4A2 /* SliderPopUpViewController.swift in Sources */,
@@ -426,12 +486,16 @@
 				A99BC4AD2C35AF16009E9FC1 /* LoginRequest.swift in Sources */,
 				A90E1FF12C3BFC3200E7E1C8 /* CustomImageView.swift in Sources */,
 				A90E20052C3D840000E7E1C8 /* RentHistoryCell.swift in Sources */,
+				A942A3B52C3EC10300D0833E /* midPoint.swift in Sources */,
+				A971FD9B2C404E3400B91A48 /* FullMapViewController.swift in Sources */,
+				A902312D2C427F2F00C4AC3C /* CalendarViewModel.swift in Sources */,
 				A99BC49F2C35AA4F009E9FC1 /* AuthService.swift in Sources */,
 				A90E1FEB2C3BFBC900E7E1C8 /* Slider.swift in Sources */,
 				A90E1FF72C3BFCCC00E7E1C8 /* BikeCollectionViewCell.swift in Sources */,
 				A90E1FF92C3BFDC400E7E1C8 /* SliderCollectionViewCell.swift in Sources */,
 				A942A3B32C3EBFC000D0833E /* Booking.swift in Sources */,
 				A9CEAE392C3EA214003AE4A2 /* DetailsViewController.swift in Sources */,
+				A902312B2C42701100C4AC3C /* UserInfo.swift in Sources */,
 				A90E20012C3D829C00E7E1C8 /* ProfileView.swift in Sources */,
 				A99BC4AB2C35AEE3009E9FC1 /* RegisterRequest.swift in Sources */,
 				A99BC4B22C35B935009E9FC1 /* HomeViewController.swift in Sources */,
@@ -446,15 +510,19 @@
 				A90E1FF52C3BFC9A00E7E1C8 /* CustomCollectionView.swift in Sources */,
 				A99BC4972C35A9B0009E9FC1 /* LandingViewController.swift in Sources */,
 				A99BC4652C35A13A009E9FC1 /* SceneDelegate.swift in Sources */,
+				A90231202C426DA900C4AC3C /* AddBikeFormView.swift in Sources */,
 				A90E20032C3D83DC00E7E1C8 /* GridViewCell.swift in Sources */,
 				A99BC47E2C35A366009E9FC1 /* ImageExtension.swift in Sources */,
 				A90E1FED2C3BFBFF00E7E1C8 /* CustomStackView.swift in Sources */,
 				A99BC48A2C35A8FA009E9FC1 /* RegisterViewModel.swift in Sources */,
 				A99BC48C2C35A902009E9FC1 /* LoginViewModel.swift in Sources */,
+				A90231232C426E6A00C4AC3C /* ProfileViewModel.swift in Sources */,
 				A90E1FE72C3BFB1C00E7E1C8 /* HomeViewModel.swift in Sources */,
 				A99BC4802C35A37D009E9FC1 /* StackViewExtension.swift in Sources */,
 				A99BC4992C35A9D7009E9FC1 /* CustomButton.swift in Sources */,
 				A99BC4B52C35B987009E9FC1 /* LeaderBoardViewController.swift in Sources */,
+				A971FDA12C404F3200B91A48 /* BikeAnnotationView.swift in Sources */,
+				A971FD9F2C404EE600B91A48 /* SuccessViewController.swift in Sources */,
 				A99BC4AF2C35AF23009E9FC1 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,7 +593,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -582,7 +650,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -597,8 +665,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BikeRentalApp/BikeRentalApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AQJL7PW44J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BikeRentalApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -623,8 +693,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BikeRentalApp/BikeRentalApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AQJL7PW44J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BikeRentalApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -679,6 +751,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A90231262C426F9300C4AC3C /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A99BC4A02C35AB40009E9FC1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		A90231282C426FA000C4AC3C /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A99BC4A02C35AB40009E9FC1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
 		A99BC4A62C35AE88009E9FC1 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A99BC4A02C35AB40009E9FC1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

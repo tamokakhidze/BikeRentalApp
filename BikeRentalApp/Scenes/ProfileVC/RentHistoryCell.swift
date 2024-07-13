@@ -11,6 +11,8 @@ struct RentHistoryCell: View {
     
     var bike: String
     var totalPrice: Double
+    var startTime: String
+    var endTime: String
     
     var body: some View {
         VStack {
@@ -24,11 +26,20 @@ struct RentHistoryCell: View {
                     Text(String(format: "%.2f$", totalPrice))
                         .font(.system(size: 12))
                         .foregroundStyle(.white)
+                    
+                    Text(startTime)
+                        .font(.system(size: 12))
+                        .foregroundStyle(.white)
+                    
+                    Text(endTime)
+                        .font(.system(size: 12))
+                        .foregroundStyle(.white)
+
                 }.frame(width: 170, height: 70)
                 
                 Spacer()
                 
-                Image(systemName: "arrow.forward.circle")
+                Image(systemName: "bicycle.circle.fill")
                     .resizable()
                     .foregroundStyle(.white)
                     .frame(width: 32, height: 32)
@@ -37,12 +48,6 @@ struct RentHistoryCell: View {
             Divider()
                 .frame(height: 1)
                 .background(.gray.opacity(0.5))
-        }.padding(.leading)
-            .padding(.trailing)
-
+        }
     }
-}
-
-#Preview {
-    RentHistoryCell(bike: "Mountain Bike", totalPrice: 12.39)
 }

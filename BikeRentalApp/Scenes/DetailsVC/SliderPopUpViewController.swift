@@ -7,8 +7,12 @@
 
 import UIKit
 
+// MARK: - SliderPopUpViewController
+
 final class SliderPopUpViewController: UIViewController {
     
+    // MARK: - Ui components and properties
+
     private var stackView = UIStackView()
     private var sliderCollectionView: UICollectionView!
     private var pageControl = UIPageControl()
@@ -16,6 +20,8 @@ final class SliderPopUpViewController: UIViewController {
     var timer: Timer?
     var bike: Bike
     
+    // MARK: - Lifecycle
+
     init(bike: Bike) {
         self.bike = bike
         super.init(nibName: nil, bundle: nil)
@@ -33,6 +39,8 @@ final class SliderPopUpViewController: UIViewController {
         pageControl.addTarget(self, action: #selector(pageControlChanged(_:)), for: .valueChanged)
     }
     
+    // MARK: - Ui setup
+
     private func setupUI() {
         view.backgroundColor = .white
         
@@ -63,6 +71,15 @@ final class SliderPopUpViewController: UIViewController {
         pageControl.pageIndicatorTintColor = .lightGray
     }
     
+    // MARK: - Delegates
+
+    private func setDelegates() {
+        sliderCollectionView.dataSource = self
+    }
+    
+    
+    // MARK: - Actions
+
     private func configureSlider() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -80,11 +97,7 @@ final class SliderPopUpViewController: UIViewController {
         sliderCollectionView.backgroundColor = .clear
         sliderCollectionView.translatesAutoresizingMaskIntoConstraints = false
     }
-    
-    private func setDelegates() {
-        sliderCollectionView.dataSource = self
-    }
-    
+
     func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(automateSlider), userInfo: nil, repeats: true)
     }
@@ -112,7 +125,10 @@ final class SliderPopUpViewController: UIViewController {
         sliderCollectionView.scrollToItem(at: positionToScroll, at: .centeredHorizontally, animated: true)
         currentIndex = selectedPage
     }
+    
 }
+
+// MARK: - UICollectionViewDataSource
 
 extension SliderPopUpViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

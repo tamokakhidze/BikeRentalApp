@@ -9,7 +9,10 @@ import Foundation
 import UIKit
 import SwiftUI
 
+// MARK: - ProfileHostingController
+
 class ProfileHostingController: UIHostingController<ProfileView> {
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder, rootView: ProfileView())
     }

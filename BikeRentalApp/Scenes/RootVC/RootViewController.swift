@@ -7,7 +7,11 @@
 
 import UIKit
 
+// MARK: - RootViewController
+
 class RootViewController: UIViewController {
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,6 +19,8 @@ class RootViewController: UIViewController {
         navigationItem.hidesBackButton = true
     }
     
+    // MARK: - Ui setup
+
     private func setupTabBar() {
         let tabBarController = UITabBarController()
         

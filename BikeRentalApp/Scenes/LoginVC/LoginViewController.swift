@@ -72,6 +72,7 @@ final class LoginViewController: UIViewController {
         createAccount.addTarget(self, action: #selector(didTapCreateAccount), for: .touchUpInside)
         forgotPassword.addTarget(self, action: #selector(didTapForgotPassword), for: .touchUpInside)
     }
+    
     private func configureMainStackView() {
         view.addSubview(stackView)
         stackView.addArrangedSubviews(

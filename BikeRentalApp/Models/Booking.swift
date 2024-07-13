@@ -7,28 +7,31 @@
 
 import Foundation
 
-struct Booking {
+struct Booking: Codable {
     var bookingID: String
     var startTime: String
     var endTime: String
     var userID: String
     var bikeID: String
+    var totalPrice: String
 
-    init(dictionary: [String: Any]) {
+    init(dictionary: [String: Any?]) {
         self.bookingID = dictionary["bookingID"] as? String ?? ""
         self.startTime = dictionary["startTime"] as? String ?? ""
         self.endTime = dictionary["endTime"] as? String ?? ""
         self.userID = dictionary["userID"] as? String ?? ""
         self.bikeID = dictionary["bikeID"] as? String ?? ""
+        self.totalPrice = dictionary["totalPrice"] as? String ?? ""
     }
 
-    var dictionary: [String: Any] {
+    var dictionary: [String: Any?] {
         return [
             "bookingID": bookingID,
             "startTime": startTime,
             "endTime": endTime,
             "userID": userID,
-            "bikeID": bikeID
+            "bikeID": bikeID,
+            "totalPrice": totalPrice
         ]
     }
 }

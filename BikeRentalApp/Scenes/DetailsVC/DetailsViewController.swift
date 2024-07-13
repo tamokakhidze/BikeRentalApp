@@ -10,8 +10,12 @@ import MapKit
 import CoreLocation
 import FirebaseFirestore
 
+// MARK: - DetailsViewController
+
 final class DetailsViewController: UIViewController {
     
+    // MARK: - Ui components and properties
+
     private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.mapType = .standard
@@ -34,7 +38,6 @@ final class DetailsViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.spacing = 10
         stackView.alignment = .center
-        stackView.backgroundColor = .green
         return stackView
     }()
     
@@ -76,6 +79,8 @@ final class DetailsViewController: UIViewController {
     var bike: Bike
     private var bikeName: CustomUiLabel?
     
+    // MARK: - Lifecycle
+
     init(bike: Bike) {
         self.bike = bike
         super.init(nibName: nil, bundle: nil)
@@ -99,6 +104,8 @@ final class DetailsViewController: UIViewController {
         checkLocationServices()
     }
     
+    // MARK: - Ui setup
+
     private func setupUI() {
         view.addSubview(mapView)
         view.addSubview(backgroundOne)
@@ -164,7 +171,8 @@ final class DetailsViewController: UIViewController {
             featuresCollectionView.heightAnchor.constraint(equalToConstant: 136)
         ])
     }
-    
+    // MARK: - Actions
+
     private func addActions() {
         rentButton.addTarget(self, action: #selector(goToCalendarView), for: .touchUpInside)
         allPhotosButton.addTarget(self, action: #selector(showSlider), for: .touchUpInside)
@@ -189,11 +197,15 @@ final class DetailsViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
+    // MARK: - Delegates
+
     private func setDelegates() {
         featuresCollectionView.dataSource = self
         mapView.delegate = self
     }
     
+    // MARK: - Location Services
+
     private func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
@@ -210,30 +222,44 @@ final class DetailsViewController: UIViewController {
     }
     
 }
+// MARK: - CLLocationManagerDelegate
 
 extension DetailsViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             manager.stopUpdatingLocation()
-            render(location)
+            render(bike: bike,
+                   userLocation: locations.first ?? CLLocation(latitude: CLLocationDegrees(41.7268), longitude: CLLocationDegrees(44.7504)))
         }
     }
     
-    func render(_ location: CLLocation) {
+    func render(bike: Bike, userLocation: CLLocation) {
         let bikeLat = bike.location.latitude
         let bikeLong = bike.location.longitude
         let bikeCoordinate = CLLocationCoordinate2D(latitude: bikeLat, longitude: bikeLong)
         
-        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        let region = MKCoordinateRegion(center: bikeCoordinate, span: span)
-        mapView.setRegion(region, animated: true)
-        
+        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+
         let bikeAnnotation = MKPointAnnotation()
         bikeAnnotation.coordinate = bikeCoordinate
         bikeAnnotation.title = "Bike Location"
         mapView.addAnnotation(bikeAnnotation)
+        
+        let userLocAnnotation = MKPointAnnotation()
+        userLocAnnotation.coordinate = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        userLocAnnotation.title = "Your location"
+        mapView.addAnnotation(userLocAnnotation)
+        
+        let bikeCLLocation = CLLocation(latitude: bikeLat, longitude: bikeLong)
+        let midPoint = midPoint(of: bikeCLLocation, userLocation)
+        let region = MKCoordinateRegion(center: midPoint, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        print("mid loc: \(midPoint), bike loc: \(bikeCLLocation), me: \(userLocation) ")
+        
     }
 }
+// MARK: - UICollectionViewDataSource
 
 extension DetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -266,12 +292,14 @@ extension DetailsViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UIPopoverPresentationControllerDelegate
 
 extension DetailsViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
 }
+// MARK: - MKMapViewDelegate
 
 extension DetailsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

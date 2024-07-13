@@ -7,15 +7,19 @@
 
 import UIKit
 
+// MARK: - HomeViewController
+
 final class HomeViewController: UIViewController {
     
+    // MARK: - Ui components and properties
+
     private var scrollView = UIScrollView()
     private var contentView = UIView()
     private var mainStackView = CustomStackView(axis: .vertical, spacing: 20, alignment: .fill)
     private var headerStackView = CustomStackView(axis: .horizontal, spacing: 10, alignment: .center, distribution: .fillProportionally)
     private var popularsSegmentStackView = CustomStackView(axis: .horizontal, spacing: 10, alignment: .center, distribution: .equalSpacing)
     private var sliderCollectionView: Slider!
-
+    
     private var nameLabel = CustomUiLabel(fontSize: 14, text: "", tintColor: .black, textAlignment: .left)
     private var titleLabel = CustomUiLabel(fontSize: 18, text: "Popular bikes", tintColor: .black, textAlignment: .left)
     private var viewAllButton = CustomButton(title: "View All", width: 80)
@@ -51,6 +55,8 @@ final class HomeViewController: UIViewController {
     }()
     
     private var viewModel = HomeViewModel()
+    
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +71,7 @@ final class HomeViewController: UIViewController {
                 self?.popularBikesCollectionView.reloadData()
             }
         }
-                
+        
         AuthService.shared.getUser { [weak self] user, error in
             guard let self = self else { return }
             if let user = user {
@@ -74,6 +80,8 @@ final class HomeViewController: UIViewController {
         }
     }
     
+    // MARK: - Ui setup
+
     private func setupUI() {
         view.backgroundColor = .loginBackground
         
@@ -105,10 +113,6 @@ final class HomeViewController: UIViewController {
         ])
         
         configureStackViews()
-    }
-    
-    private func addTargets() {
-        pageControl.addTarget(self, action: #selector(pageControlChanged(_:)), for: .valueChanged)
     }
     
     private func configureStackViews() {
@@ -156,6 +160,8 @@ final class HomeViewController: UIViewController {
         ])
     }
     
+    // MARK: - Set delegates
+
     private func setDelegates() {
         sliderCollectionView.dataSource = self
         popularBikesCollectionView.dataSource = self
@@ -163,11 +169,38 @@ final class HomeViewController: UIViewController {
         viewModel.delegate = self
     }
     
+    // MARK: - Add targets(actions)
+
+    private func addTargets() {
+        fullMapButton.addTarget(self, action: #selector(fullMapButtonTapped), for: .touchUpInside)
+        pageControl.addTarget(self, action: #selector(pageControlChanged(_:)), for: .valueChanged)
+        viewAllButton.addTarget(self, action: #selector(viewAllButtonTapped), for: .touchUpInside)
+    }
+
+    
     @objc func pageControlChanged(_ sender: UIPageControl) {
         viewModel.pageControlChanged(to: pageControl.currentPage)
     }
     
+    @objc func fullMapButtonTapped() {
+        navigationController?.pushViewController(FullMapViewController(), animated: true)
+    }
+    
+    @objc func viewAllButtonTapped() {
+        AuthService.shared.signOut { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            } else {
+                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                    sceneDelegate.checkIfUserIsLoggedIn()
+                }
+            }
+        }
+    }
+    
 }
+
+// MARK: - CollectionView datasource and delegate
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -204,6 +237,8 @@ extension HomeViewController: UICollectionViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+// MARK: - HomeViewModelDelegate
 
 extension HomeViewController: HomeViewModelDelegate {
     func scrollToItem(at indexPath: IndexPath, animated: Bool) {

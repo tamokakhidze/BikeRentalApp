@@ -2,12 +2,17 @@
 //  FeaturesCell.swift
 //  BikeRentalApp
 //
-//  Created by Tamuna Kakhidze on 9.07.24.
+//  Created by Tamuna Kakhidze on 09.07.24.
 //
 
 import UIKit
 
+// MARK: - FeaturesCell
+
 class FeaturesCell: UICollectionViewCell {
+    
+    // MARK: - Ui components and properties
+
     static let identifier = "FeaturesCell"
     
     private let label: UILabel = {
@@ -29,6 +34,8 @@ class FeaturesCell: UICollectionViewCell {
         return label
     }()
     
+    // MARK: - Init
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(iconImageView)
@@ -58,6 +65,8 @@ class FeaturesCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Configuration
+
     func configure(with text: String, icon: String, detailsText: String) {
         label.text = text
         iconImageView.image = UIImage(systemName: icon)

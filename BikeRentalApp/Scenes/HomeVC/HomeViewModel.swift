@@ -9,10 +9,14 @@ import Foundation
 import FirebaseFirestore
 import CoreLocation
 
+// MARK: - Protocols
+
 protocol HomeViewModelDelegate: AnyObject {
     func scrollToItem(at indexPath: IndexPath, animated: Bool)
     func updatePageControl(currentPage: Int)
 }
+
+// MARK: - HomeViewModel
 
 class HomeViewModel {
     
@@ -25,45 +29,38 @@ class HomeViewModel {
     var bikes = [Bike]()
     var locations = [CLLocation]()
     var currentIndex = 0
-    var timer : Timer?
+    var timer: Timer?
     
     func fetchData(completion: @escaping () -> Void) {
         db.collection("bikes").getDocuments { (querySnapshot, error) in
-            guard let documents = querySnapshot?.documents else {
-                print("no documents found")
+            if let error = error {
+                //print("Error fetching documents: \(error.localizedDescription)")
                 completion()
                 return
             }
             
-            self.bikes = documents.map { querySnapshotDocument in
-                let data = querySnapshotDocument.data()
-                
-                let price = data["price"] as! Double
-                let year = data["year"] as! Int
-                let hasLights = data["hasLights"] as! Bool
-                let numberOfGears = data["numberOfGears"] as! Int
-                let geometry = data["geometry"] as! String
-                let geoPoint = data["location"] as! GeoPoint
-                let brakeType = data["brakeType"] as! String
-                let image = data["image"] as! String
-                let detailedImages = data["detailedImages"] as! [String]
-                let location = CLLocationCoordinate2D(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
-                
-                return Bike(
-                    price: price,
-                    year: year,
-                    hasLights: hasLights,
-                    numberOfGears: numberOfGears,
-                    geometry: geometry,
-                    location: location,
-                    brakeType: brakeType,
-                    image: image,
-                    detailedImages: detailedImages,
-                    documentID: querySnapshotDocument.documentID
-                )
+            guard let documents = querySnapshot?.documents else {
+                //print("No documents found")
+                completion()
+                return
+            }
+            
+            //print("Documents fetched: \(documents.count)") // Print the number of documents fetched
+            
+            self.bikes = documents.compactMap { document in
+                do {
+                    //print("Document data: \(document.data())") // Print the document data
+                    let bike = try document.data(as: Bike.self)
+                    //print("Bike fetched: \(bike)") // Print each bike fetched
+                    return bike
+                } catch {
+                    //print("Error decoding bike: \(error.localizedDescription)")
+                    return nil
+                }
             }
             
             self.locations = self.bikes.map { CLLocation(latitude: $0.location.latitude, longitude: $0.location.longitude) }
+            //print("Bikes count after mapping: \(self.bikes.count)") // Print the count of bikes after mapping
             completion()
         }
     }
