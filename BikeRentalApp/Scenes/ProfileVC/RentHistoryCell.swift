@@ -9,14 +9,17 @@ import SwiftUI
 
 struct RentHistoryCell: View {
     
+    @State var rating: Int = 0
+    @State private var isPresented: Bool = false
+    @ObservedObject var viewModel: ProfileViewModel
+    
     var number: Int
     var totalPrice: Double
     var startTime: Date
     var endTime: Date
     var isRentEnded: Bool = false
     var rateAction: () -> Void
-    
-    @State private var isPresented: Bool = false
+    @State var showAlert: Bool = false
     
     var body: some View {
         VStack {
@@ -47,9 +50,21 @@ struct RentHistoryCell: View {
                     Button(action: {
                         isPresented.toggle()
                     }) {
-                        Image(systemName: "star.bubble")
-                            .foregroundColor(.yellow)
-                            .frame(width: 32, height: 32)
+                        VStack {
+                            StarRatingView(rating: $rating)
+                            Button("Send rating") {
+                                viewModel.rateBike()
+                                showAlert.toggle()
+                            }
+                            .alert(isPresented: $showAlert, content: {
+                                Alert(
+                                    title: Text("Thank you"),
+                                    message: Text("Your rating was sent"),
+                                    primaryButton: .default(Text("OK")),
+                                    secondaryButton: .cancel()
+                                )
+                            })
+                        }
                     }
                 } else {
                     Image(systemName: "star.slash.fill")
@@ -63,19 +78,9 @@ struct RentHistoryCell: View {
                 .frame(height: 1)
                 .background(Color.gray.opacity(0.5))
         }
-        .alert(isPresented: $isPresented) {
-            Alert(
-                title: Text("Rate"),
-                message: Text("Would you like to rate this bike?"),
-                
-                primaryButton: .default(Text("Send"), action: rateAction),
-                secondaryButton: .cancel()
-            )
-        }
     }
 }
 
-
 #Preview {
-    RentHistoryCell(number: 2, totalPrice: 3.9, startTime: Date.now, endTime: Date.now, isRentEnded: true, rateAction: {}).background(.black)
+    RentHistoryCell(viewModel: ProfileViewModel(), number: 2, totalPrice: 3.9, startTime: Date.now, endTime: Date.now, isRentEnded: true, rateAction: {}).background(.black)
 }

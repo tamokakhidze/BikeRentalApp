@@ -18,6 +18,7 @@ struct ProfileView: View {
     @StateObject var viewModel = ProfileViewModel()
     @State var image: String = ""
     private let storage = Storage.storage().reference()
+    @State var rating = 4
     
     let imageUrls = [
         "https://i.pinimg.com/736x/22/39/9c/22399cf9dc52f9adfb7f2f33ce74775d.jpg",
@@ -122,8 +123,8 @@ struct ProfileView: View {
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("Current rentals summary and points")
                                     .foregroundStyle(.white)
-                                    .fontWeight(.bold)
-                                    .font(.system(size: 14))
+                                    .fontWeight(.medium)
+                                    .font(.system(size: 20))
                                 
                                 HStack {
                                     Text("You have rented \(viewModel.allRentals.count) bikes")
@@ -134,19 +135,11 @@ struct ProfileView: View {
                                 
                                 Text("You have \(viewModel.points) points")
                                     .foregroundStyle(.gray)
-                                    .fontWeight(.bold)
+                                    .fontWeight(.thin)
                                     .font(.system(size: 14))
                                 
-                                Button("Log out") {
-                                    viewModel.logOutTapped()
-                                }
-                                .frame(height: 34)
-                                .foregroundStyle(.white)
-                                .fontWeight(.bold)
-                                .background(.black)
-                                .cornerRadius(50)
                             }
-                            .padding(.leading, 40)
+                            .padding()
                             
                             Spacer()
                         }
@@ -173,15 +166,15 @@ struct ProfileView: View {
                     VStack(alignment: .leading) {
                         Text("Your current rentals: \(viewModel.ongoingRentals.count)")
                             .foregroundStyle(.white)
-                            .fontWeight(.thin)
+                            .fontWeight(.medium)
                             .font(.system(size: 20))
                             .padding(.top, 20)
-                            .padding(.leading, 30)
+                            .padding(.leading)
                         
                         ForEach(0..<viewModel.ongoingRentals.count, id: \.self) { index in
                             
                             let rental = viewModel.ongoingRentals[index]
-                            RentHistoryCell(number: index,
+                            RentHistoryCell(viewModel: viewModel, number: index,
                                             totalPrice: Double(rental.totalPrice) ?? 0.0,
                                             startTime: viewModel.formatDate(dateString: rental.startTime),
                                             endTime: viewModel.formatDate(dateString: rental.endTime),
@@ -190,7 +183,7 @@ struct ProfileView: View {
                                 viewModel.rateBike()
                             }
                             )
-                        }
+                        }.padding()
                     }
                     .background(.darkBackground)
                     .cornerRadius(16)
@@ -198,15 +191,15 @@ struct ProfileView: View {
                     VStack(alignment: .leading) {
                         Text("Rental history: \(viewModel.finishedRentals.count) bikes")
                             .foregroundStyle(.white)
-                            .fontWeight(.thin)
+                            .fontWeight(.medium)
                             .font(.system(size: 20))
                             .padding(.top, 20)
-                            .padding(.leading, 30)
+                            .padding(.leading)
                         
                         ForEach(0..<viewModel.finishedRentals.count, id: \.self) { index in
                             
                             let rental = viewModel.finishedRentals[index]
-                            RentHistoryCell(number: index,
+                            RentHistoryCell(viewModel: viewModel, number: index,
                                             totalPrice: Double(rental.totalPrice) ?? 0.0,
                                             startTime: viewModel.formatDate(dateString: rental.startTime),
                                             endTime: viewModel.formatDate(dateString: rental.endTime),
@@ -215,12 +208,10 @@ struct ProfileView: View {
                                 viewModel.rateBike()
                             }
                             )
-                        }
+                        }.padding()
                     }
                     .background(.darkBackground)
                     .cornerRadius(16)
-                    
-                    
                     
                     Spacer()
                 }.onAppear {
@@ -235,29 +226,6 @@ struct ProfileView: View {
     
     
 }
-
-import SwiftUI
-
-struct StarRatingView: View {
-    @Binding var rating: Int
-    let maxRating: Int = 5
-    
-    var body: some View {
-        HStack {
-            ForEach(1...maxRating, id: \.self) { index in
-                Image(systemName: index <= rating ? "star.fill" : "star")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 24, height: 24)
-                    .foregroundColor(index <= rating ? .yellow : .gray)
-                    .onTapGesture {
-                        rating = index
-                    }
-            }
-        }
-    }
-}
-
 
 #Preview {
     ProfileView()

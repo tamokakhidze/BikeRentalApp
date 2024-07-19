@@ -25,20 +25,12 @@ final class ProfileViewModel: ObservableObject {
         return Auth.auth().currentUser?.uid
     }
     
-    let dateFormatter = DateFormatter()
-
-    init() {
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-    }
-    
     func formatDate(dateString: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from: dateString) ?? Date()
     }
-    
 
     func fetchUserInfo() {
         guard let userId = userId else {
