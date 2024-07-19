@@ -21,11 +21,11 @@ final class HomeViewController: UIViewController {
     private var sliderCollectionView: Slider!
     
     private var nameLabel = CustomUiLabel(fontSize: 14, text: "", tintColor: .black, textAlignment: .left)
-    private var titleLabel = CustomUiLabel(fontSize: 18, text: "Popular bikes", tintColor: .black, textAlignment: .left)
+    private var titleLabel = CustomUiLabel(fontSize: 18, text: "Affordable bikes", tintColor: .black, textAlignment: .left)
     private var viewAllButton = CustomButton(title: "View All", width: 80)
     private var mainTitleLabel = CustomUiLabel(fontSize: 30, text: "Find your next bike", tintColor: .black, textAlignment: .left)
     
-    private var fullMapButton = SmallCustomButton(width: 40, height: 40, backgroundImage: "locationsImage", backgroundColor: .white)
+    private var fullMapButton = SmallCustomButton(width: 40, height: 40, backgroundImage: "fullMapIcon", backgroundColor: .white)
     private var profilePhoto = CustomImageView(width: 50, height: 50, backgroundImage: "landingPageBike", borderColor: UIColor(.gray.opacity(0.5)), borderWidth: 0.5)
     private var customBackgroundView = CustomRectangleView(color: .white)
     
@@ -85,14 +85,21 @@ final class HomeViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .loginBackground
         
+        nameLabel.text = "Hello, \(String(describing: viewModel.username))"
+        if let imageUrl = viewModel.image,
+            let url = URL(string: imageUrl) {
+            profilePhoto.setImage(with: url)
+        }
+        
         sliderCollectionView = Slider(
-            itemWidth: view.frame.width,
+            itemWidth: 370,
             cell: SliderCollectionViewCell.self,
             identifier: SliderCollectionViewCell.identifier,
             tag: 2)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(customBackgroundView)
@@ -187,15 +194,8 @@ final class HomeViewController: UIViewController {
     }
     
     @objc func viewAllButtonTapped() {
-        AuthService.shared.signOut { error in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            } else {
-                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                    sceneDelegate.checkIfUserIsLoggedIn()
-                }
-            }
-        }
+        let vc = AllBikesViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -205,17 +205,17 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView.tag == 1 {
-            let bikesArray = viewModel.bikes
+            let bikesArray = viewModel.cheapBikes
             guard let customCell = collectionView.dequeueReusableCell(withReuseIdentifier: BikeCollectionViewCell.identifier, for: indexPath) as? BikeCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            customCell.configureBikeCell(image: bikesArray[indexPath.row].image, price: Int(bikesArray[indexPath.row].price))
+            customCell.configureBikeCell(image: bikesArray[indexPath.row].image, price: bikesArray[indexPath.row].price)
             return customCell
         } else if collectionView.tag == 2 {
             guard let customCell = collectionView.dequeueReusableCell(withReuseIdentifier: SliderCollectionViewCell.identifier, for: indexPath) as? SliderCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            customCell.configureSliderCell(imageURL: viewModel.salesImagesArray[indexPath.row])
+            customCell.configureSliderCell(imageURL: viewModel.salesImagesArray[indexPath.row], text: viewModel.salesHeroTexts[indexPath.row], subtext: viewModel.salesSubtexts[indexPath.row])
             return customCell
         }
         return UICollectionViewCell()
@@ -223,7 +223,7 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
-            return viewModel.bikes.count
+            return viewModel.cheapBikes.count
         } else if collectionView.tag == 2 {
             return viewModel.salesImagesArray.count
         }
@@ -233,7 +233,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = DetailsViewController(bike: viewModel.bikes[indexPath.row])
+        let vc = DetailsViewController(bike: viewModel.cheapBikes[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
     }
 }

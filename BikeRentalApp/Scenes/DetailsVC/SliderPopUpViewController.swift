@@ -135,7 +135,7 @@ extension SliderPopUpViewController: UICollectionViewDataSource {
         guard let customCell = collectionView.dequeueReusableCell(withReuseIdentifier: SliderCollectionViewCell.identifier, for: indexPath) as? SliderCollectionViewCell else {
             return UICollectionViewCell()
         }
-        customCell.configureSliderCell(imageURL: bike.detailedImages[indexPath.row])
+        customCell.configureSliderCell(imageURL: bike.detailedImages[indexPath.row], text: "", subtext: "")
         return customCell
     }
     

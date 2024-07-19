@@ -14,26 +14,6 @@ import PassKit
 class CalendarViewController: UIViewController {
     
     // MARK: - Ui components and properties
-
-    private lazy var calendarView: UICalendarView = {
-        let calendarView = UICalendarView()
-        let gregorianCalendar = Calendar(identifier: .gregorian)
-        let currentDate = gregorianCalendar.component(.day, from: Date())
-        let currentMonth = gregorianCalendar.component(.month, from: Date())
-        let currentYear = gregorianCalendar.component(.year, from: Date())
-        let fromDateComponents = DateComponents(calendar: gregorianCalendar, year: currentYear, month: currentMonth, day: currentDate)
-        let toDateComponents = DateComponents(calendar: gregorianCalendar, year: currentYear, month: currentMonth, day: currentDate)
-        if let fromDate = fromDateComponents.date, let toDate = toDateComponents.date {
-            let calendarViewDateRange = DateInterval(start: fromDate, end: toDate)
-            calendarView.availableDateRange = calendarViewDateRange
-        }
-        calendarView.translatesAutoresizingMaskIntoConstraints = false
-        calendarView.layer.cornerRadius = 20
-        calendarView.calendar = gregorianCalendar
-        calendarView.locale = Locale(identifier: "en-US")
-        calendarView.fontDesign = .rounded
-        return calendarView
-    }()
     
     private lazy var startTimeView: UIDatePicker = {
         let datePickerView = UIDatePicker()
@@ -61,16 +41,19 @@ class CalendarViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 20
-        stackView.alignment = .leading
-        stackView.distribution = .fillProportionally
+        stackView.alignment = .center
+        stackView.distribution = .equalCentering
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
-    private var checkAvailabilityButton = CustomButton(title: "Check Availability", hasBackground: true)
-    private var rentBikeButton = CustomButton(title: "Rent Bike", hasBackground: true)
+    private var titleLabel = CustomUiLabel(fontSize: 20, text: "Choose start and end times as well as dates", tintColor: .black, textAlignment: .center)
+    private var checkAvailabilityButton = CustomButton(title: "Check Availability", hasBackground: true, width: 350)
+    private var rentBikeButton = CustomButton(title: "Rent Bike", hasBackground: true, width: 350)
     private var viewModel = CalendarViewModel()
     var bike: Bike
+    var isHelmetChosen: Bool
+    var helmetPrice: Double
     
     private var isBikeAvailable: Bool = false {
         didSet {
@@ -80,8 +63,10 @@ class CalendarViewController: UIViewController {
     
     // MARK: - Lifecycle
 
-    init(bike: Bike) {
+    init(bike: Bike, isHelmetChosen: Bool, helmetPrice: Double) {
         self.bike = bike
+        self.isHelmetChosen = isHelmetChosen
+        self.helmetPrice = helmetPrice
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -101,7 +86,8 @@ class CalendarViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         view.addSubview(mainStackView)
-        mainStackView.addArrangedSubviews(calendarView, startTimeView, endTimeView, checkAvailabilityButton, rentBikeButton, UIView())
+        
+        mainStackView.addArrangedSubviews(titleLabel, startTimeView, endTimeView, checkAvailabilityButton, rentBikeButton, UIView())
 
         setConstraints()
         
@@ -115,23 +101,20 @@ class CalendarViewController: UIViewController {
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             mainStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor),
             
-            calendarView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor),
-            calendarView.heightAnchor.constraint(equalToConstant: 400),
-            
-            startTimeView.widthAnchor.constraint(equalToConstant: 200),
+            startTimeView.widthAnchor.constraint(equalToConstant: 170),
             startTimeView.heightAnchor.constraint(equalToConstant: 50),
             
-            endTimeView.widthAnchor.constraint(equalToConstant: 200),
+            endTimeView.widthAnchor.constraint(equalToConstant: 170),
             endTimeView.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-    
-    // MARK: - Actions
 
     private func addTargets() {
         checkAvailabilityButton.addTarget(self, action: #selector(checkAvailabilityButtonTapped), for: .touchUpInside)
         rentBikeButton.addTarget(self, action: #selector(rentBikeButtonTapped), for: .touchUpInside)
     }
+    
+    // MARK: - Actions
     
     @objc private func timeChanged() {
         print("Start time: \(startTimeView.date), End time: \(endTimeView.date)")
@@ -146,7 +129,7 @@ class CalendarViewController: UIViewController {
             AlertManager.showAlert(message: "Bike is not available", on: self, title: "Please check availability first")
             return
         }
-        viewModel.rentBike(startTime: startTimeView.date, endTime: endTimeView.date, bike: bike)
+        viewModel.rentBike(startTime: startTimeView.date, endTime: endTimeView.date, bike: bike, isHelmetChosen: isHelmetChosen)
     }
 }
 
@@ -168,7 +151,7 @@ extension CalendarViewController: PKPaymentAuthorizationViewControllerDelegate {
             let bookingInfo: [String: Any] = [
                 "startTime": startTimeString,
                 "endTime": endTimeString,
-                "bikeID": self.bike.id,
+                "bikeID": self.bike.id ?? "",
                 "userID": Auth.auth().currentUser?.uid ?? "",
                 "totalPrice": String(format: "%.2f", totalPrice)
             ]

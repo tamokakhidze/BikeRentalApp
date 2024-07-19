@@ -13,10 +13,10 @@ final class SuccessViewController: UIViewController {
 
     // MARK: - Ui components and properties
 
-    private var goToProfileButton = CustomButton(title: "Go to profile", hasBackground: true)
+    private var goToHomeButton = CustomButton(title: "Go to Home page", hasBackground: true, width: 350)
     private var stackView = UIStackView()
     private var titleLabel = CustomUiLabel(fontSize: 28, text: "Congrats!", tintColor: .black, textAlignment: .left)
-    private var smallTitle = CustomUiLabel(fontSize: 14, text: "Check rental status on your profile", tintColor: .lightGray, textAlignment: .center, fontWeight: .semibold)
+    private var smallTitle = CustomUiLabel(fontSize: 14, text: "Your rentals will be available on profile", tintColor: .lightGray, textAlignment: .center, fontWeight: .semibold)
 
     // MARK: - Lifecycle
 
@@ -44,8 +44,8 @@ final class SuccessViewController: UIViewController {
         stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 250).isActive = true
-        stackView.addArrangedSubviews(titleLabel, smallTitle, goToProfileButton, UIView())
+        stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 350).isActive = true
+        stackView.addArrangedSubviews(titleLabel, smallTitle, goToHomeButton, UIView())
         
         return stackView
     }
@@ -53,11 +53,11 @@ final class SuccessViewController: UIViewController {
     // MARK: - Actions
 
     private func addTargets() {
-        goToProfileButton.addTarget(self, action: #selector(didTapGoToProfile), for: .touchUpInside)
+        goToHomeButton.addTarget(self, action: #selector(didTapGoToHomePage), for: .touchUpInside)
     }
     
     
-    @objc private func didTapGoToProfile() {
+    @objc private func didTapGoToHomePage() {
         let vc = RootViewController()
         navigationController?.pushViewController(vc, animated: false)
     }

@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import CoreLocation
+import FirebaseAuth
 
 // MARK: - Protocols
 
@@ -16,23 +17,52 @@ protocol HomeViewModelDelegate: AnyObject {
     func updatePageControl(currentPage: Int)
 }
 
+// MARK: - BikeGeometry Enum
+
+enum BikeGeometry: CaseIterable {
+    case road
+    case mountain
+    case hybrid
+}
+
 // MARK: - HomeViewModel
 
 class HomeViewModel {
     
     private var db = Firestore.firestore()
     var salesImagesArray = [
-        "https://i.pinimg.com/564x/56/cf/5d/56cf5d78276232d62cd866397494118b.jpg",
-        "https://i.pinimg.com/564x/56/cf/5d/56cf5d78276232d62cd866397494118b.jpg"
+        "https://i.pinimg.com/originals/19/f0/b5/19f0b54227480dc5dace75c8399764f3.png",
+        "https://i.pinimg.com/originals/48/6b/1d/486b1dae8fc4a1945d741c967e4acad9.jpg",
+        "https://i.pinimg.com/564x/9f/b5/49/9fb54992d1f3aef360aa6c819bf248a4.jpg"
     ]
+    
+    var salesHeroTexts = [
+        "Book a ride",
+        "Rent for friends",
+        "Exchange points",
+    ]
+    
+    var salesSubtexts = [
+        "Earn points",
+        "Rent as many as you want",
+        "Check shop for exchange"
+    ]
+    
     weak var delegate: HomeViewModelDelegate?
+    private var userId: String? {
+        return Auth.auth().currentUser?.uid
+    }
     var bikes = [Bike]()
+    var cheapBikes = [Bike]()
+    var filteredBikes = [Bike]()
     var locations = [CLLocation]()
     var currentIndex = 0
     var timer: Timer?
+    var username: String?
+    var image: String?
     
     func fetchData(completion: @escaping () -> Void) {
-        db.collection("bikes").getDocuments { (querySnapshot, error) in
+        db.collection("bikes").order(by: "price", descending: false).getDocuments { (querySnapshot, error) in
             if let error = error {
                 //print("Error fetching documents: \(error.localizedDescription)")
                 completion()
@@ -59,9 +89,28 @@ class HomeViewModel {
                 }
             }
             
+            if self.bikes.count >= 8 {
+                self.cheapBikes = Array(self.bikes.prefix(7))
+            } else {
+                self.cheapBikes = self.bikes
+            }
+            
             self.locations = self.bikes.map { CLLocation(latitude: $0.location.latitude, longitude: $0.location.longitude) }
             //print("Bikes count after mapping: \(self.bikes.count)") // Print the count of bikes after mapping
             completion()
+        }
+    }
+    
+    func getBikesByGeometryType(geometry: String) {
+        switch geometry {
+        case "road":
+            filteredBikes = bikes.filter( {$0.geometry == "road"})
+        case "mountain":
+            filteredBikes = bikes.filter( {$0.geometry == "mountain"})
+        case "hybrid":
+            filteredBikes = bikes.filter( {$0.geometry == "hybrid"})
+        default:
+            filteredBikes = bikes
         }
     }
     
@@ -91,5 +140,33 @@ class HomeViewModel {
         
         delegate?.scrollToItem(at: positionToScroll, animated: true)
         currentIndex = selectedPage
+    }
+    
+    func fetchUserInfo() {
+        guard let userId = userId else {
+            print("User not authenticated")
+            return
+        }
+        
+        let userRef = db.collection("users").document(userId)
+        
+        userRef.getDocument { [weak self] document, error in
+            guard let self = self else { return }
+            
+            if let document = document, document.exists {
+                do {
+                    let userInfo = try document.data(as: UserInfo.self)
+                    DispatchQueue.main.async {
+                        self.username = userInfo.username ?? "Username"
+                        self.image = userInfo.image ?? "https://i.pinimg.com/736x/00/37/e6/0037e6acc12861555781ceb897668c66.jpg"
+                    }
+                } catch {
+                    print("Failed to fetch user info:\(error.localizedDescription)")
+                    print("Error details:\(error)")
+                }
+            } else {
+                print("Document doesn't exist")
+            }
+        }
     }
 }

@@ -12,8 +12,8 @@ final class LandingViewController: UIViewController {
     private var titleLabel = UILabel()
     private var subtitleLabel = UILabel()
     private var stackView = UIStackView()
-    private var exploreButton = CustomButton(title: "Explore now", hasBackground: true)
-    private var fullMapButton = CustomButton(title: "View map", hasBackground: true)
+    private var exploreButton = CustomButton(title: "Explore now", hasBackground: true, width: 350)
+    private var fullMapButton = CustomButton(title: "View map", hasBackground: true, width: 350)
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUi()

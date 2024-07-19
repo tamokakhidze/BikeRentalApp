@@ -29,9 +29,9 @@ final class LoginViewController: UIViewController {
     private let loginLabel = CustomUiLabel(fontSize: 24, text: "Nice to see you again", tintColor: .black, textAlignment: .center)
     private let emailTextField = CustomInputView(inputType: .Email)
     private let passwordTextField = CustomInputView(inputType: .Password)
-    private let loginButton = CustomButton(title: "Sign in", hasBackground: true)
-    private let createAccount = CustomButton(title: "Don't have an account? Sign up now.", hasBackground: false)
-    private let forgotPassword = CustomButton(title: "Forgot password", hasBackground: false)
+    private let loginButton = CustomButton(title: "Sign in", hasBackground: true, width: 350)
+    private let createAccount = CustomButton(title: "Don't have an account? Sign up now.", hasBackground: false, width: 350)
+    private let forgotPassword = CustomButton(title: "Forgot password", hasBackground: false, width: 350)
     
     // MARK: - Lifecycle
     

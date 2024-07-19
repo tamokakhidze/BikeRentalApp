@@ -15,7 +15,7 @@ import FirebaseFirestore
 final class DetailsViewController: UIViewController {
     
     // MARK: - Ui components and properties
-
+    
     private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.mapType = .standard
@@ -23,7 +23,7 @@ final class DetailsViewController: UIViewController {
         mapView.clipsToBounds = true
         return mapView
     }()
-    ///To decide: custom stackViewbi mirchevnia tu lazy inicializacia???
+    
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -41,13 +41,19 @@ final class DetailsViewController: UIViewController {
         return stackView
     }()
     
+    private lazy var buttonsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.alignment = .center
+        return stackView
+    }()
+    
     private lazy var mainImage: UIImageView = {
         let imageView = UIImageView()
-        //let url = URL(string: "https://i.pinimg.com/736x/22/39/9c/22399cf9dc52f9adfb7f2f33ce74775d.jpg")
-        //imageView.setImage(with: (url ?? URL(string: ""))!)
-        imageView.image = .bike
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
+        imageView.isUserInteractionEnabled = true
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -70,21 +76,34 @@ final class DetailsViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var blurEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
+        blurEffectView.alpha = 0
+        return blurEffectView
+    }()
+    
     private let rentButton = CustomButton(title: "Rent now!", hasBackground: true, width: 200)
-    private let allPhotosButton = SmallCustomButton(width: 50, height: 50, backgroundImage: "homeImage", backgroundColor: .white )
+    private let allPhotosButton = SmallCustomButton(width: 30, height: 30, backgroundImage: "allImagesIcon", backgroundColor: .white )
+    private var addHelmetButton = SmallCustomButton(width: 50, height: 50, backgroundColor: .white)
     private lazy var backgroundOne = CustomRectangleView(color: .darkBackground)
     private lazy var backgroundTwo = CustomRectangleView(color: .white)
     
     let manager = CLLocationManager()
+    private var userLocation = CLLocation()
+    private var viewModel = DetailsViewModel()
     var bike: Bike
-    private var bikeName: CustomUiLabel?
+    private var route: MKOverlay?
+    var helmetIsChosen = false
+    var helmetPrice = 0.0
+    let image = UIImageView(image: UIImage(resource: .roadBike))
     
     // MARK: - Lifecycle
-
+    
     init(bike: Bike) {
         self.bike = bike
         super.init(nibName: nil, bundle: nil)
-        self.bikeName = CustomUiLabel(fontSize: 24, text: "\(bike.geometry.capitalized) bike", tintColor: .white, textAlignment: .left)
     }
     
     required init?(coder: NSCoder) {
@@ -97,40 +116,58 @@ final class DetailsViewController: UIViewController {
         setupUI()
         setDelegates()
         addActions()
+        checkLocationServices()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkLocationServices()
+        
     }
     
     // MARK: - Ui setup
-
+    
     private func setupUI() {
+        
+        addHelmetButton.isEnabled = bike.hasHelmet
+        addHelmetButton.setBackgroundImage(UIImage(named: "helmetImage"), for: .normal)
+        if let image = bike.detailedImages.first,
+           let url = URL(string: image) {
+            mainImage.setImage(with: url)
+        } else {
+            mainImage.image = .bike
+        }
+        
         view.addSubview(mapView)
         view.addSubview(backgroundOne)
         view.addSubview(backgroundTwo)
         view.addSubview(mainStackView)
+        view.addSubview(blurEffectView)
         view.addSubview(mainImage)
         
         configureStackViews()
         configureConstraints()
+        
+        manager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
     private func configureStackViews() {
         featuresStackView.addArrangedSubviews(
-            CustomImageView(width: 16, height: 16, backgroundImage: "homeImage"),
+            CustomImageView(width: 10, height: 16, backgroundImage: "currencyImage"),
             CustomUiLabel(fontSize: 12, text: "\(bike.price)", tintColor: .white, textAlignment: .left),
-            CustomImageView(width: 16, height: 15, backgroundImage: "profileImage"),
-            CustomUiLabel(fontSize: 12, text: "\(bike.year)", tintColor: .white, textAlignment: .left),
-            allPhotosButton)
+            CustomUiLabel(fontSize: 12, text: "Year: \(bike.year)", tintColor: .white, textAlignment: .left),
+            UIView()
+        )
+        
+        buttonsStackView.addArrangedSubviews(addHelmetButton, UIView(), rentButton)
         
         mainStackView.addArrangedSubviews(
-            bikeName ?? UILabel(),
+            CustomUiLabel(fontSize: 28, text: bike.geometry.capitalized, tintColor: .white, textAlignment: .left),
             featuresStackView,
             CustomUiLabel(fontSize: 24, text: "Features", tintColor: .darkBackground, textAlignment: .left),
             featuresCollectionView,
-            rentButton)
+            buttonsStackView)
     }
     
     private func configureConstraints() {
@@ -139,12 +176,14 @@ final class DetailsViewController: UIViewController {
         backgroundTwo.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         featuresStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        allPhotosButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.bottomAnchor.constraint(equalTo: backgroundTwo.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: backgroundTwo.topAnchor, constant: -30),
             
             backgroundOne.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 300),
             backgroundOne.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -160,26 +199,41 @@ final class DetailsViewController: UIViewController {
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
             mainStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
+                        
             mainImage.topAnchor.constraint(equalTo: mainStackView.topAnchor, constant: 40),
             mainImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             mainImage.widthAnchor.constraint(equalToConstant: 200),
-            mainImage.heightAnchor.constraint(equalToConstant: 105),
+            mainImage.heightAnchor.constraint(equalToConstant: 132),
             
             featuresStackView.widthAnchor.constraint(equalToConstant: 125),
             
-            featuresCollectionView.heightAnchor.constraint(equalToConstant: 136)
+            featuresCollectionView.heightAnchor.constraint(equalToConstant: 136),
+            
+            blurEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blurEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blurEffectView.topAnchor.constraint(equalTo: view.topAnchor),
+            blurEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            
         ])
     }
+    
     // MARK: - Actions
-
+    
     private func addActions() {
         rentButton.addTarget(self, action: #selector(goToCalendarView), for: .touchUpInside)
         allPhotosButton.addTarget(self, action: #selector(showSlider), for: .touchUpInside)
+        addHelmetButton.addTarget(self, action: #selector(addHelmetButtonTapped), for: .touchUpInside)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(scaleImageUp))
+        mainImage.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func scaleImageUp() {
+        viewModel.playButtonClick(mainImage)
     }
     
     @objc private func goToCalendarView() {
-        let vc = CalendarViewController(bike: bike)
+        let vc = CalendarViewController(bike: bike, isHelmetChosen: helmetIsChosen, helmetPrice: helmetPrice)
+        print(helmetIsChosen)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -197,39 +251,83 @@ final class DetailsViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    // MARK: - Delegates
-
-    private func setDelegates() {
-        featuresCollectionView.dataSource = self
-        mapView.delegate = self
+    @objc private func addHelmetButtonTapped() {
+        helmetIsChosen.toggle()
+        updateHelmetButtonIcon()
+        
     }
     
-    // MARK: - Location Services
-
-    private func checkLocationServices() {
-        if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
+    private func updateHelmetButtonIcon() {
+        if helmetIsChosen {
+            addHelmetButton.setBackgroundImage(UIImage(named: "helmetImageFill"), for: .normal)
+            print("helmet is chosen! price: \(String(describing: bike.helmetPrice))")
         } else {
-            print("location services not enabled.")
+            addHelmetButton.setBackgroundImage(UIImage(named: "helmetImage"), for: .normal)
         }
     }
     
-    private func setupLocationManager() {
-        manager.desiredAccuracy = kCLLocationAccuracyBest
+    private func setDelegates() {
+        featuresCollectionView.dataSource = self
+        mapView.delegate = self
         manager.delegate = self
-        manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
+        viewModel.delegate = self
+        //featuresCollectionView.delegate = self
     }
     
+    // MARK: - Location services
+    
+    private func checkLocationServices() {
+        checkLocationAuthorization()
+    }
+    
+    private func checkLocationAuthorization() {
+        switch manager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            manager.startUpdatingLocation()
+        case .denied, .restricted:
+            print("Location access denied/restricted.")
+        case .notDetermined:
+            manager.requestWhenInUseAuthorization()
+        @unknown default:
+            fatalError("Unknown authorization status.")
+        }
+    }
+    
+    // MARK: - Drawing route
+    
+    private func drawRoute(routeData: [CLLocation]) {
+        if routeData.count == 0 {
+            print("nothing to draw")
+            return
+        }
+        
+        let coordinates = routeData.map { location -> CLLocationCoordinate2D in
+            return location.coordinate
+        }
+        
+        DispatchQueue.main.async {
+            self.route = MKPolyline(coordinates: coordinates, count: coordinates.count)
+            self.mapView.addOverlay(self.route!)
+            let customEdgePadding: UIEdgeInsets = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
+            self.mapView.setVisibleMapRect(self.route!.boundingMapRect, edgePadding: customEdgePadding ,animated: true)
+        }
+    }
 }
+
 // MARK: - CLLocationManagerDelegate
 
 extension DetailsViewController: CLLocationManagerDelegate {
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorization()
+        
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             manager.stopUpdatingLocation()
-            render(bike: bike,
-                   userLocation: locations.first ?? CLLocation(latitude: CLLocationDegrees(41.7268), longitude: CLLocationDegrees(44.7504)))
+            print("Location updated: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+            render(bike: bike, userLocation: location)
         }
     }
     
@@ -239,7 +337,7 @@ extension DetailsViewController: CLLocationManagerDelegate {
         let bikeCoordinate = CLLocationCoordinate2D(latitude: bikeLat, longitude: bikeLong)
         
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-
+        
         let bikeAnnotation = MKPointAnnotation()
         bikeAnnotation.coordinate = bikeCoordinate
         bikeAnnotation.title = "Bike Location"
@@ -255,10 +353,65 @@ extension DetailsViewController: CLLocationManagerDelegate {
         let region = MKCoordinateRegion(center: midPoint, span: span)
         mapView.setRegion(region, animated: true)
         
+        drawRoute(routeData: [bikeCLLocation, userLocation])
         print("mid loc: \(midPoint), bike loc: \(bikeCLLocation), me: \(userLocation) ")
         
     }
 }
+
+// MARK: - UIPopoverPresentationControllerDelegate
+
+extension DetailsViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+}
+
+// MARK: - MKMapViewDelegate
+
+extension DetailsViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        var reuseIdentifier = ""
+        
+        if annotation.title == "Bike Location" {
+            reuseIdentifier = "bike"
+        }
+        else if  annotation.title == "Your location" {
+            reuseIdentifier = "user"
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        if annotation.title == "Your location" {
+            annotationView?.image = UIImage(resource: .currentLoc)
+        } else if annotation.title == "Bike Location" {
+            annotationView?.image = UIImage(resource: .mapPin)
+        } else {
+            annotationView?.image = UIImage(resource: .currentLoc)
+        }
+        
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: any MKOverlay) -> MKOverlayRenderer {
+        let render = MKGradientPolylineRenderer(overlay: overlay)
+        
+        render.setColors([.lightGray], locations: [])
+        
+        render.lineCap = .round
+        render.lineWidth = 1.0
+        
+        return render
+    }
+}
+
 // MARK: - UICollectionViewDataSource
 
 extension DetailsViewController: UICollectionViewDataSource {
@@ -270,10 +423,14 @@ extension DetailsViewController: UICollectionViewDataSource {
         var info = ""
         switch indexPath.row {
         case 0:
+            text = bike.hasHelmet ? "Choose helmet " : "No helmet"
+            icon = bike.hasHelmet ? "figure.outdoor.cycle" : "slash.circle.fill"
+            info = bike.hasHelmet ? "Price: \(bike.helmetPrice) an hour" : "Check shop"
+        case 1:
             text = "Gears: \(bike.numberOfGears)"
             icon = "gear"
             info = "Smooth Shifting"
-        case 1:
+        case 2:
             text = "Brake type: \(bike.brakeType.capitalized)"
             icon = "pedal.brake.fill"
             info = "High Performance"
@@ -284,36 +441,38 @@ extension DetailsViewController: UICollectionViewDataSource {
         }
         
         cell?.configure(with: text, icon: icon, detailsText: info)
+        
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
 }
 
-// MARK: - UIPopoverPresentationControllerDelegate
 
-extension DetailsViewController: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .none
-    }
-}
-// MARK: - MKMapViewDelegate
-
-extension DetailsViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "view")
-        
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "view")
-        } else {
-            annotationView?.annotation = annotation
+extension DetailsViewController: DetailsViewModelDelegate {
+    
+    
+    func scaleDown() {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            UIView.animate(withDuration: 1) { [self] in
+                mainImage.transform = .identity
+                self.blurEffectView.alpha = 0.0
+                self.view.backgroundColor = .white
+            }
         }
-        
-        annotationView?.image = UIImage(resource: .mapPin)
-        
-        return annotationView
     }
+    
+    func scaleUp() {
+        UIView.animate(withDuration: 1.0) {
+            let scaleTransform = CGAffineTransform(scaleX: 2.2, y: 2.2)
+            let translationTransform = CGAffineTransform(translationX: -70, y: 0)
+            let combinedTransform = scaleTransform.concatenating(translationTransform)
+            self.blurEffectView.alpha = 1.0
+            self.view.backgroundColor = .black
+            self.mainImage.transform = combinedTransform
+        }
+    }
+    
 }

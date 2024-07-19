@@ -7,12 +7,15 @@
 
 import FirebaseFirestoreSwift
 
-struct UserInfo: Codable {
+struct UserInfo: Identifiable, Codable {
     @DocumentID var documentID: String?
+    var username: String?
+    var email: String?
     var currentRentals: [Booking]?
     var points: Int?
+    var image: String?
     
-    enum CodingKeys: String, CodingKey {
-        case currentRentals, points
+    var id: String? {
+        documentID
     }
 }

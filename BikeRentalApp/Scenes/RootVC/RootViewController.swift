@@ -25,17 +25,25 @@ class RootViewController: UIViewController {
         let tabBarController = UITabBarController()
         
         let HomeVC = HomeViewController()
-        let LeaderboardVC = LeaderBoardViewController()
+        let LeaderboardVC = LeaderboardHostingVC()
+        let ShopVC = ShopHostingViewController()
         let ProfileVC = ProfileHostingController()
         
-        tabBarController.viewControllers = [HomeVC, LeaderboardVC, ProfileVC]
+        tabBarController.viewControllers = [HomeVC, LeaderboardVC, ShopVC, ProfileVC]
         
         HomeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 1)
-        LeaderboardVC.tabBarItem = UITabBarItem(title: "Leaderboard", image: UIImage(systemName: "LeaderboardVC"), tag: 2)
+        LeaderboardVC.tabBarItem = UITabBarItem(title: "Leaderboard", image: UIImage(systemName: "trophy.fill"), tag: 2)
+        ShopVC.tabBarItem = UITabBarItem(title: "Shop", image: UIImage(named: "shopTabBarIcon"), tag: 4)
         ProfileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 3)
-        
-        tabBarController.tabBar.barTintColor = .lightGray
-        tabBarController.tabBar.tintColor = .systemBlue
+    
+        if let tabBar = tabBarController.tabBar as? UITabBar{
+            tabBar.barTintColor = .white
+            tabBar.isTranslucent = true
+            tabBar.backgroundColor = .clear
+            tabBar.tintColor = .black
+            tabBar.layer.cornerRadius = 40
+            tabBar.layer.masksToBounds = true
+        }
         
         addChild(tabBarController)
         view.addSubview(tabBarController.view)

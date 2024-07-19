@@ -23,8 +23,8 @@ final class RegisterViewController: UIViewController {
     private var usernameField = CustomInputView(inputType: .Username)
     private var emailTextField = CustomInputView(inputType: .Email)
     private var passwordTextField = CustomInputView(inputType: .Password)
-    private var signUpButton = CustomButton(title: "Sign Up", hasBackground: true)
-    private var signInButton = CustomButton(title: "Already have an account? Sign in", hasBackground: false)
+    private var signUpButton = CustomButton(title: "Sign Up", hasBackground: true, width: 350)
+    private var signInButton = CustomButton(title: "Already have an account? Sign in", hasBackground: false, width: 350)
     private var viewModel = RegisterViewModel()
     
     override func viewDidLoad() {

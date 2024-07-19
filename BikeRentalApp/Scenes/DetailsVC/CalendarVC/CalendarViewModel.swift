@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseFirestore
 import PassKit
 
 // MARK: - Protocols
@@ -24,6 +25,7 @@ class CalendarViewModel {
 
     weak var delegate: CalendarViewModelDelegate?
     var isBikeAvailable: Bool = false
+    var unavailableDates = [Date]()
     
     // MARK: - Functions
 
@@ -55,12 +57,18 @@ class CalendarViewModel {
         }
     }
     
-    func rentBike(startTime: Date, endTime: Date, bike: Bike) {
+    func rentBike(startTime: Date, endTime: Date, bike: Bike, isHelmetChosen: Bool) {
         let startTime = startTime
         let endTime = endTime
         let diffComponents = Calendar.current.dateComponents([.hour], from: startTime, to: endTime)
         guard let hours = diffComponents.hour else { return  }
-        let totalPrice = bike.price * Double(hours)
+        var totalPrice = bike.price * Double(hours)
+        
+        if isHelmetChosen {
+            totalPrice += bike.helmetPrice * Double(hours)
+        }
+        
+        print(isHelmetChosen, "on calencar view")
         
         let request = createRequest(price: totalPrice)
         
@@ -84,4 +92,5 @@ class CalendarViewModel {
         
         return request
     }
+
 }

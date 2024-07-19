@@ -21,10 +21,13 @@ struct AddBikeFormView: View {
     @State private var brakeType: String = ""
     @State private var image: String = ""
     @State private var detailedImages: String = ""
+    @State private var hasHelmet: Bool = false
+    @State private var helmetPrice: String = ""
+    
     @State var photoPicker: PhotosPickerItem? = nil
     @State var selectedImageData: Data? = nil
-    
     private let storage = Storage.storage().reference()
+    
     
     @StateObject private var viewModel = ProfileViewModel()
     
@@ -48,6 +51,10 @@ struct AddBikeFormView: View {
                         TextField("Brake Type", text: $brakeType)
                         TextField("Image URL", text: $image)
                         TextField("Detailed Images (comma separated)", text: $detailedImages)
+                        Toggle("Does your bike have helmet?", isOn: $hasHelmet)
+                        TextField("Helmet Price", text: $helmetPrice)
+                            .keyboardType(.decimalPad)
+                            
                     }
                 }
                 .frame(height: 500)
@@ -120,6 +127,7 @@ struct AddBikeFormView: View {
               let numberOfGearsValue = Int(numberOfGears),
               let locationLatitudeValue = Double(locationLatitude),
               let locationLongitudeValue = Double(locationLongitude),
+              let helmetPriceValue = Double(helmetPrice),
               !image.isEmpty else {
             print("Please fill in all required fields")
             return
@@ -137,7 +145,9 @@ struct AddBikeFormView: View {
             longitude: locationLongitudeValue,
             brakeType: brakeType,
             image: image,
-            detailedImages: detailedImagesArray
+            detailedImages: detailedImagesArray,
+            hasHelmet: hasHelmet,
+            helmetPrice: helmetPriceValue
         )
     }
 }

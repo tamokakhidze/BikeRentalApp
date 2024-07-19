@@ -9,7 +9,7 @@ import UIKit
 
 final class ForgotPasswordViewController: UIViewController {
     
-    private var resetPasswordButton = CustomButton(title: "Reset password", hasBackground: true)
+    private var resetPasswordButton = CustomButton(title: "Reset password", hasBackground: true, width: 350)
     private var emailTextField = CustomInputView(inputType: .Email)
     private var viewModel = ForgotPasswordViewModel()
     

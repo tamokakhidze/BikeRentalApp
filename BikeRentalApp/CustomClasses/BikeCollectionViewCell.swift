@@ -16,7 +16,7 @@ class BikeCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .yellow
+        contentView.backgroundColor = .clear
         setupUI()
     }
     
@@ -55,8 +55,8 @@ class BikeCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Price:"
-        label.textColor = .red
-        label.font = .systemFont(ofSize: 14)
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 14, weight: .bold)
         
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
@@ -71,8 +71,8 @@ class BikeCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.textColor = .red
-        label.font = .systemFont(ofSize: 10)
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 10, weight: .bold)
         
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: priceTitleLabel.trailingAnchor, constant: 5),
@@ -82,12 +82,11 @@ class BikeCollectionViewCell: UICollectionViewCell {
         return label
     }
     
-    func configureBikeCell(image: String, price: Int) {
+    func configureBikeCell(image: String, price: Double) {
         guard let imageUrl = URL(string: image) else { return }
         imageView.setImage(with: imageUrl)
-        priceLabel.text = "\(price)"
+        priceLabel.text = "\(String(format: "%.2f", price))$"
     }
 }
-
 
 

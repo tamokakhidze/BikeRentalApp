@@ -33,6 +33,23 @@
 		A942A3AF2C3EAB3500D0833E /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3AE2C3EAB3500D0833E /* BikeService.swift */; };
 		A942A3B32C3EBFC000D0833E /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B22C3EBFC000D0833E /* Booking.swift */; };
 		A942A3B52C3EC10300D0833E /* midPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B42C3EC10300D0833E /* midPoint.swift */; };
+		A942CB812C4917AE0047F7A3 /* ShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB802C4917AE0047F7A3 /* ShopViewModel.swift */; };
+		A942CB832C4917BB0047F7A3 /* ShopMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB822C4917BB0047F7A3 /* ShopMainView.swift */; };
+		A942CB852C4917C80047F7A3 /* ShopHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB842C4917C80047F7A3 /* ShopHostingViewController.swift */; };
+		A942CB872C4919380047F7A3 /* LeaderboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB862C4919380047F7A3 /* LeaderboardViewModel.swift */; };
+		A942CB892C49195D0047F7A3 /* LeaderboardHostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB882C49195D0047F7A3 /* LeaderboardHostingViewController.swift */; };
+		A942CB8B2C4919860047F7A3 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB8A2C4919860047F7A3 /* LeaderboardView.swift */; };
+		A942CB8D2C4919950047F7A3 /* UsersScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB8C2C4919950047F7A3 /* UsersScrollView.swift */; };
+		A942CB8F2C491DE90047F7A3 /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB8E2C491DE90047F7A3 /* ProductCard.swift */; };
+		A942CB912C491E030047F7A3 /* ProductsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB902C491E030047F7A3 /* ProductsListView.swift */; };
+		A942CB932C491E180047F7A3 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB922C491E180047F7A3 /* CategoriesCell.swift */; };
+		A942CB952C491E440047F7A3 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB942C491E440047F7A3 /* Footer.swift */; };
+		A942CB982C491E850047F7A3 /* NetworkServicePackage in Frameworks */ = {isa = PBXBuildFile; productRef = A942CB972C491E850047F7A3 /* NetworkServicePackage */; };
+		A942CB9A2C491ED90047F7A3 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB992C491ED90047F7A3 /* Product.swift */; };
+		A942CB9D2C494CC90047F7A3 /* AllBikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CB9C2C494CC90047F7A3 /* AllBikesViewController.swift */; };
+		A942CBA02C49CD040047F7A3 /* SVGKit in Frameworks */ = {isa = PBXBuildFile; productRef = A942CB9F2C49CD040047F7A3 /* SVGKit */; };
+		A942CBA22C49CD040047F7A3 /* SVGKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A942CBA12C49CD040047F7A3 /* SVGKitSwift */; };
+		A942CBA42C49D30A0047F7A3 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942CBA32C49D30A0047F7A3 /* DetailsViewModel.swift */; };
 		A971FD9B2C404E3400B91A48 /* FullMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971FD9A2C404E3400B91A48 /* FullMapViewController.swift */; };
 		A971FD9F2C404EE600B91A48 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971FD9E2C404EE600B91A48 /* SuccessViewController.swift */; };
 		A971FDA12C404F3200B91A48 /* BikeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971FDA02C404F3200B91A48 /* BikeAnnotationView.swift */; };
@@ -61,7 +78,6 @@
 		A99BC4AD2C35AF16009E9FC1 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4AC2C35AF16009E9FC1 /* LoginRequest.swift */; };
 		A99BC4AF2C35AF23009E9FC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4AE2C35AF23009E9FC1 /* User.swift */; };
 		A99BC4B22C35B935009E9FC1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4B12C35B935009E9FC1 /* HomeViewController.swift */; };
-		A99BC4B52C35B987009E9FC1 /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4B42C35B987009E9FC1 /* LeaderBoardViewController.swift */; };
 		A9CEAE392C3EA214003AE4A2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CEAE382C3EA214003AE4A2 /* DetailsViewController.swift */; };
 		A9CEAE3B2C3EA39E003AE4A2 /* FeaturesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CEAE3A2C3EA39E003AE4A2 /* FeaturesCell.swift */; };
 		A9CEAE3E2C3EA440003AE4A2 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CEAE3D2C3EA440003AE4A2 /* CalendarViewController.swift */; };
@@ -93,6 +109,20 @@
 		A942A3AE2C3EAB3500D0833E /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
 		A942A3B22C3EBFC000D0833E /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		A942A3B42C3EC10300D0833E /* midPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = midPoint.swift; sourceTree = "<group>"; };
+		A942CB802C4917AE0047F7A3 /* ShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewModel.swift; sourceTree = "<group>"; };
+		A942CB822C4917BB0047F7A3 /* ShopMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopMainView.swift; sourceTree = "<group>"; };
+		A942CB842C4917C80047F7A3 /* ShopHostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopHostingViewController.swift; sourceTree = "<group>"; };
+		A942CB862C4919380047F7A3 /* LeaderboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewModel.swift; sourceTree = "<group>"; };
+		A942CB882C49195D0047F7A3 /* LeaderboardHostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardHostingViewController.swift; sourceTree = "<group>"; };
+		A942CB8A2C4919860047F7A3 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		A942CB8C2C4919950047F7A3 /* UsersScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersScrollView.swift; sourceTree = "<group>"; };
+		A942CB8E2C491DE90047F7A3 /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
+		A942CB902C491E030047F7A3 /* ProductsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListView.swift; sourceTree = "<group>"; };
+		A942CB922C491E180047F7A3 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
+		A942CB942C491E440047F7A3 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
+		A942CB992C491ED90047F7A3 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		A942CB9C2C494CC90047F7A3 /* AllBikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBikesViewController.swift; sourceTree = "<group>"; };
+		A942CBA32C49D30A0047F7A3 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		A971FD9A2C404E3400B91A48 /* FullMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullMapViewController.swift; sourceTree = "<group>"; };
 		A971FD9C2C404E9800B91A48 /* BikeRentalApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeRentalApp.entitlements; sourceTree = "<group>"; };
 		A971FD9E2C404EE600B91A48 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +152,6 @@
 		A99BC4AC2C35AF16009E9FC1 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		A99BC4AE2C35AF23009E9FC1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A99BC4B12C35B935009E9FC1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		A99BC4B42C35B987009E9FC1 /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
 		A9CEAE382C3EA214003AE4A2 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A9CEAE3A2C3EA39E003AE4A2 /* FeaturesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesCell.swift; sourceTree = "<group>"; };
 		A9CEAE3D2C3EA440003AE4A2 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -134,8 +163,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A942CBA02C49CD040047F7A3 /* SVGKit in Frameworks */,
 				A99BC4A72C35AE88009E9FC1 /* FirebaseAuth in Frameworks */,
 				A99BC4A92C35AEA6009E9FC1 /* FirebaseFirestore in Frameworks */,
+				A942CB982C491E850047F7A3 /* NetworkServicePackage in Frameworks */,
+				A942CBA22C49CD040047F7A3 /* SVGKitSwift in Frameworks */,
 				A90231272C426F9300C4AC3C /* FirebaseStorage in Frameworks */,
 				A90231292C426FA000C4AC3C /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -150,6 +182,29 @@
 				A902311F2C426DA900C4AC3C /* AddBikeFormView.swift */,
 			);
 			path = AddBikeView;
+			sourceTree = "<group>";
+		};
+		A942CB7F2C4917980047F7A3 /* ShopVC */ = {
+			isa = PBXGroup;
+			children = (
+				A942CB802C4917AE0047F7A3 /* ShopViewModel.swift */,
+				A942CB822C4917BB0047F7A3 /* ShopMainView.swift */,
+				A942CB842C4917C80047F7A3 /* ShopHostingViewController.swift */,
+				A942CB8E2C491DE90047F7A3 /* ProductCard.swift */,
+				A942CB902C491E030047F7A3 /* ProductsListView.swift */,
+				A942CB922C491E180047F7A3 /* CategoriesCell.swift */,
+				A942CB942C491E440047F7A3 /* Footer.swift */,
+				A942CB992C491ED90047F7A3 /* Product.swift */,
+			);
+			path = ShopVC;
+			sourceTree = "<group>";
+		};
+		A942CB9B2C494CB60047F7A3 /* AllBikesVC */ = {
+			isa = PBXGroup;
+			children = (
+				A942CB9C2C494CC90047F7A3 /* AllBikesViewController.swift */,
+			);
+			path = AllBikesVC;
 			sourceTree = "<group>";
 		};
 		A971FD992C404E2400B91A48 /* FullMapVC */ = {
@@ -223,6 +278,7 @@
 				A971FD992C404E2400B91A48 /* FullMapVC */,
 				A9CEAE372C3EA15D003AE4A2 /* DetailsVC */,
 				A99BC4B32C35B963009E9FC1 /* LeaderBoardVC */,
+				A942CB7F2C4917980047F7A3 /* ShopVC */,
 				A99BC4B62C35B9CB009E9FC1 /* ProfileVC */,
 				A99BC46D2C35A13D009E9FC1 /* LaunchScreen.storyboard */,
 			);
@@ -275,13 +331,13 @@
 			isa = PBXGroup;
 			children = (
 				A99BC4982C35A9D7009E9FC1 /* CustomButton.swift */,
+				A90E1FF22C3BFC6400E7E1C8 /* SmallCustomButton.swift */,
 				A99BC49A2C35A9FC009E9FC1 /* CustomInputView.swift */,
 				A90E1FE02C3AF66300E7E1C8 /* CustomUiLabel.swift */,
 				A90E1FEA2C3BFBC900E7E1C8 /* Slider.swift */,
 				A90E1FEC2C3BFBFF00E7E1C8 /* CustomStackView.swift */,
 				A90E1FEE2C3BFC1A00E7E1C8 /* CustomBackgroundView.swift */,
 				A90E1FF02C3BFC3200E7E1C8 /* CustomImageView.swift */,
-				A90E1FF22C3BFC6400E7E1C8 /* SmallCustomButton.swift */,
 				A90E1FF42C3BFC9A00E7E1C8 /* CustomCollectionView.swift */,
 				A90E1FF62C3BFCCC00E7E1C8 /* BikeCollectionViewCell.swift */,
 				A90E1FF82C3BFDC400E7E1C8 /* SliderCollectionViewCell.swift */,
@@ -343,6 +399,7 @@
 		A99BC4B02C35B914009E9FC1 /* HomeVC */ = {
 			isa = PBXGroup;
 			children = (
+				A942CB9B2C494CB60047F7A3 /* AllBikesVC */,
 				A99BC4B12C35B935009E9FC1 /* HomeViewController.swift */,
 				A90E1FE62C3BFB1C00E7E1C8 /* HomeViewModel.swift */,
 			);
@@ -352,7 +409,10 @@
 		A99BC4B32C35B963009E9FC1 /* LeaderBoardVC */ = {
 			isa = PBXGroup;
 			children = (
-				A99BC4B42C35B987009E9FC1 /* LeaderBoardViewController.swift */,
+				A942CB862C4919380047F7A3 /* LeaderboardViewModel.swift */,
+				A942CB882C49195D0047F7A3 /* LeaderboardHostingViewController.swift */,
+				A942CB8A2C4919860047F7A3 /* LeaderboardView.swift */,
+				A942CB8C2C4919950047F7A3 /* UsersScrollView.swift */,
 			);
 			path = LeaderBoardVC;
 			sourceTree = "<group>";
@@ -373,6 +433,7 @@
 		A9CEAE372C3EA15D003AE4A2 /* DetailsVC */ = {
 			isa = PBXGroup;
 			children = (
+				A942CBA32C49D30A0047F7A3 /* DetailsViewModel.swift */,
 				A9CEAE382C3EA214003AE4A2 /* DetailsViewController.swift */,
 				A9CEAE3A2C3EA39E003AE4A2 /* FeaturesCell.swift */,
 				A9CEAE3F2C3EA519003AE4A2 /* SliderPopUpViewController.swift */,
@@ -413,6 +474,9 @@
 				A99BC4A82C35AEA6009E9FC1 /* FirebaseFirestore */,
 				A90231262C426F9300C4AC3C /* FirebaseStorage */,
 				A90231282C426FA000C4AC3C /* FirebaseFirestoreSwift */,
+				A942CB972C491E850047F7A3 /* NetworkServicePackage */,
+				A942CB9F2C49CD040047F7A3 /* SVGKit */,
+				A942CBA12C49CD040047F7A3 /* SVGKitSwift */,
 			);
 			productName = BikeRentalApp;
 			productReference = A99BC45F2C35A13A009E9FC1 /* BikeRentalApp.app */;
@@ -444,6 +508,8 @@
 			mainGroup = A99BC4562C35A13A009E9FC1;
 			packageReferences = (
 				A99BC4A02C35AB40009E9FC1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A942CB962C491E850047F7A3 /* XCRemoteSwiftPackageReference "FetchingAPI_Package" */,
+				A942CB9E2C49CD040047F7A3 /* XCRemoteSwiftPackageReference "SVGKit" */,
 			);
 			productRefGroup = A99BC4602C35A13A009E9FC1 /* Products */;
 			projectDirPath = "";
@@ -475,6 +541,7 @@
 				A9CEAE3E2C3EA440003AE4A2 /* CalendarViewController.swift in Sources */,
 				A90231252C426ECE00C4AC3C /* FirestoreService.swift in Sources */,
 				A99BC4912C35A934009E9FC1 /* ForgotPasswordViewModel.swift in Sources */,
+				A942CB812C4917AE0047F7A3 /* ShopViewModel.swift in Sources */,
 				A942A3AF2C3EAB3500D0833E /* BikeService.swift in Sources */,
 				A9CEAE402C3EA519003AE4A2 /* SliderPopUpViewController.swift in Sources */,
 				A9CEAE3B2C3EA39E003AE4A2 /* FeaturesCell.swift in Sources */,
@@ -482,18 +549,26 @@
 				A90E1FF32C3BFC6400E7E1C8 /* SmallCustomButton.swift in Sources */,
 				A99BC49D2C35AA30009E9FC1 /* AlertManager.swift in Sources */,
 				A99BC4852C35A895009E9FC1 /* LoginViewController.swift in Sources */,
+				A942CB832C4917BB0047F7A3 /* ShopMainView.swift in Sources */,
 				A90E1FFF2C3D823800E7E1C8 /* ProfileHostingViewController.swift in Sources */,
 				A99BC4AD2C35AF16009E9FC1 /* LoginRequest.swift in Sources */,
 				A90E1FF12C3BFC3200E7E1C8 /* CustomImageView.swift in Sources */,
 				A90E20052C3D840000E7E1C8 /* RentHistoryCell.swift in Sources */,
 				A942A3B52C3EC10300D0833E /* midPoint.swift in Sources */,
+				A942CBA42C49D30A0047F7A3 /* DetailsViewModel.swift in Sources */,
+				A942CB892C49195D0047F7A3 /* LeaderboardHostingViewController.swift in Sources */,
 				A971FD9B2C404E3400B91A48 /* FullMapViewController.swift in Sources */,
 				A902312D2C427F2F00C4AC3C /* CalendarViewModel.swift in Sources */,
+				A942CB9A2C491ED90047F7A3 /* Product.swift in Sources */,
+				A942CB952C491E440047F7A3 /* Footer.swift in Sources */,
+				A942CB912C491E030047F7A3 /* ProductsListView.swift in Sources */,
 				A99BC49F2C35AA4F009E9FC1 /* AuthService.swift in Sources */,
+				A942CB852C4917C80047F7A3 /* ShopHostingViewController.swift in Sources */,
 				A90E1FEB2C3BFBC900E7E1C8 /* Slider.swift in Sources */,
 				A90E1FF72C3BFCCC00E7E1C8 /* BikeCollectionViewCell.swift in Sources */,
 				A90E1FF92C3BFDC400E7E1C8 /* SliderCollectionViewCell.swift in Sources */,
 				A942A3B32C3EBFC000D0833E /* Booking.swift in Sources */,
+				A942CB8D2C4919950047F7A3 /* UsersScrollView.swift in Sources */,
 				A9CEAE392C3EA214003AE4A2 /* DetailsViewController.swift in Sources */,
 				A902312B2C42701100C4AC3C /* UserInfo.swift in Sources */,
 				A90E20012C3D829C00E7E1C8 /* ProfileView.swift in Sources */,
@@ -502,8 +577,11 @@
 				A99BC48F2C35A91A009E9FC1 /* ForgotPasswordViewController.swift in Sources */,
 				A99BC4942C35A959009E9FC1 /* RootViewController.swift in Sources */,
 				A99BC4632C35A13A009E9FC1 /* AppDelegate.swift in Sources */,
+				A942CB8B2C4919860047F7A3 /* LeaderboardView.swift in Sources */,
 				A99BC49B2C35A9FC009E9FC1 /* CustomInputView.swift in Sources */,
 				A90E1FEF2C3BFC1A00E7E1C8 /* CustomBackgroundView.swift in Sources */,
+				A942CB8F2C491DE90047F7A3 /* ProductCard.swift in Sources */,
+				A942CB932C491E180047F7A3 /* CategoriesCell.swift in Sources */,
 				A90E1FE92C3BFBA000E7E1C8 /* Bike.swift in Sources */,
 				A99BC4882C35A8DD009E9FC1 /* RegisterViewController.swift in Sources */,
 				A99BC4822C35A398009E9FC1 /* CornerRadiusExtension.swift in Sources */,
@@ -515,13 +593,14 @@
 				A99BC47E2C35A366009E9FC1 /* ImageExtension.swift in Sources */,
 				A90E1FED2C3BFBFF00E7E1C8 /* CustomStackView.swift in Sources */,
 				A99BC48A2C35A8FA009E9FC1 /* RegisterViewModel.swift in Sources */,
+				A942CB872C4919380047F7A3 /* LeaderboardViewModel.swift in Sources */,
 				A99BC48C2C35A902009E9FC1 /* LoginViewModel.swift in Sources */,
 				A90231232C426E6A00C4AC3C /* ProfileViewModel.swift in Sources */,
 				A90E1FE72C3BFB1C00E7E1C8 /* HomeViewModel.swift in Sources */,
 				A99BC4802C35A37D009E9FC1 /* StackViewExtension.swift in Sources */,
 				A99BC4992C35A9D7009E9FC1 /* CustomButton.swift in Sources */,
-				A99BC4B52C35B987009E9FC1 /* LeaderBoardViewController.swift in Sources */,
 				A971FDA12C404F3200B91A48 /* BikeAnnotationView.swift in Sources */,
+				A942CB9D2C494CC90047F7A3 /* AllBikesViewController.swift in Sources */,
 				A971FD9F2C404EE600B91A48 /* SuccessViewController.swift in Sources */,
 				A99BC4AF2C35AF23009E9FC1 /* User.swift in Sources */,
 			);
@@ -740,6 +819,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A942CB962C491E850047F7A3 /* XCRemoteSwiftPackageReference "FetchingAPI_Package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tamokakhidze/FetchingAPI_Package/";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		A942CB9E2C49CD040047F7A3 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVGKit/SVGKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		A99BC4A02C35AB40009E9FC1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -760,6 +855,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A99BC4A02C35AB40009E9FC1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		A942CB972C491E850047F7A3 /* NetworkServicePackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A942CB962C491E850047F7A3 /* XCRemoteSwiftPackageReference "FetchingAPI_Package" */;
+			productName = NetworkServicePackage;
+		};
+		A942CB9F2C49CD040047F7A3 /* SVGKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A942CB9E2C49CD040047F7A3 /* XCRemoteSwiftPackageReference "SVGKit" */;
+			productName = SVGKit;
+		};
+		A942CBA12C49CD040047F7A3 /* SVGKitSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A942CB9E2C49CD040047F7A3 /* XCRemoteSwiftPackageReference "SVGKit" */;
+			productName = SVGKitSwift;
 		};
 		A99BC4A62C35AE88009E9FC1 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
