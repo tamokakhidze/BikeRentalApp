@@ -37,8 +37,8 @@ struct ShopMainView: View {
                         }
                     }
                     .padding(.trailing, 20)
-
-                   
+                    
+                    
                     Text("Shop essentials for your ride")
                         .fontWeight(.medium)
                         .font(.system(size: 20))
@@ -55,7 +55,7 @@ struct ShopMainView: View {
                                 .foregroundStyle(.gray.opacity(1))
                                 .fontWeight(.thin)
                             TextField("Enter code", text: $couponCode)
-                          
+                            
                             Button("Check") {
                                 isCodeCorrect = viewModel.checkCouponCode(code: couponCode)
                                 print(isCodeCorrect)
@@ -93,10 +93,10 @@ struct ShopMainView: View {
                 .padding(.top, 100)
                 .padding(.leading, 24)
                 
-
+                
             }
             .background(Color.background).ignoresSafeArea()
-         
+            
         }
     }
 }

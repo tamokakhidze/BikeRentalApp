@@ -21,6 +21,9 @@ final class ProfileViewModel: ObservableObject {
     @Published var finishedRentals: [Booking] = []
     @Published var ongoingRentals: [Booking] = []
     
+    @Published var isAlertIsPresent = false
+    @Published var alertMessage = ""
+    
     private var userId: String? {
         return Auth.auth().currentUser?.uid
     }
@@ -31,7 +34,7 @@ final class ProfileViewModel: ObservableObject {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from: dateString) ?? Date()
     }
-
+    
     func fetchUserInfo() {
         guard let userId = userId else {
             print("User not authenticated")
@@ -83,7 +86,7 @@ final class ProfileViewModel: ObservableObject {
                 if userInfo == nil {
                     userInfo = UserInfo(image: image)
                 } else {
-                        userInfo?.image = image
+                    userInfo?.image = image
                 }
                 
                 try userRef.setData(from: userInfo!) { error in
@@ -99,37 +102,61 @@ final class ProfileViewModel: ObservableObject {
         }
     }
     
-    func addBike(price: Double, year: Int, hasLights: Bool, numberOfGears: Int, geometry: String, latitude: Double, longitude: Double, brakeType: String, image: String, detailedImages: [String], hasHelmet: Bool, helmetPrice: Double) {
-        
+//    func addBike(price: Double, year: Int, hasLights: Bool, numberOfGears: Int, geometry: String, latitude: Double, longitude: Double, brakeType: String, image: String, detailedImages: [String], hasHelmet: Bool, helmetPrice: Double) {
+//        
+//        let bikesRef = Firestore.firestore().collection("bikes")
+//        
+//        let newBike = Bike(price: price, year: year, hasLights: hasLights, numberOfGears: numberOfGears, geometry: geometry, locationLatitude: latitude, locationLongitude: longitude, brakeType: brakeType, image: image, detailedImages: detailedImages, hasHelmet: hasHelmet, helmetPrice: helmetPrice)
+//        
+//        do {
+//            try bikesRef.addDocument(from: newBike) { [weak self] error in
+//                if let error = error {
+//                    print("Failed to add bike: \(error.localizedDescription)")
+//                    self?.isAlertIsPresent = true
+//                    self?.alertMessage = "Failed to add bike, Please try again"
+//                } else {
+//                    print("Bike added successfully")
+//                    self?.isAlertIsPresent = true
+//                    self?.alertMessage = "Bike uploaded successfully"
+//                }
+//            }
+//        } catch {
+//            print("Failed to encode bike: \(error.localizedDescription)")
+//            self.isAlertIsPresent = true
+//            self.alertMessage = "Failed to add bike, Please correctly enter all fields"
+//        }
+//    }
+    func addBike(bike: Bike, completion: @escaping (Result<Void, Error>) -> Void) {
         let bikesRef = Firestore.firestore().collection("bikes")
         
-        let newBike = Bike(price: price, year: year, hasLights: hasLights, numberOfGears: numberOfGears, geometry: geometry, locationLatitude: latitude, locationLongitude: longitude, brakeType: brakeType, image: image, detailedImages: detailedImages, hasHelmet: hasHelmet, helmetPrice: helmetPrice)
-        
         do {
-            try bikesRef.addDocument(from: newBike) { error in
+            try bikesRef.addDocument(from: bike) { error in
                 if let error = error {
                     print("Failed to add bike: \(error.localizedDescription)")
+                    completion(.failure(error))
                 } else {
                     print("Bike added successfully")
+                    completion(.success(()))
                 }
             }
         } catch {
             print("Failed to encode bike: \(error.localizedDescription)")
+            completion(.failure(error))
         }
     }
     
     func logOutTapped() {
-//        AuthService.shared.signOut { [weak self] error in
-//            if let error = error {
-//                print("Error: \(error.localizedDescription)")
-//            } else {
-//                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-//                    sceneDelegate.checkIfUserIsLoggedIn()
-//                }
-//            }
-//        }
+        //        AuthService.shared.signOut { [weak self] error in
+        //            if let error = error {
+        //                print("Error: \(error.localizedDescription)")
+        //            } else {
+        //                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+        //                    sceneDelegate.checkIfUserIsLoggedIn()
+        //                }
+        //            }
+        //        }
     }
-
+    
     func rateBike() {
         
     }

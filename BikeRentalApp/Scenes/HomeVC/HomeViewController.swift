@@ -26,7 +26,9 @@ final class HomeViewController: UIViewController {
     private var mainTitleLabel = CustomUiLabel(fontSize: 30, text: "Find your next bike", tintColor: .black, textAlignment: .left)
     
     private var fullMapButton = SmallCustomButton(width: 40, height: 40, backgroundImage: "fullMapIcon", backgroundColor: .white)
-    private var profilePhoto = CustomImageView(width: 50, height: 50, backgroundImage: "landingPageBike", borderColor: UIColor(.gray.opacity(0.5)), borderWidth: 0.5)
+//    private var profilePhoto = CustomImageView(width: 50, height: 50, backgroundImage: "landingPageBike", borderColor: UIColor(.gray.opacity(0.5)), borderWidth: 0.5)
+    
+    private var scannerButton = SmallCustomButton(width: 50, height: 50, backgroundImage: "fullMapIcon", backgroundColor: .white)
     private var customBackgroundView = CustomRectangleView(color: .white)
     
     private lazy var popularBikesCollectionView: UICollectionView = {
@@ -71,7 +73,9 @@ final class HomeViewController: UIViewController {
                 self?.popularBikesCollectionView.reloadData()
             }
         }
-        
+//        
+        viewModel.getUserName()
+        //nameLabel.text = "Hello, \(String(describing: viewModel.username))"
         AuthService.shared.getUser { [weak self] user, error in
             guard let self = self else { return }
             if let user = user {
@@ -85,11 +89,12 @@ final class HomeViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .loginBackground
         
-        nameLabel.text = "Hello, \(String(describing: viewModel.username))"
-        if let imageUrl = viewModel.image,
-            let url = URL(string: imageUrl) {
-            profilePhoto.setImage(with: url)
-        }
+        
+        
+//        if let imageUrl = viewModel.image,
+//            let url = URL(string: imageUrl) {
+//            profilePhoto.setImage(with: url)
+//        }
         
         sliderCollectionView = Slider(
             itemWidth: 370,
@@ -134,7 +139,7 @@ final class HomeViewController: UIViewController {
         )
         
         headerStackView.addArrangedSubviews(
-            profilePhoto,
+            scannerButton,
             nameLabel,
             fullMapButton
         )
@@ -154,7 +159,7 @@ final class HomeViewController: UIViewController {
             mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             
             headerStackView.heightAnchor.constraint(equalToConstant: 50),
-            nameLabel.leadingAnchor.constraint(equalTo: profilePhoto.trailingAnchor, constant: 80),
+            nameLabel.leadingAnchor.constraint(equalTo: scannerButton.trailingAnchor, constant: 80),
             
             customBackgroundView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             customBackgroundView.heightAnchor.constraint(equalToConstant: 1000),
@@ -176,7 +181,7 @@ final class HomeViewController: UIViewController {
         viewModel.delegate = self
     }
     
-    // MARK: - Add targets(actions)
+    // MARK: - Actions
 
     private func addTargets() {
         fullMapButton.addTarget(self, action: #selector(fullMapButtonTapped), for: .touchUpInside)
@@ -191,6 +196,10 @@ final class HomeViewController: UIViewController {
     
     @objc func fullMapButtonTapped() {
         navigationController?.pushViewController(FullMapViewController(), animated: true)
+    }
+    
+    @objc func scannerButtonTapped() {
+        navigationController?.pushViewController(ScannerViewController(), animated: true)
     }
     
     @objc func viewAllButtonTapped() {

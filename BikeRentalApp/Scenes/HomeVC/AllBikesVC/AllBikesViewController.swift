@@ -10,6 +10,7 @@ import UIKit
 // MARK: - AllBikesViewController
 
 final class AllBikesViewController: UIViewController, HomeViewModelDelegate {
+    
     func scrollToItem(at indexPath: IndexPath, animated: Bool) {
         
     }
@@ -102,6 +103,7 @@ final class AllBikesViewController: UIViewController, HomeViewModelDelegate {
         viewModel.delegate = self
     }
     
+    // MARK: - Actions
     
     @objc private func segmentControlChanged() {
         let selectedGeometry: String

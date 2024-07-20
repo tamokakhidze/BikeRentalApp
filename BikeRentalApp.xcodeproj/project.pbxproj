@@ -30,6 +30,8 @@
 		A90E20012C3D829C00E7E1C8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E20002C3D829C00E7E1C8 /* ProfileView.swift */; };
 		A90E20032C3D83DC00E7E1C8 /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E20022C3D83DC00E7E1C8 /* GridViewCell.swift */; };
 		A90E20052C3D840000E7E1C8 /* RentHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90E20042C3D840000E7E1C8 /* RentHistoryCell.swift */; };
+		A914DC9A2C4BE9B800E2A224 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DC992C4BE9B800E2A224 /* ScannerViewController.swift */; };
+		A914DCA22C4C4A9300E2A224 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCA12C4C4A9300E2A224 /* AlertView.swift */; };
 		A942A3AF2C3EAB3500D0833E /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3AE2C3EAB3500D0833E /* BikeService.swift */; };
 		A942A3B32C3EBFC000D0833E /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B22C3EBFC000D0833E /* Booking.swift */; };
 		A942A3B52C3EC10300D0833E /* midPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B42C3EC10300D0833E /* midPoint.swift */; };
@@ -107,6 +109,9 @@
 		A90E20002C3D829C00E7E1C8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A90E20022C3D83DC00E7E1C8 /* GridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
 		A90E20042C3D840000E7E1C8 /* RentHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentHistoryCell.swift; sourceTree = "<group>"; };
+		A914DC972C4BE17400E2A224 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		A914DC992C4BE9B800E2A224 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		A914DCA12C4C4A9300E2A224 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		A942A3AE2C3EAB3500D0833E /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
 		A942A3B22C3EBFC000D0833E /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		A942A3B42C3EC10300D0833E /* midPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = midPoint.swift; sourceTree = "<group>"; };
@@ -182,8 +187,17 @@
 			isa = PBXGroup;
 			children = (
 				A902311F2C426DA900C4AC3C /* AddBikeFormView.swift */,
+				A914DCA12C4C4A9300E2A224 /* AlertView.swift */,
 			);
 			path = AddBikeView;
+			sourceTree = "<group>";
+		};
+		A914DC982C4BE9AB00E2A224 /* ScannerVC */ = {
+			isa = PBXGroup;
+			children = (
+				A914DC992C4BE9B800E2A224 /* ScannerViewController.swift */,
+			);
+			path = ScannerVC;
 			sourceTree = "<group>";
 		};
 		A942CB7F2C4917980047F7A3 /* ShopVC */ = {
@@ -291,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				A99BC46B2C35A13D009E9FC1 /* Assets.xcassets */,
+				A914DC972C4BE17400E2A224 /* Location.gpx */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -401,6 +416,7 @@
 		A99BC4B02C35B914009E9FC1 /* HomeVC */ = {
 			isa = PBXGroup;
 			children = (
+				A914DC982C4BE9AB00E2A224 /* ScannerVC */,
 				A942CB9B2C494CB60047F7A3 /* AllBikesVC */,
 				A99BC4B12C35B935009E9FC1 /* HomeViewController.swift */,
 				A90E1FE62C3BFB1C00E7E1C8 /* HomeViewModel.swift */,
@@ -574,12 +590,14 @@
 				A942CB8D2C4919950047F7A3 /* UsersScrollView.swift in Sources */,
 				A9CEAE392C3EA214003AE4A2 /* DetailsViewController.swift in Sources */,
 				A902312B2C42701100C4AC3C /* UserInfo.swift in Sources */,
+				A914DCA22C4C4A9300E2A224 /* AlertView.swift in Sources */,
 				A90E20012C3D829C00E7E1C8 /* ProfileView.swift in Sources */,
 				A99BC4AB2C35AEE3009E9FC1 /* RegisterRequest.swift in Sources */,
 				A942CBA62C4A99920047F7A3 /* StarRatingView.swift in Sources */,
 				A99BC4B22C35B935009E9FC1 /* HomeViewController.swift in Sources */,
 				A99BC48F2C35A91A009E9FC1 /* ForgotPasswordViewController.swift in Sources */,
 				A99BC4942C35A959009E9FC1 /* RootViewController.swift in Sources */,
+				A914DC9A2C4BE9B800E2A224 /* ScannerViewController.swift in Sources */,
 				A99BC4632C35A13A009E9FC1 /* AppDelegate.swift in Sources */,
 				A942CB8B2C4919860047F7A3 /* LeaderboardView.swift in Sources */,
 				A99BC49B2C35A9FC009E9FC1 /* CustomInputView.swift in Sources */,

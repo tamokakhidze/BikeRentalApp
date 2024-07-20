@@ -450,6 +450,7 @@ extension DetailsViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - DetailsViewModelDelegate
 
 extension DetailsViewController: DetailsViewModelDelegate {
     

@@ -29,6 +29,8 @@ enum BikeGeometry: CaseIterable {
 
 class HomeViewModel {
     
+    // MARK: - Properties
+
     private var db = Firestore.firestore()
     var salesImagesArray = [
         "https://i.pinimg.com/originals/19/f0/b5/19f0b54227480dc5dace75c8399764f3.png",
@@ -61,30 +63,26 @@ class HomeViewModel {
     var username: String?
     var image: String?
     
+    // MARK: - Fetching data
+
     func fetchData(completion: @escaping () -> Void) {
         db.collection("bikes").order(by: "price", descending: false).getDocuments { (querySnapshot, error) in
             if let error = error {
-                //print("Error fetching documents: \(error.localizedDescription)")
                 completion()
                 return
             }
             
             guard let documents = querySnapshot?.documents else {
-                //print("No documents found")
                 completion()
                 return
             }
             
-            //print("Documents fetched: \(documents.count)") // Print the number of documents fetched
             
             self.bikes = documents.compactMap { document in
                 do {
-                    //print("Document data: \(document.data())") // Print the document data
                     let bike = try document.data(as: Bike.self)
-                    //print("Bike fetched: \(bike)") // Print each bike fetched
                     return bike
                 } catch {
-                    //print("Error decoding bike: \(error.localizedDescription)")
                     return nil
                 }
             }
@@ -96,11 +94,12 @@ class HomeViewModel {
             }
             
             self.locations = self.bikes.map { CLLocation(latitude: $0.location.latitude, longitude: $0.location.longitude) }
-            //print("Bikes count after mapping: \(self.bikes.count)") // Print the count of bikes after mapping
             completion()
         }
     }
     
+    // MARK: - Filtering bikes
+
     func getBikesByGeometryType(geometry: String) {
         switch geometry {
         case "road":
@@ -114,6 +113,8 @@ class HomeViewModel {
         }
     }
     
+    // MARK: - Slider logic
+
     func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 3.5, target: self, selector: #selector(automateSlider), userInfo: nil, repeats: true)
     }
@@ -142,6 +143,8 @@ class HomeViewModel {
         currentIndex = selectedPage
     }
     
+    // MARK: - Fetching user info
+
     func fetchUserInfo() {
         guard let userId = userId else {
             print("User not authenticated")
@@ -157,7 +160,7 @@ class HomeViewModel {
                 do {
                     let userInfo = try document.data(as: UserInfo.self)
                     DispatchQueue.main.async {
-                        self.username = userInfo.username ?? "Username"
+                        //self.username = userInfo.username ?? "Username"
                         self.image = userInfo.image ?? "https://i.pinimg.com/736x/00/37/e6/0037e6acc12861555781ceb897668c66.jpg"
                     }
                 } catch {
@@ -166,6 +169,15 @@ class HomeViewModel {
                 }
             } else {
                 print("Document doesn't exist")
+            }
+        }
+    }
+    
+    func getUserName() {
+        AuthService.shared.getUser { [weak self] user, error in
+            guard let self = self else { return }
+            if let user = user {
+                self.username = user.username
             }
         }
     }
