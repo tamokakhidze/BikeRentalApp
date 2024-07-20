@@ -14,11 +14,11 @@ class ShopViewModel: ObservableObject {
     // MARK: - Properties
 
     @Published var productsList = [Product]()
-    @Published var productCategories = Set<String>()
+    @Published var productCategories = [String]()
     @Published var cartItems = [Product]()
     @Published var couponCodes = ["7mayerrs", "35mm", "Check24", "Tbcxusaid"]
 
-    private let url = "https://mocki.io/v1/2b690c45-7706-425a-a251-57326a0b9be5"
+    private let url = "https://mocki.io/v1/d1d6abfb-14d7-40de-a11a-9dc3d93c4ea9"
     
     // MARK: - Fetching Data
     
@@ -27,8 +27,13 @@ class ShopViewModel: ObservableObject {
             switch result {
             case .success(let success):
                 self?.productsList = success
-                let productsCategories = success.map( {$0.category} )
-                self?.productCategories = Set(productsCategories)
+                let products = success.map( {$0.category} )
+                let orderedCategories = products.reduce(into: [String]()) { result, category in
+                    if !result.contains(category) {
+                        result.append(category)
+                    }
+                }
+                self?.productCategories = orderedCategories
                 print(self?.productCategories ?? [Product]())
             case .failure(let failure):
                 print("fetching failed. \(failure)")

@@ -43,7 +43,7 @@ struct CategoriesCell: View {
                     }
                      Spacer()
                     Image(systemName: "rectangle.portrait.and.arrow.forward.fill")
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.white.opacity(0.5))
                     
                 }
                 .padding(.bottom, 16)

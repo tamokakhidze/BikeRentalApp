@@ -17,6 +17,8 @@ struct ShopMainView: View {
         NavigationStack {
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 20) {
+                    Spacer()
+                        .frame(height: 80)
                     
                     HStack {
                         Spacer()
@@ -37,7 +39,6 @@ struct ShopMainView: View {
                         }
                     }
                     .padding(.trailing, 20)
-                    
                     
                     Text("Shop essentials for your ride")
                         .fontWeight(.medium)
@@ -86,11 +87,14 @@ struct ShopMainView: View {
                         }
                     }
                     
+                    Text("Discover stores")
+                        .fontWeight(.medium)
+                        .font(.system(size: 20))
+                    
                 }
                 .onAppear {
                     viewModel.viewAppeared()
                 }
-                .padding(.top, 100)
                 .padding(.leading, 24)
                 
                 

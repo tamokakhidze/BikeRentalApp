@@ -14,6 +14,14 @@ import PassKit
 class CalendarViewController: UIViewController {
     
     // MARK: - Ui components and properties
+    private lazy var dividers: [UIView] = {
+         return (0..<3).map { _ in
+             let divider = UIView()
+             divider.translatesAutoresizingMaskIntoConstraints = false
+             divider.backgroundColor = UIColor(.primaryDeep)
+             return divider
+         }
+     }()
     
     private lazy var startTimeView: UIDatePicker = {
         let datePickerView = UIDatePicker()
@@ -40,7 +48,7 @@ class CalendarViewController: UIViewController {
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = 10
         stackView.alignment = .center
         stackView.distribution = .equalCentering
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +56,8 @@ class CalendarViewController: UIViewController {
     }()
     
     private var titleLabel = CustomUiLabel(fontSize: 20, text: "Choose start and end times as well as dates", tintColor: .black, textAlignment: .center)
+    private var startTitleLabel = CustomUiLabel(fontSize: 20, text: "Start time", tintColor: .black, textAlignment: .center)
+    private var endTitleLabel = CustomUiLabel(fontSize: 20, text: "End time", tintColor: .black, textAlignment: .center)
     private var checkAvailabilityButton = CustomButton(title: "Check Availability", hasBackground: true, width: 350)
     private var rentBikeButton = CustomButton(title: "Rent Bike", hasBackground: true, width: 350)
     private var viewModel = CalendarViewModel()
@@ -87,7 +97,9 @@ class CalendarViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(mainStackView)
         
-        mainStackView.addArrangedSubviews(titleLabel, startTimeView, endTimeView, checkAvailabilityButton, rentBikeButton, UIView())
+        mainStackView.addArrangedSubviews(titleLabel, dividers[0], startTitleLabel, startTimeView, dividers[1], endTitleLabel, endTimeView, dividers[2], checkAvailabilityButton,
+                                          rentBikeButton,
+                                          UIView())
 
         setConstraints()
         
@@ -100,6 +112,15 @@ class CalendarViewController: UIViewController {
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             mainStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor),
+            
+            dividers[0].widthAnchor.constraint(equalToConstant: 300),
+            dividers[0].heightAnchor.constraint(equalToConstant: 0.5),
+            
+            dividers[1].widthAnchor.constraint(equalToConstant: 300),
+            dividers[1].heightAnchor.constraint(equalToConstant: 0.5),
+            
+            dividers[2].widthAnchor.constraint(equalToConstant: 300),
+            dividers[2].heightAnchor.constraint(equalToConstant: 0.5),
             
             startTimeView.widthAnchor.constraint(equalToConstant: 170),
             startTimeView.heightAnchor.constraint(equalToConstant: 50),

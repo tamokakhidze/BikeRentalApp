@@ -67,17 +67,26 @@ struct RankingView: View {
         VStack(spacing: 6) {
             if viewModel.topThreeUser.indices.contains(rank) {
                 if let image = viewModel.topThreeUser[rank].image {
-                    AsyncImage(url: URL(string: image)) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .scaledToFill()
-                            .clipped()
-                    } placeholder: {
-                        Image(systemName: "person.fill")
+                    ZStack {
+                        Circle()
+                            .frame(width: 87, height: 87)
+                            .foregroundStyle(rank == 0 ? Color.primaryDeep : Color.black)
+                            .presentationCornerRadius(50)
+                            
+                        
+                        AsyncImage(url: URL(string: image)) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .scaledToFill()
+                                .clipped()
+                        } placeholder: {
+                            Image(systemName: "person.fill")
+                        }
+                        .frame(width: 82, height: 82)
+                        .cornerRadius(50)
+                        
                     }
-                    .frame(width: 82, height: 82)
-                    .cornerRadius(50)
                     .offset(y: rank == 0 ? -50 : -25)
                 }
                  
@@ -91,7 +100,7 @@ struct RankingView: View {
                     .font(.system(size: 12))
                     .foregroundStyle(.white)
                     .fontWeight(.bold)
-                Text("\(user.points ?? 0)")
+                Text("\(user.points ?? 0) pts")
                     .foregroundStyle(.gray)
                
             }
