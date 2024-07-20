@@ -46,7 +46,7 @@ struct ProfileView: View {
                                     .frame(width: 100, height: 100)
                                     .cornerRadius(50)
                                     .clipped()
-                            } else if image == viewModel.image {
+                            } else if let image = viewModel.image {
                                 AsyncImage(url: URL(string: image)) { image in
                                     image
                                         .resizable()
