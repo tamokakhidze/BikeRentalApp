@@ -97,10 +97,8 @@ class CalendarViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(mainStackView)
         
-        mainStackView.addArrangedSubviews(titleLabel, dividers[0], startTitleLabel, startTimeView, dividers[1], endTitleLabel, endTimeView, dividers[2], checkAvailabilityButton,
-                                          rentBikeButton,
-                                          UIView())
-
+        mainStackView.addArrangedSubviews(titleLabel, dividers[0], startTitleLabel, startTimeView, dividers[1], endTitleLabel, endTimeView, dividers[2], checkAvailabilityButton,rentBikeButton,UIView())
+        
         setConstraints()
         
         rentBikeButton.isEnabled = false

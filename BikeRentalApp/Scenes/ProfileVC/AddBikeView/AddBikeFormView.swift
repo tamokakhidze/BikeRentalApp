@@ -145,36 +145,38 @@ struct AddBikeFormView: View {
             showPopup = true
             return
         }
-         
+        
         let detailedImagesArray = detailedImages.components(separatedBy: ",").map {
             $0.trimmingCharacters(in: .whitespacesAndNewlines)
         }
-         
-         let bike = Bike(
-             price: priceValue,
-             year: yearValue,
-             hasLights: hasLights,
-             numberOfGears: numberOfGearsValue,
-             geometry: geometry,
-             locationLatitude: locationLatitudeValue,
-             locationLongitude: locationLongitudeValue,
-             brakeType: brakeType,
-             image: image,
-             detailedImages: detailedImagesArray,
-             hasHelmet: hasHelmet,
-             helmetPrice: helmetPriceValue
-         )
-         
-         viewModel.addBike(bike: bike) { result in
-             switch result {
-             case .success:
-                 message = "Bike added successfully!"
-             case .failure(let error):
-                 message = "Failed to add bike: \(error.localizedDescription)"
-             }
-             showPopup = true
-         }
-     }
+        
+        let bike = Bike(
+            id: "",
+            scannerId: UUID().uuidString,
+            price: priceValue,
+            year: yearValue,
+            hasLights: hasLights,
+            numberOfGears: numberOfGearsValue,
+            geometry: geometry,
+            locationLatitude: locationLatitudeValue,
+            locationLongitude: locationLongitudeValue,
+            brakeType: brakeType,
+            image: image,
+            detailedImages: detailedImagesArray,
+            hasHelmet: hasHelmet,
+            helmetPrice: helmetPriceValue
+        )
+        
+        viewModel.addBike(bike: bike) { result in
+            switch result {
+            case .success:
+                message = "Bike added successfully!"
+            case .failure(let error):
+                message = "Failed to add bike: \(error.localizedDescription)"
+            }
+            showPopup = true
+        }
+    }
 }
 
 #Preview {

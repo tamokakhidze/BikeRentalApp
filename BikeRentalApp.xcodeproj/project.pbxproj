@@ -33,6 +33,7 @@
 		A914DC9A2C4BE9B800E2A224 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DC992C4BE9B800E2A224 /* ScannerViewController.swift */; };
 		A914DCA22C4C4A9300E2A224 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCA12C4C4A9300E2A224 /* AlertView.swift */; };
 		A914DCA42C4C646C00E2A224 /* JsonBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCA32C4C646C00E2A224 /* JsonBackup.swift */; };
+		A914DCA62C4D0C3300E2A224 /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCA52C4D0C3300E2A224 /* ScannerViewModel.swift */; };
 		A942A3AF2C3EAB3500D0833E /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3AE2C3EAB3500D0833E /* BikeService.swift */; };
 		A942A3B32C3EBFC000D0833E /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B22C3EBFC000D0833E /* Booking.swift */; };
 		A942A3B52C3EC10300D0833E /* midPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B42C3EC10300D0833E /* midPoint.swift */; };
@@ -114,6 +115,7 @@
 		A914DC992C4BE9B800E2A224 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		A914DCA12C4C4A9300E2A224 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		A914DCA32C4C646C00E2A224 /* JsonBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonBackup.swift; sourceTree = "<group>"; };
+		A914DCA52C4D0C3300E2A224 /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
 		A942A3AE2C3EAB3500D0833E /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
 		A942A3B22C3EBFC000D0833E /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		A942A3B42C3EC10300D0833E /* midPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = midPoint.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				A914DC992C4BE9B800E2A224 /* ScannerViewController.swift */,
+				A914DCA52C4D0C3300E2A224 /* ScannerViewModel.swift */,
 			);
 			path = ScannerVC;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				A9CEAE392C3EA214003AE4A2 /* DetailsViewController.swift in Sources */,
 				A902312B2C42701100C4AC3C /* UserInfo.swift in Sources */,
 				A914DCA22C4C4A9300E2A224 /* AlertView.swift in Sources */,
+				A914DCA62C4D0C3300E2A224 /* ScannerViewModel.swift in Sources */,
 				A90E20012C3D829C00E7E1C8 /* ProfileView.swift in Sources */,
 				A99BC4AB2C35AEE3009E9FC1 /* RegisterRequest.swift in Sources */,
 				A942CBA62C4A99920047F7A3 /* StarRatingView.swift in Sources */,

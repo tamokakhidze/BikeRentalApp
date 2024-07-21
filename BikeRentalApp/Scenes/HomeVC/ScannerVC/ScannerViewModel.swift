@@ -1,0 +1,49 @@
+//
+//  ScannerViewModel.swift
+//  BikeRentalApp
+//
+//  Created by Tamuna Kakhidze on 21.07.24.
+//
+
+import Foundation
+import FirebaseFirestore
+
+protocol ScannerViewModelDelegate: AnyObject {
+    func bikeFetched(bike: Bike)
+}
+
+class ScannerViewModel {
+    
+    weak var delegate: ScannerViewModelDelegate?
+    
+    func fetchBikes(bikeId: String) {
+        let trimmedBikeId = bikeId.trimmingCharacters(in: .whitespacesAndNewlines)
+        print("trimmed bike ID: '\(trimmedBikeId)'")
+        
+        let bikesCollectionRef = Firestore.firestore().collection("bikes")
+        
+        FirestoreService.shared.fetchCollectionData(from: bikesCollectionRef, as: Bike.self) { [weak self] result in
+            print("fetch result: \(result)")
+            
+            switch result {
+            case .success(let bikes):
+                print("fetched bikes count: \(bikes.count)")
+                
+                for bike in bikes {
+                    let trimmedScannerId = bike.scannerId.trimmingCharacters(in: .whitespacesAndNewlines)
+                    print("fetched bike scannerId: '\(trimmedScannerId)'")
+                }
+                
+                if let bike = bikes.first(where: { $0.scannerId.trimmingCharacters(in: .whitespacesAndNewlines) == trimmedBikeId }) {
+                    print("bike found: \(bike)")
+                    self?.delegate?.bikeFetched(bike: bike)
+                } else {
+                    print("no bike found with scanner ID: '\(trimmedBikeId)'")
+                }
+                
+            case .failure(let error):
+                print("fetch failure: \(error.localizedDescription)")
+            }
+        }
+    }
+}
