@@ -13,12 +13,13 @@ import FirebaseStorage
 
 @available(iOS 16.0, *)
 struct ProfileView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @StateObject var viewModel = ProfileViewModel()
     @State var photoPicker: PhotosPickerItem? = nil
     @State var selectedImageData: Data? = nil
-    @StateObject var viewModel = ProfileViewModel()
     @State var image: String = ""
-    private let storage = Storage.storage().reference()
     @State var rating = 4
+    private let storage = Storage.storage().reference()
     
     let imageUrls = [
         "https://i.pinimg.com/736x/22/39/9c/22399cf9dc52f9adfb7f2f33ce74775d.jpg",
@@ -213,6 +214,17 @@ struct ProfileView: View {
                     .background(.darkBackground)
                     .cornerRadius(16)
                     
+                    Button(action: {
+                        viewModel.logOutTapped()
+                    }) {
+                        Text("Log out")
+                            .frame(width: 350, height: 50)
+                            .background(.darkBackground)
+                            .cornerRadius(50)
+                            .foregroundColor(.red)
+                            .fontWeight(.medium)
+                    }
+                    
                     Spacer()
                 }.onAppear {
                     viewModel.fetchUserInfo()
@@ -220,7 +232,13 @@ struct ProfileView: View {
                 .padding()
                 .padding(.top)
             }
-        }.navigationTitle("My Profile")
+        }
+        .onChange(of: viewModel.isLoggedOut) { isLoggedOut in
+            if isLoggedOut {
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
+        .navigationTitle("My Profile")
         
     }
     

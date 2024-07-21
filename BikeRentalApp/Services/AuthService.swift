@@ -61,14 +61,24 @@ class AuthService {
         }
     }
     
+//    public func signOut(completion: @escaping (Error?)->Void) {
+//        do {
+//            try Auth.auth().signOut()
+//            completion(nil)
+//        } catch let error {
+//            completion(error)
+//        }
+//    }
     public func signOut(completion: @escaping (Error?)->Void) {
         do {
             try Auth.auth().signOut()
+            NotificationCenter.default.post(name: NSNotification.Name("UserDidLogout"), object: nil)
             completion(nil)
         } catch let error {
             completion(error)
         }
     }
+
     
     public func forgotPassword(with email: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in

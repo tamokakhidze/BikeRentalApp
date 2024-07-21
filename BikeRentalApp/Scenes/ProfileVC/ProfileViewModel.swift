@@ -20,6 +20,7 @@ final class ProfileViewModel: ObservableObject {
     @Published var allRentals: [Booking] = []
     @Published var finishedRentals: [Booking] = []
     @Published var ongoingRentals: [Booking] = []
+    @Published var isLoggedOut = false
     
     @Published var isAlertIsPresent = false
     @Published var alertMessage = ""
@@ -122,15 +123,13 @@ final class ProfileViewModel: ObservableObject {
     }
     
     func logOutTapped() {
-        //        AuthService.shared.signOut { [weak self] error in
-        //            if let error = error {
-        //                print("Error: \(error.localizedDescription)")
-        //            } else {
-        //                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-        //                    sceneDelegate.checkIfUserIsLoggedIn()
-        //                }
-        //            }
-        //        }
+        AuthService.shared.signOut { [weak self] error in
+            if let error = error {
+                print("Error signing out: \(error.localizedDescription)")
+            } else {
+                self?.isLoggedOut = true
+            }
+        }
     }
     
     func rateBike() {

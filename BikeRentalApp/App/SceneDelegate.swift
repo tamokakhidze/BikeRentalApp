@@ -12,25 +12,29 @@ import FirebaseAuth
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var navigationController = UINavigationController()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         guard let scene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: scene)
         checkIfUserIsLoggedIn()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userDidLogout), name: NSNotification.Name("UserDidLogout"), object: nil)
     }
     
-    public func checkIfUserIsLoggedIn() {
+    func checkIfUserIsLoggedIn() {
         if Auth.auth().currentUser == nil {
-            navigationController = UINavigationController(rootViewController: LoginViewController())
+            let navController = UINavigationController(rootViewController: LoginViewController())
+            window?.rootViewController = navController
+        } else {
+            let rootViewController = RootViewController()
+            navigationController.viewControllers = [rootViewController]
             window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
         }
-        else {
-            navigationController = UINavigationController(rootViewController: LandingViewController())
-            window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
-        }
+        window?.makeKeyAndVisible()
+    }
+    
+    @objc func userDidLogout() {
+        checkIfUserIsLoggedIn()
     }
 }
-
