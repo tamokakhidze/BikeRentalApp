@@ -26,11 +26,14 @@ struct AddBikeFormView: View {
     
     @State private var photoPicker: PhotosPickerItem? = nil
     @State private var selectedImageData: Data? = nil
+//    @StateObject private var imageClassifier = AddBikeFormViewModel()
     @State private var message = ""
     @State private var showPopup = false
     private let storage = Storage.storage().reference()
     
-    @StateObject private var viewModel = ProfileViewModel()
+    @Environment(\.presentationMode) var presentationMode
+    
+    @StateObject private var viewModel = AddBikeFormViewModel()
     
     var body: some View {
         ZStack {
@@ -69,43 +72,52 @@ struct AddBikeFormView: View {
                     )
                     {
                         if let selectedImageData,
-                           let profileImage = UIImage(data: selectedImageData) {
-                            Image(uiImage: profileImage)
+                           let bikeImage = UIImage(data: selectedImageData) {
+                            Image(uiImage: bikeImage)
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: 200, height: 150)
                                 .clipped()
                         } else {
-                            Image(systemName: "person.circle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 100)
-                                .foregroundStyle(.gray.opacity(0.2))
+                            ZStack {
+                                Rectangle()
+                                    .strokeBorder(style: StrokeStyle(lineWidth: 3, dash: [10]))
+                                    .frame(width: 200, height: 150)
+                                    .foregroundStyle(.darkBackground)
+                                
+                                Image(systemName: "photo.badge.plus")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundStyle(.gray.opacity(0.2))
+                            }
                         }
                     }
                     .onChange(of: photoPicker) { newPhoto in
                         Task {
                             if let data = try? await newPhoto?.loadTransferable(type: Data.self) {
                                 selectedImageData = data
-                                
-                                let imageRef = storage.child("images/\(UUID().uuidString).jpg")
-                                
-                                imageRef.putData(data, metadata: nil) { metadata, error in
-                                    guard metadata != nil else {
-                                        print("error uploading image")
-                                        return
-                                    }
-                                    
-                                    imageRef.downloadURL { url, error in
-                                        guard let downloadURL = url else {
-                                            return
+                                if let uiImage = UIImage(data: data) {
+                                    viewModel.detect(uiImage: uiImage)
+                                    let imageRef = storage.child("images/\(UUID().uuidString).jpg")
+                                    imageRef.putData(data, metadata: nil) { metadata, error in
+                                        guard metadata != nil else { return }
+                                        
+                                        imageRef.downloadURL { url, error in
+                                            if let downloadURL = url {
+                                                image = downloadURL.absoluteString
+                                            }
                                         }
-                                        image = downloadURL.absoluteString
-                                        print("download phot urll : \(image)")
                                     }
                                 }
                             }
                         }
+                    }
+                    
+                    if viewModel.isValid == false  {
+                        Text("The selected image does not contain a valid bike.")
+                            .foregroundColor(.red)
+                            .fontWeight(.regular)
                     }
                     
                     Button(action: {
@@ -117,7 +129,7 @@ struct AddBikeFormView: View {
                             .cornerRadius(50)
                             .foregroundColor(.white)
                             .fontWeight(.bold)
-                    })
+                    }).disabled(!viewModel.isAddBikeButtonEnabled)
                     
                     Spacer()
                     
@@ -132,19 +144,24 @@ struct AddBikeFormView: View {
     }
     
     private func addBike() {
-        guard let priceValue = Double(price),
+        guard viewModel.isValid == true,
+              let priceValue = Double(price),
               let yearValue = Int(year),
               let numberOfGearsValue = Int(numberOfGears),
               !geometry.isEmpty,
               let locationLatitudeValue = Double(locationLatitude),
+              locationLatitudeValue >= -90 && locationLatitudeValue <= 90,
               let locationLongitudeValue = Double(locationLongitude),
+              locationLongitudeValue >= -180 && locationLongitudeValue <= 180,
               !brakeType.isEmpty,
               let helmetPriceValue = Double(helmetPrice),
               !image.isEmpty else {
-            message = "Please fill in all required fields correctly"
+            message = "Please fill in all required fields correctly or ensure the image is valid."
             showPopup = true
+            print("Please fill in all required fields or ensure the image is valid.")
             return
         }
+        
         
         let detailedImagesArray = detailedImages.components(separatedBy: ",").map {
             $0.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -171,6 +188,10 @@ struct AddBikeFormView: View {
             switch result {
             case .success:
                 message = "Bike added successfully!"
+                viewModel.isAddBikeButtonEnabled = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    presentationMode.wrappedValue.dismiss()
+                }
             case .failure(let error):
                 message = "Failed to add bike: \(error.localizedDescription)"
             }

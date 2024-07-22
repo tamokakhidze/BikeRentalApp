@@ -23,8 +23,9 @@ struct ProductsListView: View {
                 
                 ScrollView {
                     VStack(spacing: 25) {
-                        ForEach($viewModel.productsList) { $product in
-                            ProductCard(product: $product)
+                        let products = viewModel.productsList.filter({$0.category == category})
+                        ForEach(products) { product in
+                            ProductCard(product: product)
                         }
                     }
                     .padding()

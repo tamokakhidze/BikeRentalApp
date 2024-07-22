@@ -24,11 +24,8 @@ final class HomeViewController: UIViewController {
     private var titleLabel = CustomUiLabel(fontSize: 18, text: "Affordable bikes", tintColor: .black, textAlignment: .left)
     private var viewAllButton = CustomButton(title: "View All", width: 80)
     private var mainTitleLabel = CustomUiLabel(fontSize: 30, text: "Find your next bike", tintColor: .black, textAlignment: .left)
-    
     private var fullMapButton = SmallCustomButton(width: 40, height: 40, backgroundImage: "fullMapIcon", backgroundColor: .white)
-//    private var profilePhoto = CustomImageView(width: 50, height: 50, backgroundImage: "landingPageBike", borderColor: UIColor(.gray.opacity(0.5)), borderWidth: 0.5)
-    
-    private var scannerButton = SmallCustomButton(width: 50, height: 50, backgroundImage: "fullMapIcon", backgroundColor: .white)
+    private var scannerButton = SmallCustomButton(width: 50, height: 50, backgroundImage: "scanBikeIcon", backgroundColor: .white)
     private var customBackgroundView = CustomRectangleView(color: .white)
     
     private lazy var popularBikesCollectionView: UICollectionView = {
@@ -187,6 +184,7 @@ final class HomeViewController: UIViewController {
         fullMapButton.addTarget(self, action: #selector(fullMapButtonTapped), for: .touchUpInside)
         pageControl.addTarget(self, action: #selector(pageControlChanged(_:)), for: .valueChanged)
         viewAllButton.addTarget(self, action: #selector(viewAllButtonTapped), for: .touchUpInside)
+        scannerButton.addTarget(self, action: #selector(scannerButtonTapped), for: .touchUpInside)
     }
 
     

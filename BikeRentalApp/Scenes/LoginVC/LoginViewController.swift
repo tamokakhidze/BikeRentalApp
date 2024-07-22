@@ -26,7 +26,15 @@ final class LoginViewController: UIViewController {
         return stackView
     }()
     
-    private let loginLabel = CustomUiLabel(fontSize: 24, text: "Nice to see you again", tintColor: .black, textAlignment: .center)
+    private lazy var logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(resource: .logo)
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let loginLabel = CustomUiLabel(fontSize: 20, text: "Nice to see you again", tintColor: .black, textAlignment: .center)
     private let emailTextField = CustomInputView(inputType: .Email)
     private let passwordTextField = CustomInputView(inputType: .Password)
     private let loginButton = CustomButton(title: "Sign in", hasBackground: true, width: 350)
@@ -41,6 +49,7 @@ final class LoginViewController: UIViewController {
         setDelegates()
         addTargets()
         configureMainStackView()
+        addTapGestureToDismissKeyboard()
     }
     
     // MARK: - Setup methods
@@ -76,6 +85,7 @@ final class LoginViewController: UIViewController {
     private func configureMainStackView() {
         view.addSubview(stackView)
         stackView.addArrangedSubviews(
+            logoImageView,
             loginLabel,
             emailTextField,
             passwordTextField,
@@ -97,6 +107,15 @@ final class LoginViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
+    private func addTapGestureToDismissKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     @objc private func didTapCreateAccount() {
         navigationController?.pushViewController(RegisterViewController(), animated: false)
@@ -121,6 +140,16 @@ extension LoginViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.clear.cgColor
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            textField.resignFirstResponder()
+            didTapSignIn()
+        }
+        return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

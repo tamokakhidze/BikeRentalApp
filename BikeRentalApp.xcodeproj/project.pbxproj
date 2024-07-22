@@ -34,6 +34,10 @@
 		A914DCA22C4C4A9300E2A224 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCA12C4C4A9300E2A224 /* AlertView.swift */; };
 		A914DCA42C4C646C00E2A224 /* JsonBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCA32C4C646C00E2A224 /* JsonBackup.swift */; };
 		A914DCA62C4D0C3300E2A224 /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCA52C4D0C3300E2A224 /* ScannerViewModel.swift */; };
+		A914DCB12C4E783E00E2A224 /* DetectionResultValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCB02C4E783E00E2A224 /* DetectionResultValidator.swift */; };
+		A914DCB32C4E786300E2A224 /* Classifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCB22C4E786300E2A224 /* Classifier.swift */; };
+		A914DCB52C4E788C00E2A224 /* AddBikeFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCB42C4E788C00E2A224 /* AddBikeFormViewModel.swift */; };
+		A914DCB72C4E79B500E2A224 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A914DCB62C4E79B500E2A224 /* MobileNetV2.mlmodel */; };
 		A942A3AF2C3EAB3500D0833E /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3AE2C3EAB3500D0833E /* BikeService.swift */; };
 		A942A3B32C3EBFC000D0833E /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B22C3EBFC000D0833E /* Booking.swift */; };
 		A942A3B52C3EC10300D0833E /* midPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B42C3EC10300D0833E /* midPoint.swift */; };
@@ -116,6 +120,11 @@
 		A914DCA12C4C4A9300E2A224 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		A914DCA32C4C646C00E2A224 /* JsonBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonBackup.swift; sourceTree = "<group>"; };
 		A914DCA52C4D0C3300E2A224 /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
+		A914DCA72C4D36AE00E2A224 /* BikeRentalAppDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeRentalAppDebug.entitlements; sourceTree = "<group>"; };
+		A914DCB02C4E783E00E2A224 /* DetectionResultValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionResultValidator.swift; sourceTree = "<group>"; };
+		A914DCB22C4E786300E2A224 /* Classifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classifier.swift; sourceTree = "<group>"; };
+		A914DCB42C4E788C00E2A224 /* AddBikeFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBikeFormViewModel.swift; sourceTree = "<group>"; };
+		A914DCB62C4E79B500E2A224 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
 		A942A3AE2C3EAB3500D0833E /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
 		A942A3B22C3EBFC000D0833E /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		A942A3B42C3EC10300D0833E /* midPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = midPoint.swift; sourceTree = "<group>"; };
@@ -192,6 +201,9 @@
 			children = (
 				A902311F2C426DA900C4AC3C /* AddBikeFormView.swift */,
 				A914DCA12C4C4A9300E2A224 /* AlertView.swift */,
+				A914DCB02C4E783E00E2A224 /* DetectionResultValidator.swift */,
+				A914DCB22C4E786300E2A224 /* Classifier.swift */,
+				A914DCB42C4E788C00E2A224 /* AddBikeFormViewModel.swift */,
 			);
 			path = AddBikeView;
 			sourceTree = "<group>";
@@ -247,6 +259,7 @@
 		A99BC4562C35A13A009E9FC1 = {
 			isa = PBXGroup;
 			children = (
+				A914DCB62C4E79B500E2A224 /* MobileNetV2.mlmodel */,
 				A99BC4612C35A13A009E9FC1 /* BikeRentalApp */,
 				A99BC4602C35A13A009E9FC1 /* Products */,
 				A99BC4A52C35AE88009E9FC1 /* Frameworks */,
@@ -264,6 +277,7 @@
 		A99BC4612C35A13A009E9FC1 /* BikeRentalApp */ = {
 			isa = PBXGroup;
 			children = (
+				A914DCA72C4D36AE00E2A224 /* BikeRentalAppDebug.entitlements */,
 				A971FD9C2C404E9800B91A48 /* BikeRentalApp.entitlements */,
 				A90E1FE22C3AFCEC00E7E1C8 /* GoogleService-Info.plist */,
 				A99BC4762C35A277009E9FC1 /* App */,
@@ -601,6 +615,7 @@
 				A914DCA62C4D0C3300E2A224 /* ScannerViewModel.swift in Sources */,
 				A90E20012C3D829C00E7E1C8 /* ProfileView.swift in Sources */,
 				A99BC4AB2C35AEE3009E9FC1 /* RegisterRequest.swift in Sources */,
+				A914DCB72C4E79B500E2A224 /* MobileNetV2.mlmodel in Sources */,
 				A942CBA62C4A99920047F7A3 /* StarRatingView.swift in Sources */,
 				A99BC4B22C35B935009E9FC1 /* HomeViewController.swift in Sources */,
 				A99BC48F2C35A91A009E9FC1 /* ForgotPasswordViewController.swift in Sources */,
@@ -614,7 +629,9 @@
 				A942CB932C491E180047F7A3 /* CategoriesCell.swift in Sources */,
 				A90E1FE92C3BFBA000E7E1C8 /* Bike.swift in Sources */,
 				A99BC4882C35A8DD009E9FC1 /* RegisterViewController.swift in Sources */,
+				A914DCB52C4E788C00E2A224 /* AddBikeFormViewModel.swift in Sources */,
 				A99BC4822C35A398009E9FC1 /* CornerRadiusExtension.swift in Sources */,
+				A914DCB12C4E783E00E2A224 /* DetectionResultValidator.swift in Sources */,
 				A90E1FF52C3BFC9A00E7E1C8 /* CustomCollectionView.swift in Sources */,
 				A99BC4972C35A9B0009E9FC1 /* LandingViewController.swift in Sources */,
 				A99BC4652C35A13A009E9FC1 /* SceneDelegate.swift in Sources */,
@@ -626,6 +643,7 @@
 				A942CB872C4919380047F7A3 /* LeaderboardViewModel.swift in Sources */,
 				A99BC48C2C35A902009E9FC1 /* LoginViewModel.swift in Sources */,
 				A90231232C426E6A00C4AC3C /* ProfileViewModel.swift in Sources */,
+				A914DCB32C4E786300E2A224 /* Classifier.swift in Sources */,
 				A90E1FE72C3BFB1C00E7E1C8 /* HomeViewModel.swift in Sources */,
 				A99BC4802C35A37D009E9FC1 /* StackViewExtension.swift in Sources */,
 				A99BC4992C35A9D7009E9FC1 /* CustomButton.swift in Sources */,
@@ -774,7 +792,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = BikeRentalApp/BikeRentalApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BikeRentalApp/BikeRentalAppDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AQJL7PW44J;

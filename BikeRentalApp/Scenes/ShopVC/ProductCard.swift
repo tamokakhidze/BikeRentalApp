@@ -10,7 +10,7 @@ import SwiftUI
 struct ProductCard: View {
     
     @EnvironmentObject var viewModel: ShopViewModel
-    @Binding var product: Product
+    var product: Product
     
     var body: some View {
         HStack(spacing: 0) {

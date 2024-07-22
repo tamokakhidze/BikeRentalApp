@@ -21,7 +21,6 @@ final class ProfileViewModel: ObservableObject {
     @Published var finishedRentals: [Booking] = []
     @Published var ongoingRentals: [Booking] = []
     @Published var isLoggedOut = false
-    
     @Published var isAlertIsPresent = false
     @Published var alertMessage = ""
     
@@ -103,24 +102,24 @@ final class ProfileViewModel: ObservableObject {
         }
     }
     
-    func addBike(bike: Bike, completion: @escaping (Result<Void, Error>) -> Void) {
-        let bikesRef = Firestore.firestore().collection("bikes")
-        
-        do {
-            try bikesRef.addDocument(from: bike) { error in
-                if let error = error {
-                    print("Failed to add bike: \(error.localizedDescription)")
-                    completion(.failure(error))
-                } else {
-                    print("Bike added successfully")
-                    completion(.success(()))
-                }
-            }
-        } catch {
-            print("Failed to encode bike: \(error.localizedDescription)")
-            completion(.failure(error))
-        }
-    }
+//    func addBike(bike: Bike, completion: @escaping (Result<Void, Error>) -> Void) {
+//        let bikesRef = Firestore.firestore().collection("bikes")
+//        
+//        do {
+//            try bikesRef.addDocument(from: bike) { error in
+//                if let error = error {
+//                    print("Failed to add bike: \(error.localizedDescription)")
+//                    completion(.failure(error))
+//                } else {
+//                    print("Bike added successfully")
+//                    completion(.success(()))
+//                }
+//            }
+//        } catch {
+//            print("Failed to encode bike: \(error.localizedDescription)")
+//            completion(.failure(error))
+//        }
+//    }
     
     func logOutTapped() {
         AuthService.shared.signOut { [weak self] error in

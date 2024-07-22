@@ -44,7 +44,7 @@ struct ShopMainView: View {
                         .fontWeight(.medium)
                         .font(.system(size: 20))
                     
-                    ZStack {
+                    ZStack(alignment: .leading) {
                         Rectangle()
                             .frame(height: 157)
                             .foregroundColor(.shopSecondary)
@@ -52,15 +52,20 @@ struct ShopMainView: View {
                             .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 10)
                         
                         VStack(alignment: .leading) {
-                            Text("Have a coupon?")
-                                .foregroundStyle(.gray.opacity(1))
-                                .fontWeight(.thin)
-                            TextField("Enter code", text: $couponCode)
+                            Text("Receive surprise coupon!")
+                                .foregroundStyle(.darkBackground)
+                                .fontWeight(.regular)
+                                .font(.system(size: 20))
+                                .frame(alignment: .leading)
                             
                             Button("Check") {
                                 isCodeCorrect = viewModel.checkCouponCode(code: couponCode)
                                 print(isCodeCorrect)
-                            }
+                                   }
+                            .frame(width: 100, height: 50)
+                            .background(.cellBackground)
+                            .cornerRadius(50)
+                            .foregroundColor(.primaryDeep)
                         }
                         .padding()
                         
@@ -90,6 +95,7 @@ struct ShopMainView: View {
                     Text("Discover stores")
                         .fontWeight(.medium)
                         .font(.system(size: 20))
+                        .padding(.bottom, 100)
                     
                 }
                 .onAppear {
