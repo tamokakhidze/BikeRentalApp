@@ -7,14 +7,20 @@
 
 import SwiftUI
 
+// MARK: - ProductsListView
+
 struct ProductsListView: View {
     
+    // MARK: - Properties
+
     var category: String
     @EnvironmentObject var viewModel: ShopViewModel
     @State var showPopup: Bool = false
     @State var couponCode: String = ""
     @State var isCodeCorrect: Bool = false
     
+    // MARK: - Body
+
     var body: some View {
         ZStack {
             Color(.background).ignoresSafeArea()

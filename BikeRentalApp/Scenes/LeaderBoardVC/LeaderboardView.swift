@@ -7,10 +7,16 @@
 
 import SwiftUI
 
+// MARK: - LeaderboardView
+
 struct LeaderboardView: View {
     
+    // MARK: - Properties
+
     @StateObject private var viewModel = LeaderBoardViewModel()
     
+    // MARK: - Body
+
     var body: some View {
         ScrollView(.vertical) {
             VStack {
@@ -58,11 +64,17 @@ struct LeaderboardView: View {
 }
 
 
+// MARK: - RankingView
+
 struct RankingView: View {
     
+    // MARK: - Properties
+
     @ObservedObject var viewModel: LeaderBoardViewModel
     var rank: Int
     
+    // MARK: - Body
+
     var body: some View {
         VStack(spacing: 6) {
             if viewModel.topThreeUser.indices.contains(rank) {

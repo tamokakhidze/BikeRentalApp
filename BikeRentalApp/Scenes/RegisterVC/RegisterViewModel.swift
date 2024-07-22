@@ -8,14 +8,22 @@
 import Foundation
 import FirebaseAuth
 
+// MARK: - Protocols
+
 protocol RegisterViewModelDelegate: AnyObject {
     func registrationCompleted(success: Bool, error: Error?)
 }
 
+// MARK: - RegisterViewModel
+
 class RegisterViewModel {
     
+    // MARK: - Properties
+
     weak var delegate: RegisterViewModelDelegate?
     
+    // MARK: - Registering user
+
     func registerUser(username: String, email: String, password: String) {
         let registerUserRequest = RegisterRequest(username: username, email: email, password: password)
         

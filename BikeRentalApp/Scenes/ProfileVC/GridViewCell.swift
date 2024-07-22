@@ -7,9 +7,16 @@
 
 import SwiftUI
 
+// MARK: - GridCellView
+
 struct GridCellView: View {
+    
+    // MARK: - Properties
+
     var imageUrl: String
     var price: Double
+
+    // MARK: - Body
 
     var body: some View {
         VStack {

@@ -7,15 +7,24 @@
 
 import Foundation
 
+// MARK: - Protocols
+
 protocol DetailsViewModelDelegate: AnyObject {
     func scaleUp()
     func scaleDown()
 }
+
+// MARK: - DetailsViewModel
+
 class DetailsViewModel {
     
+    // MARK: - Properties
+
     private var playButtonClicked = true
     weak var delegate: DetailsViewModelDelegate?
     
+    // MARK: - Action methods
+
     @objc func playButtonClick(_ sender: Any) {
         
         if playButtonClicked {

@@ -178,6 +178,7 @@ final class HomeViewController: UIViewController {
         scannerButton.addTarget(self, action: #selector(scannerButtonTapped), for: .touchUpInside)
     }
 
+    // MARK: - Action methods
     
     @objc func pageControlChanged(_ sender: UIPageControl) {
         viewModel.pageControlChanged(to: pageControl.currentPage)

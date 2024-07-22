@@ -27,7 +27,7 @@ class CalendarViewModel {
     var isBikeAvailable: Bool = false
     var unavailableDates = [Date]()
     
-    // MARK: - Functions
+    // MARK: - Methods
 
     func checkAvailability(for bike: Bike, startTime: Date, endTime: Date) {
         let dateFormatter = ISO8601DateFormatter()

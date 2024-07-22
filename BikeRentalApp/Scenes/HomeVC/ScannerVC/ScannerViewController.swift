@@ -8,20 +8,28 @@
 import UIKit
 import VisionKit
 
+// MARK: - ScannerViewController
+
 class ScannerViewController: UIViewController {
     
+    // MARK: - Properties
+
     private var viewModel = ScannerViewModel()
     
     var scannerAvailable: Bool {
         DataScannerViewController.isSupported && DataScannerViewController.isAvailable
     }
     
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         viewModel.delegate = self
     }
     
+    // MARK: - Ui setup
+
     func setupUI() {
         view.backgroundColor = .loginBackground
         let scanButton = CustomButton(title: "Scan bike", hasBackground: true, width: 350)
@@ -37,15 +45,7 @@ class ScannerViewController: UIViewController {
         ])
     }
     
-    @objc func scanButtonTapped() {
-        if scannerAvailable {
-            setupScanner()
-        } else {
-            let alert = UIAlertController(title: "Scanner Not Available", message: "The data scanner is not supported or not available on this device.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
-    }
+    // MARK: - Methods
     
     func setupScanner() {
         let dataScanner = DataScannerViewController(recognizedDataTypes: [.barcode()], isHighlightingEnabled: true)
@@ -54,7 +54,24 @@ class ScannerViewController: UIViewController {
             try? dataScanner.startScanning()
         }
     }
+    
+    // MARK: - Action methods
+    
+    @objc func scanButtonTapped() {
+        if scannerAvailable {
+            setupScanner()
+        } else {
+            let alert = UIAlertController(title: "Scanner Not Available", 
+                                          message: "The data scanner is not supported or not available on this device.",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
 }
+
+// MARK: - DataScannerViewControllerDelegate
 
 extension ScannerViewController: DataScannerViewControllerDelegate {
     func dataScanner(_ dataScanner: DataScannerViewController, didTapOn item: RecognizedItem) {
@@ -72,6 +89,8 @@ extension ScannerViewController: DataScannerViewControllerDelegate {
         }
     }
 }
+
+// MARK: - ScannerViewModelDelegate
 
 extension ScannerViewController: ScannerViewModelDelegate {
     func bikeFetched(bike: Bike) {

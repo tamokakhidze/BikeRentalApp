@@ -7,7 +7,11 @@
 
 import UIKit
 
+// MARK: - LaunchScreenViewController
+
 class LaunchScreenViewController: UIViewController {
+
+    // MARK: - Ui components
 
     private let bikeImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "bike_body"))
@@ -30,6 +34,15 @@ class LaunchScreenViewController: UIViewController {
         return imageView
     }()
     
+    private let roadImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "roadImage"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -38,10 +51,13 @@ class LaunchScreenViewController: UIViewController {
         transitionToHomeScreen()
     }
     
+    // MARK: - ui setup
+
     private func setupBikeAndWheels() {
         view.addSubview(bikeImageView)
         view.addSubview(frontWheelImageView)
         view.addSubview(rearWheelImageView)
+        view.addSubview(roadImageView)
         
         NSLayoutConstraint.activate([
             bikeImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -57,10 +73,17 @@ class LaunchScreenViewController: UIViewController {
             rearWheelImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 55),
             rearWheelImageView.bottomAnchor.constraint(equalTo: bikeImageView.bottomAnchor, constant: 20),
             rearWheelImageView.widthAnchor.constraint(equalToConstant: 100),
-            rearWheelImageView.heightAnchor.constraint(equalToConstant: 100)
+            rearWheelImageView.heightAnchor.constraint(equalToConstant: 100),
+            
+            roadImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            roadImageView.topAnchor.constraint(equalTo: bikeImageView.bottomAnchor, constant: -40),
+            roadImageView.widthAnchor.constraint(equalToConstant: 114),
+            roadImageView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     
+    // MARK: - Animations
+
     private func startBikeAnimation() {
         let wheelRotation = CABasicAnimation(keyPath: "transform.rotation")
         wheelRotation.toValue = NSNumber(value: Double.pi * 2)
@@ -80,6 +103,8 @@ class LaunchScreenViewController: UIViewController {
         bikeImageView.layer.add(bikeAnimation, forKey: "bikeAnimation")
     }
     
+    // MARK: - Navigation to home screen
+
     private func transitionToHomeScreen() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             NotificationCenter.default.post(name: NSNotification.Name("LaunchScreenAnimationEnded"), object: nil)

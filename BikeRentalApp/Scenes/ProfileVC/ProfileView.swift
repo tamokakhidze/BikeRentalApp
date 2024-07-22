@@ -11,8 +11,13 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseStorage
 
+// MARK: - ProfileView
+
 @available(iOS 16.0, *)
 struct ProfileView: View {
+    
+    // MARK: - Properties
+
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel = ProfileViewModel()
     @State var photoPicker: PhotosPickerItem? = nil
@@ -28,6 +33,8 @@ struct ProfileView: View {
     ]
     let prices = [5.4, 6.2, 7.8]
     
+    // MARK: - Body
+
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {

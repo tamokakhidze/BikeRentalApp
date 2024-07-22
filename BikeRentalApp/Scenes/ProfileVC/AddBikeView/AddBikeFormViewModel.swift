@@ -9,13 +9,20 @@ import CoreImage
 import FirebaseFirestore
 import Firebase
 
+// MARK: - AddBikeFormViewModel
+
 class AddBikeFormViewModel: ObservableObject {
+    
+    // MARK: - Properties
+
     @Published private var classifier = Classifier()
     @Published var isAddBikeButtonEnabled = true
 
     var isValid: Bool? {
         classifier.isValid
     }
+    
+    // MARK: - Methods
 
     func detect(uiImage: UIImage) {
         guard let ciImage = CIImage(image: uiImage) else { return }

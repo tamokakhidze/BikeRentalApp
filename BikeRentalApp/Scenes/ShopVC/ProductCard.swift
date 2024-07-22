@@ -7,11 +7,17 @@
 
 import SwiftUI
 
+// MARK: - ProductCard
+
 struct ProductCard: View {
     
+    // MARK: - Properties
+
     @EnvironmentObject var viewModel: ShopViewModel
     var product: Product
     
+    // MARK: - Body
+
     var body: some View {
         HStack(spacing: 0) {
             ZStack {
@@ -84,13 +90,5 @@ struct ProductCard: View {
         .background(.cellBackground)
         .cornerRadius(20)
         .shadow(color: .black.opacity(0.04), radius: 10, x: 0, y: 10)
-    }
-}
-
-
-
-extension String {
-    func toURL() -> URL {
-        URL(string: "https://image.tmdb.org/t/p/w500/\(self)")!
     }
 }

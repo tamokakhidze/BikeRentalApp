@@ -11,13 +11,9 @@ import UIKit
 
 final class AllBikesViewController: UIViewController, HomeViewModelDelegate {
     
-    func scrollToItem(at indexPath: IndexPath, animated: Bool) {
-        
-    }
+    func scrollToItem(at indexPath: IndexPath, animated: Bool) {}
     
-    func updatePageControl(currentPage: Int) {
-        
-    }
+    func updatePageControl(currentPage: Int) {}
     
     
     // MARK: - Ui components and properties

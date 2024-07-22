@@ -7,12 +7,18 @@
 
 import SwiftUI
 
+// MARK: - Footer
+
 struct Footer: View {
     
+    // MARK: - Properties
+
     @EnvironmentObject var viewModel: ShopViewModel
     @Binding var showPopup: Bool
     @Binding var isCodeCorrect: Bool
     
+    // MARK: - Body
+
     var body: some View {
         ZStack {
             VStack(alignment: .leading, spacing: 10) {
@@ -63,12 +69,19 @@ struct Footer: View {
     }
 }
 
+// MARK: - CustomPopupView
+
 struct CustomPopupView: View {
+    
+    // MARK: - Properties
+
     @Binding var showPopup: Bool
     @Binding var couponCode: String
     @ObservedObject var viewModel: ShopViewModel
     @Binding var isCodeCorrect: Bool
     
+    // MARK: - Body
+
     var body: some View {
         VStack {
             Spacer()

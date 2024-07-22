@@ -7,24 +7,37 @@
 
 import UIKit
 
+// MARK: - LandingViewController
+
 final class LandingViewController: UIViewController {
+
+    // MARK: - Ui components
 
     private var titleLabel = UILabel()
     private var subtitleLabel = UILabel()
     private var stackView = UIStackView()
+    
     private var exploreButton = CustomButton(title: "Explore now", hasBackground: true, width: 350)
     private var fullMapButton = CustomButton(title: "View map", hasBackground: true, width: 350)
+    
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUi()
     }
     
+    // MARK: - Ui setup
+
     private func setupUi() {
         view.backgroundColor = .mainBackground
+        
         titleLabel = configureTitleLabel()
         subtitleLabel = configureSubtitleLabel()
         stackView = configureMainStackView()
+        
         navigationItem.hidesBackButton = true
+        
         exploreButton.addTarget(self, action: #selector(didTapExploreButton), for: .touchUpInside)
         fullMapButton.addTarget(self, action: #selector(didTapFullMapButton), for: .touchUpInside)
     }
@@ -67,6 +80,8 @@ final class LandingViewController: UIViewController {
         return subtitleLabel
     }
     
+    // MARK: - Action methods
+
     @objc private func didTapExploreButton() {
         navigationController?.pushViewController(RootViewController(), animated: true)
     }

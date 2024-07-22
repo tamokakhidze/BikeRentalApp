@@ -7,12 +7,18 @@
 
 import SwiftUI
 
+// MARK: - ShopMainView
+
 struct ShopMainView: View {
     
+    // MARK: - Properties
+
     @EnvironmentObject var viewModel: ShopViewModel
     @State var couponCode: String = ""
     @State var isCodeCorrect: Bool = false
     
+    // MARK: - Body
+
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {

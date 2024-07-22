@@ -7,12 +7,18 @@
 
 import SwiftUI
 
+// MARK: - CategoriesCell
+
 struct CategoriesCell: View {
     
+    // MARK: - Properties
+
     var image: String
     var categoryName: String
     var startingPrice: Int
     
+    // MARK: - Body
+
     var body: some View {
         ZStack {
             AsyncImage(url: URL(string: image)) { image in

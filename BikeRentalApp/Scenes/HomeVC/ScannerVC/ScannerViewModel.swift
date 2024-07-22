@@ -8,14 +8,22 @@
 import Foundation
 import FirebaseFirestore
 
+// MARK: - Protocols
+
 protocol ScannerViewModelDelegate: AnyObject {
     func bikeFetched(bike: Bike)
 }
 
+// MARK: - ScannerViewModel
+
 class ScannerViewModel {
     
+    // MARK: - Properties
+
     weak var delegate: ScannerViewModelDelegate?
     
+    // MARK: - Fetching
+
     func fetchBikes(bikeId: String) {
         let trimmedBikeId = bikeId.trimmingCharacters(in: .whitespacesAndNewlines)
         print("trimmed bike ID: '\(trimmedBikeId)'")

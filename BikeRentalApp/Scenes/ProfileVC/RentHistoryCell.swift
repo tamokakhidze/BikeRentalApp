@@ -7,10 +7,15 @@
 
 import SwiftUI
 
+// MARK: - RentHistoryCell
+
 struct RentHistoryCell: View {
     
+    // MARK: - Properties
+
     @State var rating: Int = 0
     @State private var isPresented: Bool = false
+    @State var showAlert: Bool = false
     @ObservedObject var viewModel: ProfileViewModel
     
     var number: Int
@@ -19,8 +24,9 @@ struct RentHistoryCell: View {
     var endTime: Date
     var isRentEnded: Bool = false
     var rateAction: () -> Void
-    @State var showAlert: Bool = false
     
+    // MARK: - Body
+
     var body: some View {
         VStack {
             HStack {

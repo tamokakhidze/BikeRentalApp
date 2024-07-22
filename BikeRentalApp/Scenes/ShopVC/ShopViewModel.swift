@@ -15,6 +15,7 @@ import NetworkServicePackage
 class ShopViewModel: ObservableObject {
     
     // MARK: - Properties
+    
     @Published var productsList = [Product]()
     @Published var productCategories = [String]()
     @Published var cartItems = [Product]()
@@ -24,6 +25,7 @@ class ShopViewModel: ObservableObject {
     private let url = "https://mocki.io/v1/d1d6abfb-14d7-40de-a11a-9dc3d93c4ea9"
     
     // MARK: - Fetching Data
+    
     func viewAppeared() {
         fetchData() { [weak self] result in
             switch result {

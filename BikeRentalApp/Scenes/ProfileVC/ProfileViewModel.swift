@@ -10,8 +10,12 @@ import FirebaseAuth
 import FirebaseCore
 import Firebase
 
+// MARK: - ProfileViewModel
+
 final class ProfileViewModel: ObservableObject {
     
+    // MARK: - Properties
+
     @Published var username: String = ""
     @Published var startTime: String = ""
     @Published var endTime: String = ""
@@ -28,6 +32,8 @@ final class ProfileViewModel: ObservableObject {
         return Auth.auth().currentUser?.uid
     }
     
+    // MARK: - Methods
+
     func formatDate(dateString: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -102,25 +108,6 @@ final class ProfileViewModel: ObservableObject {
         }
     }
     
-//    func addBike(bike: Bike, completion: @escaping (Result<Void, Error>) -> Void) {
-//        let bikesRef = Firestore.firestore().collection("bikes")
-//        
-//        do {
-//            try bikesRef.addDocument(from: bike) { error in
-//                if let error = error {
-//                    print("Failed to add bike: \(error.localizedDescription)")
-//                    completion(.failure(error))
-//                } else {
-//                    print("Bike added successfully")
-//                    completion(.success(()))
-//                }
-//            }
-//        } catch {
-//            print("Failed to encode bike: \(error.localizedDescription)")
-//            completion(.failure(error))
-//        }
-//    }
-    
     func logOutTapped() {
         AuthService.shared.signOut { [weak self] error in
             if let error = error {
@@ -131,8 +118,6 @@ final class ProfileViewModel: ObservableObject {
         }
     }
     
-    func rateBike() {
-        
-    }
+    func rateBike() {}
 }
 

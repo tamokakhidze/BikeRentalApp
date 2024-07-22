@@ -266,12 +266,13 @@ final class DetailsViewController: UIViewController {
         }
     }
     
+    // MARK: - Set delegates
+
     private func setDelegates() {
         featuresCollectionView.dataSource = self
         mapView.delegate = self
         manager.delegate = self
         viewModel.delegate = self
-        //featuresCollectionView.delegate = self
     }
     
     // MARK: - Location services

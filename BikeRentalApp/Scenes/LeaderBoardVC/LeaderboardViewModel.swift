@@ -10,9 +10,16 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
+// MARK: - LeaderBoardViewModel
+
 class LeaderBoardViewModel: ObservableObject {
+    
+    // MARK: - Properties
+
     @Published var users = [UserInfo]()
     @Published var topThreeUser = [UserInfo]()
+
+    // MARK: - Fetching users info
 
     func fetchUserInfo() {
         let users = Firestore.firestore().collection("users")

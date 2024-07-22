@@ -7,9 +7,15 @@
 
 import SwiftUI
 
+// MARK: - UsersScrollView
+
 struct UsersScrollView: View {
     
+    // MARK: - Properties
+
     @ObservedObject var viewModel: LeaderBoardViewModel
+    
+    // MARK: - Body
     
     var body: some View {
         ScrollView {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - SliderPopUpViewController
+// MARK: - SliderPopUpViewController (not using for details page anymore but keeping it here)
 
 final class SliderPopUpViewController: UIViewController {
     

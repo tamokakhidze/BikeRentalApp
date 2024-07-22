@@ -66,7 +66,6 @@
 		A99BC4632C35A13A009E9FC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4622C35A13A009E9FC1 /* AppDelegate.swift */; };
 		A99BC4652C35A13A009E9FC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4642C35A13A009E9FC1 /* SceneDelegate.swift */; };
 		A99BC46C2C35A13D009E9FC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99BC46B2C35A13D009E9FC1 /* Assets.xcassets */; };
-		A99BC46F2C35A13D009E9FC1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A99BC46E2C35A13D009E9FC1 /* Base */; };
 		A99BC47E2C35A366009E9FC1 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC47D2C35A366009E9FC1 /* ImageExtension.swift */; };
 		A99BC4802C35A37D009E9FC1 /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC47F2C35A37D009E9FC1 /* StackViewExtension.swift */; };
 		A99BC4822C35A398009E9FC1 /* CornerRadiusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BC4812C35A398009E9FC1 /* CornerRadiusExtension.swift */; };
@@ -152,7 +151,6 @@
 		A99BC4622C35A13A009E9FC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A99BC4642C35A13A009E9FC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A99BC46B2C35A13D009E9FC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A99BC46E2C35A13D009E9FC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A99BC4702C35A13D009E9FC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A99BC47D2C35A366009E9FC1 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		A99BC47F2C35A37D009E9FC1 /* StackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewExtension.swift; sourceTree = "<group>"; };
@@ -226,6 +224,15 @@
 			path = LaunchScreenVC;
 			sourceTree = "<group>";
 		};
+		A914DCBB2C4EF62900E2A224 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				A914DCB62C4E79B500E2A224 /* MobileNetV2.mlmodel */,
+				A914DCA32C4C646C00E2A224 /* JsonBackup.swift */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
 		A942CB7F2C4917980047F7A3 /* ShopVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,7 +275,6 @@
 		A99BC4562C35A13A009E9FC1 = {
 			isa = PBXGroup;
 			children = (
-				A914DCB62C4E79B500E2A224 /* MobileNetV2.mlmodel */,
 				A99BC4612C35A13A009E9FC1 /* BikeRentalApp */,
 				A99BC4602C35A13A009E9FC1 /* Products */,
 				A99BC4A52C35AE88009E9FC1 /* Frameworks */,
@@ -286,6 +292,7 @@
 		A99BC4612C35A13A009E9FC1 /* BikeRentalApp */ = {
 			isa = PBXGroup;
 			children = (
+				A914DCBB2C4EF62900E2A224 /* Supporting */,
 				A914DCA72C4D36AE00E2A224 /* BikeRentalAppDebug.entitlements */,
 				A971FD9C2C404E9800B91A48 /* BikeRentalApp.entitlements */,
 				A90E1FE22C3AFCEC00E7E1C8 /* GoogleService-Info.plist */,
@@ -325,7 +332,6 @@
 				A99BC4B32C35B963009E9FC1 /* LeaderBoardVC */,
 				A942CB7F2C4917980047F7A3 /* ShopVC */,
 				A99BC4B62C35B9CB009E9FC1 /* ProfileVC */,
-				A99BC46D2C35A13D009E9FC1 /* LaunchScreen.storyboard */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -334,7 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				A99BC46B2C35A13D009E9FC1 /* Assets.xcassets */,
-				A914DCA32C4C646C00E2A224 /* JsonBackup.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -574,7 +579,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A99BC46C2C35A13D009E9FC1 /* Assets.xcassets in Resources */,
-				A99BC46F2C35A13D009E9FC1 /* Base in Resources */,
 				A90E1FE32C3AFCEC00E7E1C8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,17 +669,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A99BC46D2C35A13D009E9FC1 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A99BC46E2C35A13D009E9FC1 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A99BC4712C35A13D009E9FC1 /* Debug */ = {

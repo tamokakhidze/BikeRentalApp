@@ -9,8 +9,12 @@ import SwiftUI
 import _PhotosUI_SwiftUI
 import FirebaseStorage
 
+// MARK: - AddBikeFormView
+
 struct AddBikeFormView: View {
     
+    // MARK: - properties
+
     @State private var price = ""
     @State private var year = ""
     @State private var hasLights = false
@@ -23,10 +27,8 @@ struct AddBikeFormView: View {
     @State private var detailedImages = ""
     @State private var hasHelmet = false
     @State private var helmetPrice = ""
-    
     @State private var photoPicker: PhotosPickerItem? = nil
     @State private var selectedImageData: Data? = nil
-//    @StateObject private var imageClassifier = AddBikeFormViewModel()
     @State private var message = ""
     @State private var showPopup = false
     private let storage = Storage.storage().reference()
@@ -35,6 +37,8 @@ struct AddBikeFormView: View {
     
     @StateObject private var viewModel = AddBikeFormViewModel()
     
+    // MARK: - Body
+
     var body: some View {
         ZStack {
             VStack {
