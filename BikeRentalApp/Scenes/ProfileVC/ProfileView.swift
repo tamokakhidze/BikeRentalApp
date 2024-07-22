@@ -40,6 +40,7 @@ struct ProfileView: View {
             ScrollView(.vertical) {
                 ZStack {
                     Color("mainBackgroundColor").ignoresSafeArea()
+                    
                 VStack(spacing: 30) {
                     HStack {
                         PhotosPicker(
