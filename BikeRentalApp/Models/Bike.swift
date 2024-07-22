@@ -37,7 +37,6 @@ struct Bike: Identifiable, Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case id
         case scannerId
         case price
         case year
@@ -54,9 +53,8 @@ struct Bike: Identifiable, Codable {
         case locationLongitude
     }
     
-    init(id: String, scannerId: String,
+    init(scannerId: String,
          price: Double, year: Int, hasLights: Bool, numberOfGears: Int, geometry: String, locationLatitude: Double, locationLongitude: Double, brakeType: String, image: String, detailedImages: [String], hasHelmet: Bool, helmetPrice: Double) {
-        self.id = id
         self.scannerId = scannerId
         self.price = price
         self.year = year
@@ -74,7 +72,6 @@ struct Bike: Identifiable, Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decodeIfPresent(String.self, forKey: .id)
         self.scannerId = try container.decodeIfPresent(String.self, forKey: .scannerId) ?? ""
         self.price = try container.decodeIfPresent(Double.self, forKey: .price) ?? 0.0
         self.year = try container.decodeIfPresent(Int.self, forKey: .year) ?? 0
@@ -94,7 +91,6 @@ struct Bike: Identifiable, Codable {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
         try container.encode(scannerId, forKey: .scannerId)
         try container.encode(price, forKey: .price)
         try container.encode(year, forKey: .year)

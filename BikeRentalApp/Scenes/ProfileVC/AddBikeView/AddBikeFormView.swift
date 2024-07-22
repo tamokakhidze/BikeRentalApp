@@ -166,13 +166,11 @@ struct AddBikeFormView: View {
             return
         }
         
-        
         let detailedImagesArray = detailedImages.components(separatedBy: ",").map {
             $0.trimmingCharacters(in: .whitespacesAndNewlines)
         }
         
         let bike = Bike(
-            id: "",
             scannerId: UUID().uuidString,
             price: priceValue,
             year: yearValue,

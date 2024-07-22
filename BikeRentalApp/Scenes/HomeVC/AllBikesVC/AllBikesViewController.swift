@@ -15,7 +15,6 @@ final class AllBikesViewController: UIViewController, HomeViewModelDelegate {
     
     func updatePageControl(currentPage: Int) {}
     
-    
     // MARK: - Ui components and properties
     
     private var titleLabel = CustomUiLabel(fontSize: 18, text: "All bikes", tintColor: .black, textAlignment: .center)
@@ -139,7 +138,7 @@ extension AllBikesViewController: UICollectionViewDataSource {
 
 extension AllBikesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = DetailsViewController(bike: viewModel.bikes[indexPath.row])
+        let vc = DetailsViewController(bike: viewModel.filteredBikes[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
     }
 }

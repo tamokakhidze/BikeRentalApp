@@ -70,6 +70,7 @@ final class DetailsViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(FeaturesCell.self, forCellWithReuseIdentifier: FeaturesCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
         
         collectionView.showsHorizontalScrollIndicator = false
         

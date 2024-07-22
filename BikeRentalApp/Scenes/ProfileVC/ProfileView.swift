@@ -38,6 +38,8 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {
+                ZStack {
+                    Color("mainBackgroundColor").ignoresSafeArea()
                 VStack(spacing: 30) {
                     HStack {
                         PhotosPicker(
@@ -243,6 +245,7 @@ struct ProfileView: View {
                 }
                 .padding()
                 .padding(.top)
+            }
             }
         }
         .onChange(of: viewModel.isLoggedOut) { isLoggedOut in
