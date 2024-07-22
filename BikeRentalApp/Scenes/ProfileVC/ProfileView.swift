@@ -120,6 +120,7 @@ struct ProfileView: View {
                             .fill(.darkBackground)
                             .frame(height: 126)
                             .cornerRadius(16)
+                        
                         HStack {
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("Current rentals summary and points")
@@ -153,7 +154,7 @@ struct ProfileView: View {
                             .font(.system(size: 20))
                         
                         Spacer()
-                    }.padding(.leading)
+                    }
                     
                     ScrollView(.horizontal) {
                         LazyHGrid(rows: [GridItem(.flexible(minimum: 136, maximum: 136))], spacing: 1) {
@@ -164,14 +165,16 @@ struct ProfileView: View {
                         .padding()
                     }
                     
-                    VStack(alignment: .leading) {
-                        Text("Your current rentals: \(viewModel.ongoingRentals.count)")
-                            .foregroundStyle(.white)
-                            .fontWeight(.medium)
+                    HStack {
+                        Text("Current rentals: \(viewModel.ongoingRentals.count) bike")
+                            .foregroundStyle(.darkBackground)
+                            .fontWeight(.light)
                             .font(.system(size: 20))
-                            .padding(.top, 20)
-                            .padding(.leading)
-                        
+                        Spacer()
+                    }
+                    
+                    
+                    VStack(alignment: .leading) {
                         ForEach(0..<viewModel.ongoingRentals.count, id: \.self) { index in
                             
                             let rental = viewModel.ongoingRentals[index]
@@ -189,14 +192,16 @@ struct ProfileView: View {
                     .background(.darkBackground)
                     .cornerRadius(16)
                     
-                    VStack(alignment: .leading) {
-                        Text("Rental history: \(viewModel.finishedRentals.count) bikes")
-                            .foregroundStyle(.white)
-                            .fontWeight(.medium)
+                    HStack {
+                        Text("Rental history: \(viewModel.finishedRentals.count) bike")
+                            .foregroundStyle(.darkBackground)
+                            .fontWeight(.light)
                             .font(.system(size: 20))
-                            .padding(.top, 20)
-                            .padding(.leading)
-                        
+                            .frame(alignment: .leading)
+                        Spacer()
+                    }
+                    
+                    VStack(alignment: .leading) {
                         ForEach(0..<viewModel.finishedRentals.count, id: \.self) { index in
                             
                             let rental = viewModel.finishedRentals[index]

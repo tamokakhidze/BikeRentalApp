@@ -26,6 +26,7 @@ final class LandingViewController: UIViewController {
         stackView = configureMainStackView()
         navigationItem.hidesBackButton = true
         exploreButton.addTarget(self, action: #selector(didTapExploreButton), for: .touchUpInside)
+        fullMapButton.addTarget(self, action: #selector(didTapFullMapButton), for: .touchUpInside)
     }
     
     private func configureMainStackView() -> UIStackView {
@@ -47,10 +48,11 @@ final class LandingViewController: UIViewController {
     }
     
     private func configureTitleLabel() -> UILabel {
-        titleLabel.font = .systemFont(ofSize: 35)
+        titleLabel.font = .systemFont(ofSize: 35, weight: .black)
         titleLabel.text = "Pedal Through Possibilities"
         titleLabel.textAlignment = .left
         titleLabel.numberOfLines = 0
+        titleLabel.textColor = .darkBackground
         
         return titleLabel
     }
@@ -60,6 +62,7 @@ final class LandingViewController: UIViewController {
         subtitleLabel.text = "Explore the City with Ease – Rent a Bike Anytime, Anywhere"
         subtitleLabel.textAlignment = .left
         subtitleLabel.numberOfLines = 0
+        subtitleLabel.textColor = .darkBackground
         
         return subtitleLabel
     }
@@ -67,5 +70,12 @@ final class LandingViewController: UIViewController {
     @objc private func didTapExploreButton() {
         navigationController?.pushViewController(RootViewController(), animated: true)
     }
+    
+    @objc private func didTapFullMapButton() {
+        navigationController?.pushViewController(FullMapViewController(), animated: true)
+    }
 }
 
+#Preview {
+    LandingViewController()
+}

@@ -9,19 +9,21 @@ import Foundation
 
 import NetworkServicePackage
 
+import Foundation
+import NetworkServicePackage
+
 class ShopViewModel: ObservableObject {
     
     // MARK: - Properties
-
     @Published var productsList = [Product]()
     @Published var productCategories = [String]()
     @Published var cartItems = [Product]()
     @Published var couponCodes = ["7mayerrs", "35mm", "Check24", "Tbcxusaid"]
+    @Published var discountValue: Double?
 
     private let url = "https://mocki.io/v1/d1d6abfb-14d7-40de-a11a-9dc3d93c4ea9"
     
     // MARK: - Fetching Data
-    
     func viewAppeared() {
         fetchData() { [weak self] result in
             switch result {
@@ -41,16 +43,19 @@ class ShopViewModel: ObservableObject {
         }
     }
     
-    func checkCouponCode(code: String) -> Bool {
-        if couponCodes.contains(code) {
-            return true
-        } else {
-            return false
-        }
+    func fetchData(completion: @escaping (Result<[Product],Error>) ->(Void)) {
+        NetworkService().getData(urlString: url, completion: completion)
     }
     
-    func fetchData(completion: @escaping (Result<[Product],Error>) ->(Void)){
-        NetworkService().getData(urlString: url, completion: completion)
+    // MARK: - Shopping methods
+    
+    func getRandomDiscount() {
+        discountValue = Double.random(in: 0.2...0.5)
+        print(discountValue ?? 0.0)
+    }
+    
+    func checkCouponCode(code: String) -> Bool {
+        return couponCodes.contains(code)
     }
     
     func increaseProductQuantity(for product: Product) {
@@ -76,53 +81,38 @@ class ShopViewModel: ObservableObject {
     }
     
     func calculateTotalQuantity() -> Int {
-        var totalQuantity = 0
-        
-        for product in productsList {
-            totalQuantity += product.quantity
-        }
-        
-        return totalQuantity
+        return productsList.reduce(0) { $0 + $1.quantity }
     }
     
     func calculateTotalPrice() -> Double {
-        var totalPrice = 0.0
-        
-        for product in productsList {
-            totalPrice += Double(product.quantity) * product.price
-        }
-        
+        let totalPrice = productsList.reduce(0.0) { $0 + Double($1.quantity) * $1.price }
         return Double(round(totalPrice * 100) / 100)
     }
     
-    func discount() {
+    func applyDiscount() {
+        guard let discountValue = discountValue else { return }
         for index in productsList.indices {
-            productsList[index].price -= productsList[index].price * 0.2
+            productsList[index].price -= productsList[index].price * discountValue
         }
     }
     
     func formatPrice(for product: Product) -> String {
-        
         if productsList.contains(where: { $0.id == product.id }) {
             return String(format: "%.2f", product.price) + "$"
         }
         return "0.0"
     }
     
-    var formatedPrice: String {
-        String(format: "%.2f", calculateTotalPrice()) + ""
+    var formattedPrice: String {
+        return String(format: "%.2f", calculateTotalPrice()) + "$"
     }
     
     var total: Double {
-        if cartItems.count > 0 {
-            return cartItems.reduce(0, { $0 + $1.price} )
-        } else {
-            return 0
-        }
+        return cartItems.reduce(0) { $0 + $1.price }
     }
     
     func calculateDiscountedTotal(isCodeCorrect: Bool) -> Double {
-        let discountRate = 0.2
+        let discountRate = discountValue ?? 0.2
         let totalPrice = calculateTotalPrice()
         return isCodeCorrect ? totalPrice * (1 - discountRate) : totalPrice
     }
@@ -130,7 +120,6 @@ class ShopViewModel: ObservableObject {
     func addItemToCart(item: Product) {
         cartItems.append(item)
         print(cartItems.count)
-        
     }
     
     func removeItemFromCart(item: Product) {
@@ -139,4 +128,3 @@ class ShopViewModel: ObservableObject {
         }
     }
 }
-

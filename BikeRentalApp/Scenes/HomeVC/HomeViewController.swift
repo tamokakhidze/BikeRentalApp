@@ -70,9 +70,7 @@ final class HomeViewController: UIViewController {
                 self?.popularBikesCollectionView.reloadData()
             }
         }
-//        
-        viewModel.getUserName()
-        //nameLabel.text = "Hello, \(String(describing: viewModel.username))"
+        
         AuthService.shared.getUser { [weak self] user, error in
             guard let self = self else { return }
             if let user = user {
@@ -86,15 +84,8 @@ final class HomeViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .loginBackground
         
-        
-        
-//        if let imageUrl = viewModel.image,
-//            let url = URL(string: imageUrl) {
-//            profilePhoto.setImage(with: url)
-//        }
-        
         sliderCollectionView = Slider(
-            itemWidth: 370,
+            itemWidth: 350,
             cell: SliderCollectionViewCell.self,
             identifier: SliderCollectionViewCell.identifier,
             tag: 2)

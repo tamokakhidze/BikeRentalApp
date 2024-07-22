@@ -38,6 +38,7 @@
 		A914DCB32C4E786300E2A224 /* Classifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCB22C4E786300E2A224 /* Classifier.swift */; };
 		A914DCB52C4E788C00E2A224 /* AddBikeFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCB42C4E788C00E2A224 /* AddBikeFormViewModel.swift */; };
 		A914DCB72C4E79B500E2A224 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A914DCB62C4E79B500E2A224 /* MobileNetV2.mlmodel */; };
+		A914DCBA2C4EABB200E2A224 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A914DCB92C4EABB200E2A224 /* LaunchScreenViewController.swift */; };
 		A942A3AF2C3EAB3500D0833E /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3AE2C3EAB3500D0833E /* BikeService.swift */; };
 		A942A3B32C3EBFC000D0833E /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B22C3EBFC000D0833E /* Booking.swift */; };
 		A942A3B52C3EC10300D0833E /* midPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A942A3B42C3EC10300D0833E /* midPoint.swift */; };
@@ -115,7 +116,6 @@
 		A90E20002C3D829C00E7E1C8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A90E20022C3D83DC00E7E1C8 /* GridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
 		A90E20042C3D840000E7E1C8 /* RentHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentHistoryCell.swift; sourceTree = "<group>"; };
-		A914DC972C4BE17400E2A224 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		A914DC992C4BE9B800E2A224 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		A914DCA12C4C4A9300E2A224 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		A914DCA32C4C646C00E2A224 /* JsonBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonBackup.swift; sourceTree = "<group>"; };
@@ -125,6 +125,7 @@
 		A914DCB22C4E786300E2A224 /* Classifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classifier.swift; sourceTree = "<group>"; };
 		A914DCB42C4E788C00E2A224 /* AddBikeFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBikeFormViewModel.swift; sourceTree = "<group>"; };
 		A914DCB62C4E79B500E2A224 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
+		A914DCB92C4EABB200E2A224 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		A942A3AE2C3EAB3500D0833E /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
 		A942A3B22C3EBFC000D0833E /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		A942A3B42C3EC10300D0833E /* midPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = midPoint.swift; sourceTree = "<group>"; };
@@ -217,6 +218,14 @@
 			path = ScannerVC;
 			sourceTree = "<group>";
 		};
+		A914DCB82C4EAB9B00E2A224 /* LaunchScreenVC */ = {
+			isa = PBXGroup;
+			children = (
+				A914DCB92C4EABB200E2A224 /* LaunchScreenViewController.swift */,
+			);
+			path = LaunchScreenVC;
+			sourceTree = "<group>";
+		};
 		A942CB7F2C4917980047F7A3 /* ShopVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +313,7 @@
 		A99BC4772C35A283009E9FC1 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A914DCB82C4EAB9B00E2A224 /* LaunchScreenVC */,
 				A99BC4832C35A885009E9FC1 /* LoginVC */,
 				A99BC4862C35A8BC009E9FC1 /* RegisterVC */,
 				A99BC48D2C35A90A009E9FC1 /* ForgotPasswordVC */,
@@ -324,7 +334,6 @@
 			isa = PBXGroup;
 			children = (
 				A99BC46B2C35A13D009E9FC1 /* Assets.xcassets */,
-				A914DC972C4BE17400E2A224 /* Location.gpx */,
 				A914DCA32C4C646C00E2A224 /* JsonBackup.swift */,
 			);
 			path = Resources;
@@ -620,6 +629,7 @@
 				A99BC4B22C35B935009E9FC1 /* HomeViewController.swift in Sources */,
 				A99BC48F2C35A91A009E9FC1 /* ForgotPasswordViewController.swift in Sources */,
 				A99BC4942C35A959009E9FC1 /* RootViewController.swift in Sources */,
+				A914DCBA2C4EABB200E2A224 /* LaunchScreenViewController.swift in Sources */,
 				A914DC9A2C4BE9B800E2A224 /* ScannerViewController.swift in Sources */,
 				A99BC4632C35A13A009E9FC1 /* AppDelegate.swift in Sources */,
 				A942CB8B2C4919860047F7A3 /* LeaderboardView.swift in Sources */,

@@ -59,13 +59,13 @@ struct ShopMainView: View {
                                 .frame(alignment: .leading)
                             
                             Button("Check") {
-                                isCodeCorrect = viewModel.checkCouponCode(code: couponCode)
-                                print(isCodeCorrect)
+                                viewModel.getRandomDiscount()
                                    }
                             .frame(width: 100, height: 50)
                             .background(.cellBackground)
                             .cornerRadius(50)
                             .foregroundColor(.primaryDeep)
+                            
                         }
                         .padding()
                         

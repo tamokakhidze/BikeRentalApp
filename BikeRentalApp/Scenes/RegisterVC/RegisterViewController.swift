@@ -32,11 +32,11 @@ final class RegisterViewController: UIViewController {
         setupUi()
         addTargets()
         setDelegates()
+        addTapGestureToDismissKeyboard()
     }
     
     private func setupUi() {
         view.backgroundColor = .white
-        //emailTextField.becomeFirstResponder()
         configureMainStackView()
         navigationItem.hidesBackButton = true
         
@@ -81,6 +81,15 @@ final class RegisterViewController: UIViewController {
             signInButton,
             UIView()
         )
+    }
+    
+    private func addTapGestureToDismissKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc private func didTapSignUp() {

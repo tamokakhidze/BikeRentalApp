@@ -146,7 +146,6 @@ extension FullMapViewController: MKMapViewDelegate {
         }
         
         annotationView?.configure(with: annotation)
-        //es ratoar mushaobsss?
         if annotation.title == "Road" {
             annotationView?.image = UIImage(resource: .roadBike)
         } else if annotation.title == "Mountain" {
