@@ -36,7 +36,7 @@ final class RegisterViewController: UIViewController {
     }
     
     private func setupUi() {
-        view.backgroundColor = .white
+        view.backgroundColor = .mainBackground
         configureMainStackView()
         navigationItem.hidesBackButton = true
         

@@ -37,6 +37,7 @@ struct Bike: Identifiable, Codable {
     }
     
     enum CodingKeys: String, CodingKey {
+        case id
         case scannerId
         case price
         case year
@@ -72,6 +73,7 @@ struct Bike: Identifiable, Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(String.self, forKey: .id)
         self.scannerId = try container.decodeIfPresent(String.self, forKey: .scannerId) ?? ""
         self.price = try container.decodeIfPresent(Double.self, forKey: .price) ?? 0.0
         self.year = try container.decodeIfPresent(Int.self, forKey: .year) ?? 0

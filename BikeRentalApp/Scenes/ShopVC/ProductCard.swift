@@ -44,6 +44,7 @@ struct ProductCard: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text(product.name)
                     .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(.primaryDeep)
                 
                 HStack(alignment: .bottom) {
                     Text("\(viewModel.formatPrice(for: product))")

@@ -17,7 +17,7 @@ import FirebaseStorage
 struct ProfileView: View {
     
     // MARK: - Properties
-
+    
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel = ProfileViewModel()
     @State var photoPicker: PhotosPickerItem? = nil
@@ -34,13 +34,10 @@ struct ProfileView: View {
     let prices = [5.4, 6.2, 7.8]
     
     // MARK: - Body
-
+    
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {
-                ZStack {
-                    Color("mainBackgroundColor").ignoresSafeArea()
-                    
                 VStack(spacing: 30) {
                     HStack {
                         PhotosPicker(
@@ -186,7 +183,6 @@ struct ProfileView: View {
                     
                     VStack(alignment: .leading) {
                         ForEach(0..<viewModel.ongoingRentals.count, id: \.self) { index in
-                            
                             let rental = viewModel.ongoingRentals[index]
                             RentHistoryCell(viewModel: viewModel, number: index,
                                             totalPrice: Double(rental.totalPrice) ?? 0.0,
@@ -246,10 +242,10 @@ struct ProfileView: View {
                 }
                 .padding()
                 .padding(.top)
+                .background(.mainBackground)
+                
             }
-            }
-        }
-        .onChange(of: viewModel.isLoggedOut) { isLoggedOut in
+        }        .onChange(of: viewModel.isLoggedOut) { isLoggedOut in
             if isLoggedOut {
                 presentationMode.wrappedValue.dismiss()
             }

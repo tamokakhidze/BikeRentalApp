@@ -49,6 +49,7 @@ struct ShopMainView: View {
                     Text("Shop essentials for your ride")
                         .fontWeight(.medium)
                         .font(.system(size: 20))
+                        .foregroundStyle(.primaryDeep)
                     
                     ZStack(alignment: .leading) {
                         Rectangle()
@@ -81,6 +82,7 @@ struct ShopMainView: View {
                     Text("New arrivals")
                         .fontWeight(.medium)
                         .font(.system(size: 20))
+                        .foregroundStyle(.primaryDeep)
                     
                     ScrollView(.horizontal) {
                         
@@ -102,6 +104,7 @@ struct ShopMainView: View {
                         .fontWeight(.medium)
                         .font(.system(size: 20))
                         .padding(.bottom, 100)
+                        .foregroundStyle(.primaryDeep)
                     
                 }
                 .onAppear {

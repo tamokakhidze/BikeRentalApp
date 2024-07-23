@@ -157,8 +157,6 @@ struct AddBikeFormView: View {
               locationLatitudeValue >= -90 && locationLatitudeValue <= 90,
               let locationLongitudeValue = Double(locationLongitude),
               locationLongitudeValue >= -180 && locationLongitudeValue <= 180,
-              !brakeType.isEmpty,
-              let helmetPriceValue = Double(helmetPrice),
               !image.isEmpty else {
             message = "Please fill in all required fields correctly or ensure the image is valid."
             showPopup = true
@@ -183,7 +181,7 @@ struct AddBikeFormView: View {
             image: image,
             detailedImages: detailedImagesArray,
             hasHelmet: hasHelmet,
-            helmetPrice: helmetPriceValue
+            helmetPrice: Double(helmetPrice) ?? 0.0
         )
         
         viewModel.addBike(bike: bike) { result in

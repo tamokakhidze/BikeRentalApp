@@ -31,7 +31,7 @@ final class ForgotPasswordViewController: UIViewController {
     }
     
     private func setupUi() {
-        view.backgroundColor = .white
+        view.backgroundColor = .mainBackground
         configureMainStackView()
         emailTextField.layer.borderWidth = 1.0
         emailTextField.layer.borderColor = UIColor.clear.cgColor

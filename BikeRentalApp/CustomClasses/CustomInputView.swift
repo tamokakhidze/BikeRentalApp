@@ -35,18 +35,25 @@ class CustomInputView: UITextField {
         
         self.backgroundColor = .white
         
+        let placeholderText: String
         switch inputFieldType {
         case .Username:
-            self.placeholder = "Enter username"
+            placeholderText = "Enter username"
         case .Email:
-            self.placeholder = "Enter email"
+            placeholderText = "Enter email"
             self.keyboardType = .emailAddress
         case .Password:
-            self.placeholder = "Enter password"
+            placeholderText = "Enter password"
             self.isSecureTextEntry = true
             self.textContentType = .oneTimeCode
 
         }
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.gray
+        ]
+        self.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
+
     }
     
     required init?(coder: NSCoder) {
