@@ -20,7 +20,7 @@ class DetectionResultValidator {
         let resultsArray = result.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
 
         for item in resultsArray {
-            if whitelist.contains(item) || item.contains("bicycle") {
+            if whitelist.contains(item) || item.contains("bicycle") || item.contains("bike") {
                 return true
             }
         }

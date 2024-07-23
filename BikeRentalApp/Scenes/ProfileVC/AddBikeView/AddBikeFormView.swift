@@ -67,7 +67,7 @@ struct AddBikeFormView: View {
                             
                         }
                     }
-                    .frame(height: 500)
+                    .frame(height: 600)
                     
                     PhotosPicker(
                         selection: $photoPicker,

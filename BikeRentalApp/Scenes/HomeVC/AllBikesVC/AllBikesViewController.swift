@@ -46,6 +46,8 @@ final class AllBikesViewController: UIViewController, HomeViewModelDelegate {
         segmentControl.layer.borderWidth = 1
         segmentControl.layer.borderColor = UIColor.white.cgColor
         segmentControl.layer.cornerRadius = 50
+        
+        segmentControl.selectedSegmentIndex = 0
         return segmentControl
     }()
     
