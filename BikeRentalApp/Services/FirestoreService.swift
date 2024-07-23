@@ -56,17 +56,21 @@ class FirestoreService: FirestoreFetchable {
         collectionRef.getDocuments { snapshot, error in
             if let error = error {
                 completion(.failure(error))
+                print(snapshot)
+                print(error)
                 return
             }
             
             guard let documents = snapshot?.documents else {
                 completion(.failure(NSError(domain: "Firestore", code: -1, userInfo: [NSLocalizedDescriptionKey: "No documents found"])))
+                
                 return
             }
             
             do {
                 let data = try documents.map { try $0.data(as: T.self) }
                 completion(.success(data))
+                
             } catch {
                 completion(.failure(error))
             }
