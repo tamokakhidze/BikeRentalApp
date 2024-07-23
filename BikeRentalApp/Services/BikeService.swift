@@ -71,10 +71,10 @@ final class BikeService {
     public func checkAvailability(for bookingRequest: Booking, completion: @escaping (Bool, Error?) -> Void) {
         let requestedStartTime = bookingRequest.startTime
         let requestedEndTime = bookingRequest.endTime
-        let bikeId = bookingRequest.bikeID
+        let bicycleId = bookingRequest.bicycleID
         
         let bookings = db.collection("bookings")
-        let query = bookings.whereField("bikeID", isEqualTo: bikeId)
+        let query = bookings.whereField("bicycleID", isEqualTo: bicycleId)
                             .whereField("startTime", isLessThanOrEqualTo: requestedEndTime)
                             .whereField("endTime", isGreaterThanOrEqualTo: requestedStartTime)
         

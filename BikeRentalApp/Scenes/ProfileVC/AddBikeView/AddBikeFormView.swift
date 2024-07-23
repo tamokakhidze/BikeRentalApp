@@ -169,7 +169,7 @@ struct AddBikeFormView: View {
         }
         
         let bike = Bike(
-            scannerId: UUID().uuidString,
+            bicycleID: UUID().uuidString,
             price: priceValue,
             year: yearValue,
             hasLights: hasLights,

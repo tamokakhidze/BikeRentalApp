@@ -233,6 +233,7 @@ final class DetailsViewController: UIViewController {
     }
     
     @objc private func goToCalendarView() {
+        print(bike)
         let vc = CalendarViewController(bike: bike, isHelmetChosen: helmetIsChosen, helmetPrice: helmetPrice)
         print(helmetIsChosen)
         navigationController?.pushViewController(vc, animated: true)

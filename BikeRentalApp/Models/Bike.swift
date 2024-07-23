@@ -12,7 +12,7 @@ import FirebaseFirestore
 
 struct Bike: Identifiable, Codable {
     @DocumentID var id: String?
-    var scannerId: String
+    var bicycleID: String
     var price: Double
     var year: Int
     var hasLights: Bool
@@ -38,7 +38,7 @@ struct Bike: Identifiable, Codable {
     
     enum CodingKeys: String, CodingKey {
         case id
-        case scannerId
+        case bicycleID
         case price
         case year
         case hasLights
@@ -54,9 +54,9 @@ struct Bike: Identifiable, Codable {
         case locationLongitude
     }
     
-    init(scannerId: String,
+    init(bicycleID: String,
          price: Double, year: Int, hasLights: Bool, numberOfGears: Int, geometry: String, locationLatitude: Double, locationLongitude: Double, brakeType: String, image: String, detailedImages: [String], hasHelmet: Bool, helmetPrice: Double) {
-        self.scannerId = scannerId
+        self.bicycleID = bicycleID
         self.price = price
         self.year = year
         self.hasLights = hasLights
@@ -74,7 +74,7 @@ struct Bike: Identifiable, Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(String.self, forKey: .id)
-        self.scannerId = try container.decodeIfPresent(String.self, forKey: .scannerId) ?? ""
+        self.bicycleID = try container.decodeIfPresent(String.self, forKey: .bicycleID) ?? ""
         self.price = try container.decodeIfPresent(Double.self, forKey: .price) ?? 0.0
         self.year = try container.decodeIfPresent(Int.self, forKey: .year) ?? 0
         self.hasLights = try container.decodeIfPresent(Bool.self, forKey: .hasLights) ?? false
@@ -93,7 +93,7 @@ struct Bike: Identifiable, Codable {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(scannerId, forKey: .scannerId)
+        try container.encode(bicycleID, forKey: .bicycleID)
         try container.encode(price, forKey: .price)
         try container.encode(year, forKey: .year)
         try container.encode(hasLights, forKey: .hasLights)

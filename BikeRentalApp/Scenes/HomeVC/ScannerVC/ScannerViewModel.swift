@@ -38,11 +38,11 @@ class ScannerViewModel {
                 print("fetched bikes count: \(bikes.count)")
                 
                 for bike in bikes {
-                    let trimmedScannerId = bike.scannerId.trimmingCharacters(in: .whitespacesAndNewlines)
+                    let trimmedScannerId = bike.bicycleID.trimmingCharacters(in: .whitespacesAndNewlines)
                     print("fetched bike scannerId: '\(trimmedScannerId)'")
                 }
                 
-                if let bike = bikes.first(where: { $0.scannerId.trimmingCharacters(in: .whitespacesAndNewlines) == trimmedBikeId }) {
+                if let bike = bikes.first(where: { $0.bicycleID.trimmingCharacters(in: .whitespacesAndNewlines) == trimmedBikeId }) {
                     print("bike found: \(bike)")
                     self?.delegate?.bikeFetched(bike: bike)
                 } else {

@@ -37,9 +37,10 @@ class CalendarViewModel {
         let booking = Booking(dictionary: [
             "startTime": startTimeString,
             "endTime": endTimeString,
-            "bikeID": bike.id
+            "bicycleID": bike.bicycleID
         ])
-        
+        print(startTimeString)
+        print(bike.id)
         BikeService.shared.checkAvailability(for: booking) { [weak self] available, error in
             if let error = error {
                 print("Error checking availability: \(error.localizedDescription)")

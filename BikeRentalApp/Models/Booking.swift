@@ -12,7 +12,7 @@ struct Booking: Codable {
     var startTime: String
     var endTime: String
     var userID: String
-    var bikeID: String
+    var bicycleID: String
     var totalPrice: String
 
     init(dictionary: [String: Any?]) {
@@ -20,7 +20,7 @@ struct Booking: Codable {
         self.startTime = dictionary["startTime"] as? String ?? ""
         self.endTime = dictionary["endTime"] as? String ?? ""
         self.userID = dictionary["userID"] as? String ?? ""
-        self.bikeID = dictionary["bikeID"] as? String ?? ""
+        self.bicycleID = dictionary["bicycleID"] as? String ?? ""
         self.totalPrice = dictionary["totalPrice"] as? String ?? ""
     }
 
@@ -30,7 +30,7 @@ struct Booking: Codable {
             "startTime": startTime,
             "endTime": endTime,
             "userID": userID,
-            "bikeID": bikeID,
+            "bicycleID": bicycleID,
             "totalPrice": totalPrice
         ]
     }
