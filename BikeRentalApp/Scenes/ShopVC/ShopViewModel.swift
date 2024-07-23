@@ -6,10 +6,6 @@
 //
 
 import Foundation
-
-import NetworkServicePackage
-
-import Foundation
 import NetworkServicePackage
 
 class ShopViewModel: ObservableObject {
@@ -19,10 +15,10 @@ class ShopViewModel: ObservableObject {
     @Published var productsList = [Product]()
     @Published var productCategories = [String]()
     @Published var cartItems = [Product]()
-    @Published var couponCodes = ["7mayerrs", "35mm", "Check24", "Tbcxusaid"]
+    @Published var couponCodes = ["7mayerrs", "35mm", "Tbcxusaid"]
     @Published var discountValue: Double?
 
-    private let url = "https://mocki.io/v1/d1d6abfb-14d7-40de-a11a-9dc3d93c4ea9"
+    private let url = "https://mocki.io/v1/070ae597-4245-4b34-a828-76891cac68ad"
     
     // MARK: - Fetching Data
     
