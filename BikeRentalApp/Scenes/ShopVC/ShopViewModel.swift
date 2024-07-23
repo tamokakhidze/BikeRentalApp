@@ -6,6 +6,10 @@
 //
 
 import Foundation
+
+import NetworkServicePackage
+
+import Foundation
 import NetworkServicePackage
 
 class ShopViewModel: ObservableObject {
@@ -18,7 +22,7 @@ class ShopViewModel: ObservableObject {
     @Published var couponCodes = ["7mayerrs", "35mm", "Check24", "Tbcxusaid"]
     @Published var discountValue: Double?
 
-    private let url = "https://mocki.io/v1/070ae597-4245-4b34-a828-76891cac68ad"
+    private let url = "https://mocki.io/v1/d1d6abfb-14d7-40de-a11a-9dc3d93c4ea9"
     
     // MARK: - Fetching Data
     
@@ -72,6 +76,16 @@ class ShopViewModel: ObservableObject {
         }
     }
     
+    func delete(for product: Product) {
+        if let index = productsList.firstIndex(where: { $0.id == product.id }) {
+            productsList[index].quantity = 0
+        }
+    }
+    
+    func calculateTotalQuantity() -> Int {
+        return productsList.reduce(0) { $0 + $1.quantity }
+    }
+    
     func calculateTotalPrice() -> Double {
         let totalPrice = productsList.reduce(0.0) { $0 + Double($1.quantity) * $1.price }
         return Double(round(totalPrice * 100) / 100)
@@ -91,6 +105,14 @@ class ShopViewModel: ObservableObject {
         return "0.0"
     }
     
+    var formattedPrice: String {
+        return String(format: "%.2f", calculateTotalPrice()) + "$"
+    }
+    
+    var total: Double {
+        return cartItems.reduce(0) { $0 + $1.price }
+    }
+    
     func calculateDiscountedTotal(isCodeCorrect: Bool) -> Double {
         let discountRate = discountValue ?? 0.2
         let totalPrice = calculateTotalPrice()
@@ -99,6 +121,7 @@ class ShopViewModel: ObservableObject {
     
     func addItemToCart(item: Product) {
         cartItems.append(item)
+        print(cartItems.count)
     }
     
     func removeItemFromCart(item: Product) {

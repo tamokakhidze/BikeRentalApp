@@ -39,8 +39,7 @@ class CalendarViewModel {
             "endTime": endTimeString,
             "bicycleID": bike.bicycleID
         ])
-        print(startTimeString)
-        print(bike.id)
+        print(bike.bicycleID)
         BikeService.shared.checkAvailability(for: booking) { [weak self] available, error in
             if let error = error {
                 print("Error checking availability: \(error.localizedDescription)")

@@ -140,6 +140,7 @@ class CalendarViewController: UIViewController {
     }
     
     @objc private func checkAvailabilityButtonTapped() {
+        print("Self bike on calebar view: \(self.bike)")
         viewModel.checkAvailability(for: bike, startTime: startTimeView.date, endTime: endTimeView.date)
     }
     
@@ -170,7 +171,7 @@ extension CalendarViewController: PKPaymentAuthorizationViewControllerDelegate {
             let bookingInfo: [String: Any] = [
                 "startTime": startTimeString,
                 "endTime": endTimeString,
-                "bikeID": self.bike.id ?? "",
+                "bicycleID": self.bike.bicycleID ?? "",
                 "userID": Auth.auth().currentUser?.uid ?? "",
                 "totalPrice": String(format: "%.2f", totalPrice)
             ]

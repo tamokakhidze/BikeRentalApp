@@ -11,7 +11,7 @@ struct Product: Identifiable, Decodable, Equatable {
     var id: String
     let name: String
     var price: Double
-    var quantity: Int = 0
+    var quantity: Int
     let image: String
     let category: String
     let categoryImage: String
