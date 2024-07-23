@@ -12,20 +12,20 @@ import SwiftUI
 struct Footer: View {
     
     // MARK: - Properties
-
+    
     @EnvironmentObject var viewModel: ShopViewModel
     @Binding var showPopup: Bool
     @Binding var isCodeCorrect: Bool
     
     // MARK: - Body
-
+    
     var body: some View {
         ZStack {
             VStack(alignment: .leading, spacing: 10) {
                 
                 HStack(alignment: .bottom) {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Total items: \(viewModel.cartItems.count)")
+                        Text("Total items : \(viewModel.cartItems.count)")
                             .font(.system(size: 14, weight: .regular))
                         
                         let total = viewModel.calculateDiscountedTotal(isCodeCorrect: isCodeCorrect)
@@ -74,14 +74,14 @@ struct Footer: View {
 struct CustomPopupView: View {
     
     // MARK: - Properties
-
+    
     @Binding var showPopup: Bool
     @Binding var couponCode: String
     @ObservedObject var viewModel: ShopViewModel
     @Binding var isCodeCorrect: Bool
     
     // MARK: - Body
-
+    
     var body: some View {
         VStack {
             Spacer()

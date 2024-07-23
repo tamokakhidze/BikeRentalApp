@@ -71,9 +71,7 @@ struct ProductCard: View {
                 
                 Button("+")
                 {
-                  viewModel.increaseProductQuantity(for: product)
-                    //viewModel.addItemToCart(item: product)
-                    
+                  viewModel.increaseProductQuantity(for: product)                    
                 }
                 .frame(width: 30, height: 30)
                 .background(.shopSecondary)
