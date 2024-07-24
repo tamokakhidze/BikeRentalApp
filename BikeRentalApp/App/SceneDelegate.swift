@@ -8,10 +8,14 @@
 import UIKit
 import FirebaseCore
 import FirebaseAuth
+import LocalAuthentication
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var navigationController = UINavigationController()
+    var isUserAuthenticated: Bool{
+        Auth.auth().currentUser?.uid != nil
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
@@ -34,13 +38,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         DispatchQueue.global().async {
             sleep(4)
             DispatchQueue.main.async {
-                self.checkIfUserIsLoggedIn()
+                if self.isUserAuthenticated {
+                    self.authenticateWithFaceId()
+                } else {
+                    self.checkIfUserIsLoggedIn()
+                }
             }
         }
     }
 
     func checkIfUserIsLoggedIn() {
-           if Auth.auth().currentUser == nil {
+           if !isUserAuthenticated {
                navigationController.setViewControllers([LoginViewController()], animated: false)
            } else {
                navigationController.setViewControllers([RootViewController()], animated: false)
@@ -51,6 +59,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     @objc func userDidLogout() {
         checkIfUserIsLoggedIn()
+    }
+    
+    func authenticateWithFaceId() {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "This is a security check reason.") { [weak self] success, authenticationError in
+                
+                DispatchQueue.main.async {
+                    if success {
+                        self?.checkIfUserIsLoggedIn()
+                    } else {
+                        AuthService.shared.signOut { error in
+                            DispatchQueue.main.async {
+                                if let error = error {
+                                    print("couldn't sign out")
+                                } else {
+                                    self?.checkIfUserIsLoggedIn()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                print("biometrics are not available")
+            }
+        }
     }
 }
 
